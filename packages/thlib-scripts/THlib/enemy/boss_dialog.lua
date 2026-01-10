@@ -149,15 +149,7 @@ function dialog_displayer:init(p_dialog)
     self.p_dialog = p_dialog
     self.active = false --active到底是个什么沙雕东西？？？？？？
     if self.p_dialog then
-        local players
-        if Players then
-            players = Players(self)
-        else
-            players = { player }
-        end
-        for _, p in pairs(players) do
-            p.dialog = true
-        end
+        player.dialog = true
     end
 end
 function dialog_displayer:frame()

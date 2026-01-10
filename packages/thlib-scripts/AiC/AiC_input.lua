@@ -527,14 +527,14 @@ function lib.KeyNameList()
     ret[KEY.PERIOD] = "."
     ret[KEY.SLASH] = "/"
     for i = KEY.NUMPAD0, KEY.NUMPAD9 do
-        ret[i] = "小键盘" .. (i - KEY.NUMPAD0)
+        ret[i] = "Numpad " .. (i - KEY.NUMPAD0)
     end
-    ret[KEY.MULTIPLY] = "小键盘*"
-    ret[KEY.DIVIDE] = "小键盘/"
-    ret[KEY.ADD] = "小键盘+"
-    ret[KEY.SUBTRACT] = "小键盘-"
-    ret[KEY.DECIMAL] = "小键盘."
-    ret[0xE8] = "小键盘Enter"
+    ret[KEY.MULTIPLY] = "Numpad *"
+    ret[KEY.DIVIDE] = "Numpad /"
+    ret[KEY.ADD] = "Numpad +"
+    ret[KEY.SUBTRACT] = "Numpad -"
+    ret[KEY.DECIMAL] = "Numpad ."
+    ret[0xE8] = "Numpad Enter"
     return ret
 end
 

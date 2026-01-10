@@ -27,7 +27,6 @@
       "type-not-found",
       "access-invisible",
       "duplicate-set-field",
-      "param-type-not-match",
       "inject-field",
       "undefined-field",
       "assign-type-mismatch",
@@ -39,7 +38,8 @@
       "await-in-sync",
       "unnecessary-assert",
       "annotation-usage-error",
-      "missing-fields"
+      "missing-fields",
+      "param-type-mismatch"
     ],
     "enable": true,
     "enables": [],

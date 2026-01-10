@@ -615,7 +615,7 @@ function private.InputMethod:frame()
 end
 
 function private.InputMethod:render()
-    DrawText('main_font_en', 'upper:' .. tostring(self.upper) .. '\nchinese:' .. tostring(self.chinese)
+    DrawText('main_font_en_us', 'upper:' .. tostring(self.upper) .. '\nchinese:' .. tostring(self.chinese)
         .. '\nhalf:' .. tostring(self.half) .. '\nchinese_punction:' .. tostring(self.chinese_punction), -100, 0)
     SetViewMode('ui')
     Render('IME_sharp_icon', self.x, self.y, 0, 0.5)
@@ -1108,7 +1108,7 @@ end
 ---@param co2 lstg.Color @描边颜色
 ---@vararg align @对齐方式
 function private.DrawText(font, text, x, y, s, co1, co2, ...)
-    font = font or "main_font_zh2"
+    font = font or "main_font_zh_cn"
     s = s or 1
     co1 = co1 or Color(255, 255, 255, 255)
     local alpha = co1:ARGB()

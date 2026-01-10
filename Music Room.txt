@@ -4,7 +4,7 @@ Music Room
 
 1.梦境彼方 摇篮仙境
 原曲：An-fillnote - タイトル
-出处：ひなゆあ/橋野みずは - 《AliceInCradle》
+出处：ひなゆあ/桥野 水叶 - 《AliceInCradle》
 
 　标题画面的主题曲。
 
@@ -87,7 +87,7 @@ Music Room
 
 10.森林中的未知际遇
 原曲：ginkiha - 纺ぐ者の森(Battle)
-出处：ひなゆあ/橋野みずは - 《AliceInCradle》
+出处：ひなゆあ/桥野 水叶 - 《AliceInCradle》
 
 　诺艾儿·柯涅尔的一阶段主题曲。
 
@@ -97,7 +97,7 @@ Music Room
 
 11.纯白之花
 原曲：ginkiha - イクシャ·ポリスタキア
-出处：ひなゆあ/橋野みずは - 《AliceInCradle》
+出处：ひなゆあ/桥野 水叶 - 《AliceInCradle》
 
 　伊夏·波利斯塔切尔的主题曲。
 
@@ -127,7 +127,7 @@ Music Room
 
 14.即使已然无力回天
 原曲：An-fillnote - 森のヌシ
-出处：ひなゆあ/橋野みずは - 《AliceInCradle》
+出处：ひなゆあ/桥野 水叶 - 《AliceInCradle》
 
 　圣光爆发的主题曲。
 
@@ -160,7 +160,7 @@ Music Room
 
 17.森之意志
 原曲：watson - 森の記憶
-出处：ひなゆあ/橋野みずは - 《AliceInCradle》
+出处：ひなゆあ/桥野 水叶 - 《AliceInCradle》
 
 　结局A的主题曲。
 
@@ -297,7 +297,7 @@ Music Room
 
 30.乐园与群星与永远之梦
 原曲：An-fillnote - City of Grace
-出处：ひなゆあ/橋野みずは - 《AliceInCradle》
+出处：ひなゆあ/桥野 水叶 - 《AliceInCradle》
 
 　标题画面的主题曲（新）。
 

@@ -1,5 +1,7 @@
 local lib = aic.menu
 
+local l10n = aic.l10n[setting.locale]
+
 ---玩家数据
 ---符卡数据部分因为需要分难度所以暂且搁置
 lib.player_data = Class(object)
@@ -19,7 +21,7 @@ function lib.player_data:init(scnum)
     self.alpha = 0
     self.player_list = { "reimu_player", "marisa_player", "sakuya_player", "muki_player", "nenyuki_player" }
     self.diff_list = { "Easy", "Normal", "Hard", "Lunatic", --[["Extra"]] }
-    self.sc_list = aic.l10n.ui.sc_list
+    self.sc_list = aic.l10n[setting.locale].ui.sc_list
     self.data = nil
     self.playdata = nil
     self.posX = 1 --自机选择
@@ -55,7 +57,7 @@ function lib.player_data:init(scnum)
         local function GetDefaultSCHist(ret, i)
             table.insert(ret, {
                 4 * (i - 1) + self.posY,
-                string.rep("？", min(#self.sc_list[self.posY][i], 21)),
+                string.rep(l10n.general.punctions.question_mark, min(#self.sc_list[self.posY][i], 21)),
                 0,
                 0
             })
@@ -190,7 +192,7 @@ end
 function lib.player_data:render()
     SetViewMode('ui')
     lib.DrawSubTitle(self)
-    lib.DrawTips(self, { nil, '返回上一级菜单' }, { '选择难度', '选择机体' })
+    lib.DrawTips(self, { nil, l10n.ui.tips.back }, { l10n.ui.select_diff, l10n.ui.select_player })
     local x, y = self.x, self.y - 70
     local lineh = 20
     local yos = (self.l + 1) * lineh * 0.5
@@ -198,32 +200,32 @@ function lib.player_data:render()
     local data, playdata = self.data, self.playdata
     if playdata then
         local d = 25
-        local player = { "博丽 灵梦", "雾雨 魔理沙", "十六夜 咲夜", "小林 无记", "千幻 念雪" }
+        local player = { l10n.general.character_names.reimu, l10n.general.character_names.marisa, l10n.general.character_names.sakuya, l10n.general.character_names.muki, l10n.general.character_names.nenyuki }
         local player_co = { { 255, 136, 170 }, { 221, 221, 85 }, { 85, 204, 255 }, { 76, 231, 235 }, { 165, 164, 249 } }
         --咲字渲不出来
-        if self.posX == 3 then
+        if self.posX == 3 and (setting.locale == 'zh_cn' or setting.locale == 'zh_tc') then
             DrawText('sc_name', "咲", x + 20, y + 198, 1.3,
                 Color(self.alpha, unpack(player_co[self.posX])), nil, 'center')
         end
-        DrawText('main_font_zh2', player[self.posX], x, y + 195, 1.25,
+        DrawText('main_font_zh_cn', player[self.posX], x, y + 195, 1.25,
             Color(self.alpha, unpack(player_co[self.posX])), nil, 'center')
-        DrawText('main_font_zh2', '<', x - d * 2.25 - d / 5 * sin(3 * self.timer),
+        DrawText('main_font_zh_cn', '<', x - d * 2.25 - d / 5 * sin(3 * self.timer),
             y + 195, 1.25, color(COLOR_WHITE, self.alpha), nil, 'left')
-        DrawText('main_font_zh2', '>', x + d * 2.25 + d / 5 * sin(3 * self.timer),
+        DrawText('main_font_zh_cn', '>', x + d * 2.25 + d / 5 * sin(3 * self.timer),
             y + 195, 1.25, color(COLOR_WHITE, self.alpha), nil, 'right')
         
         local diff = { "EASY", "NORMAL", "HARD", "LUNATIC", "EXTRA" }
-        DrawText('main_font_zh2', diff[self.posY], x, y + 160, 1.25,
+        DrawText('main_font_zh_cn', diff[self.posY], x, y + 160, 1.25,
             color(COLOR_WHITE, self.alpha), nil, 'center')
-        DrawText('main_font_zh2', '︿', x - 7, y + 150 + d / 2.5 + d / 7 * sin(3 * self.timer),
+        DrawText('main_font_zh_cn', '︿', x - 7, y + 150 + d / 2.5 + d / 7 * sin(3 * self.timer),
             1, color(COLOR_WHITE, self.alpha), nil, 'bottom')
-        DrawText('main_font_zh2', '﹀', x - 7, y + 150 - d / 2.5 - d / 7 * sin(3 * self.timer),
+        DrawText('main_font_zh_cn', '﹀', x - 7, y + 150 - d / 2.5 - d / 7 * sin(3 * self.timer),
             1, color(COLOR_WHITE, self.alpha), nil, 'top')
         
-        for k, v in ipairs({ "总游戏回数", "游玩时长", "通关回数" }) do
-            DrawText('main_font_zh2', v, x - d * 1.25,
+        for k, v in ipairs({ l10n.ui.player_data.total_play_times, l10n.ui.player_data.play_time, l10n.ui.player_data.finish_times }) do
+            DrawText('main_font_zh_cn', v, x - d * 1.25,
                 y - k * lineh - 80, 1, color(COLOR_WHITE, self.alpha), nil, 'right')
-            DrawText('main_font_zh2', playdata[k], x + d * 1.25,
+            DrawText('main_font_zh_cn', playdata[k], x + d * 1.25,
                 y - k * lineh - 80, 1, color(COLOR_WHITE, self.alpha), nil, 'left')
         end
     end
@@ -249,7 +251,7 @@ function lib.player_data:render()
                     elseif j == 2 then
                     elseif j == 3 then
                     end
-                    DrawText("main_font_zh2", text,
+                    DrawText("main_font_zh_cn", text,
                         x + xos[1], y - i * lineh + yos + 25, 0.9, Color(self.alpha, unpack(co)), nil, 'vcenter', align)
                 end
             end
@@ -285,7 +287,7 @@ function lib.player_data:render()
                         end
                         align = 'right'
                     end
-                    DrawText("main_font_zh2", text,
+                    DrawText("main_font_zh_cn", text,
                         x + xos[j + 1], y - i * lineh + yos + 25, 0.9, Color(self.alpha, r, g, b), nil, 'vcenter', align)
                 end
                 r = r + _d_r

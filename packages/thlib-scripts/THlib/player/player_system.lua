@@ -4,6 +4,8 @@ local player_lib = player_lib
 ---@return player.system
 player_lib.system = plus.Class()
 
+local l10n = aic.l10n[setting.locale]
+
 local defaultKeys = {
     "up", "down", "left", "right",
     "slow", "shoot", "spell", "special",
@@ -925,7 +927,7 @@ end
 
 function system:sphit()
     local p = self.player
-    aic.ui.NewSpellname(nil, "「珠辉的素描本」", nil, nil, nil, true, 120)
+    aic.ui.NewSpellname(nil, l10n.ui.sphit_name, nil, nil, nil, true, 120)
     aic.sys.SpHit(p)
 end
 

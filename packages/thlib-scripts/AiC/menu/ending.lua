@@ -1,5 +1,7 @@
 local lib = aic.menu
 
+local l10n = aic.l10n[setting.locale]
+
 ------------------------------------------------------------
 
 ---结局（staff画面也在这里）
@@ -24,8 +26,8 @@ function lib.ending:init()
     self.intv = 4
     self.text = ''
     self.text1 = { 'B', 'C', 'D', 'E' }
-    self.text2 = aic.l10n.dialog.ending_name
-    self.text3 = aic.l10n.dialog.staff
+    self.text2 = aic.l10n[setting.locale].dialog.ending_name
+    self.text3 = aic.l10n[setting.locale].dialog.staff
     self.texty = screen.height * 0.75
     self.ttfdrawer = aic.custom_dialog.TTFDrawer('', self)
     function self.ShowEnding()
@@ -35,7 +37,7 @@ function lib.ending:init()
             if lib.EndingFlag ~= 'D' then
                 _play_music('aic_bgm18', nil, false)
             end
-            local d = aic.l10n.dialog.dialog_ending[lib.EndingFlag]
+            local d = aic.l10n[setting.locale].dialog.dialog_ending[lib.EndingFlag]
             local l
             for i, v in ipairs(d.text) do
                 l = sp.string(v):GetCharCount()
@@ -139,17 +141,17 @@ function lib.ending:render()
     if self.staff_flag1 then
         for i, v in ipairs(self.text3) do
             if #v == 2 then
-                DrawText('main_font_zh2', v[1], self.x, self.texty - screen.height * i, 2.5, nil, nil, 'centerpoint')
-                DrawText('main_font_zh2', v[2], self.x, self.texty - screen.height * i - 35, 1.5, nil, nil, 'centerpoint')
+                DrawText('main_font_zh_cn', v[1], self.x, self.texty - screen.height * i, 2.5, nil, nil, 'centerpoint')
+                DrawText('main_font_zh_cn', v[2], self.x, self.texty - screen.height * i - 35, 1.5, nil, nil, 'centerpoint')
             elseif #v == 3 then
-                DrawText('main_font_zh2', v[1], self.x, self.texty - screen.height * i, 2, nil, nil, 'centerpoint')
-                DrawText('main_font_zh2', v[2], self.x, self.texty - screen.height * i - 25, 1, nil, nil, 'centerpoint')
-                DrawText('main_font_zh2', v[3], self.x, self.texty - screen.height * i - 85, 2, nil, nil, 'centerpoint')
+                DrawText('main_font_zh_cn', v[1], self.x, self.texty - screen.height * i, 2, nil, nil, 'centerpoint')
+                DrawText('main_font_zh_cn', v[2], self.x, self.texty - screen.height * i - 25, 1, nil, nil, 'centerpoint')
+                DrawText('main_font_zh_cn', v[3], self.x, self.texty - screen.height * i - 85, 2, nil, nil, 'centerpoint')
             else
-                DrawText('main_font_zh2', v[1], self.x, self.texty - screen.height * i, 2, nil, nil, 'centerpoint')
-                DrawText('main_font_zh2', v[2], self.x, self.texty - screen.height * i - 25, 1, nil, nil, 'centerpoint')
-                DrawText('main_font_zh2', v[3], self.x, self.texty - screen.height * i - 55, 2, nil, nil, 'centerpoint')
-                DrawText('main_font_zh2', v[4], self.x, self.texty - screen.height * i - 80, 0.75, nil, nil, 'centerpoint')
+                DrawText('main_font_zh_cn', v[1], self.x, self.texty - screen.height * i, 2, nil, nil, 'centerpoint')
+                DrawText('main_font_zh_cn', v[2], self.x, self.texty - screen.height * i - 25, 1, nil, nil, 'centerpoint')
+                DrawText('main_font_zh_cn', v[3], self.x, self.texty - screen.height * i - 55, 2, nil, nil, 'centerpoint')
+                DrawText('main_font_zh_cn', v[4], self.x, self.texty - screen.height * i - 80, 0.75, nil, nil, 'centerpoint')
             end
         end
         return
@@ -160,31 +162,31 @@ function lib.ending:render()
             x, x, y, y, 16, 32, 0, 0,
             self.text_scale, self.text_co, 4)
     else
-        lib.DrawTips(self, { '选择', '返回上一级菜单' })
+        lib.DrawTips(self, { l10n.ui.tips.select, l10n.ui.tips.back })
         local d, x, y, text1, text2 = 75, self.x, self.y - 25, self.text1, self.text2
         for i = 1, self.l do
             if i == self.pos then
                 if self.ending[self.text1[self.pos]] then
-                    DrawText("main_font_zh2", '结局' .. text1[i], x, y + (2.5 - i) * d, 1.25,
+                    DrawText("main_font_zh_cn", l10n.general.terms.ending .. text1[i], x, y + (2.5 - i) * d, 1.25,
                         color(COLOR_BLACK, self.alpha), Color(self.alpha, 32, 208, 255), 'centerpoint')
-                    DrawText("main_font_zh2", text2[i], x, y + (2.5 - i) * d - 20, 1,
+                    DrawText("main_font_zh_cn", text2[i], x, y + (2.5 - i) * d - 20, 1,
                         color(COLOR_BLACK, self.alpha), Color(self.alpha, 32, 208, 255), 'centerpoint')
                 else
-                    DrawText("main_font_zh2", '结局' .. text1[i], x, y + (2.5 - i) * d, 1.25,
+                    DrawText("main_font_zh_cn", l10n.general.terms.ending .. text1[i], x, y + (2.5 - i) * d, 1.25,
                         color(COLOR_BLACK, self.alpha), Color(self.alpha, 32, 208, 255), 'centerpoint')
-                    DrawText("main_font_zh2", '？？？？', x, y + (2.5 - i) * d - 20, 1,
+                    DrawText("main_font_zh_cn", l10n.general.terms.unknown, x, y + (2.5 - i) * d - 20, 1,
                         color(COLOR_BLACK, self.alpha), Color(self.alpha, 32, 208, 255), 'centerpoint')
                 end
             else
                 if self.ending[self.text1[self.pos]] then
-                    DrawText("main_font_zh2", '结局' .. text1[i], x, y + (2.5 - i) * d, 1.25,
+                    DrawText("main_font_zh_cn", l10n.general.terms.ending .. text1[i], x, y + (2.5 - i) * d, 1.25,
                         color(COLOR_BLACK, self.alpha), color(COLOR_WHITE, self.alpha), 'centerpoint')
-                    DrawText("main_font_zh2", text2[i], x, y + (2.5 - i) * d - 20, 1,
+                    DrawText("main_font_zh_cn", text2[i], x, y + (2.5 - i) * d - 20, 1,
                         color(COLOR_BLACK, self.alpha), color(COLOR_WHITE, self.alpha), 'centerpoint')
                 else
-                    DrawText("main_font_zh2", '结局' .. text1[i], x, y + (2.5 - i) * d, 1.25,
+                    DrawText("main_font_zh_cn", l10n.general.terms.ending .. text1[i], x, y + (2.5 - i) * d, 1.25,
                         color(COLOR_BLACK, self.alpha), color(COLOR_DEEP_GRAY, self.alpha), 'centerpoint')
-                    DrawText("main_font_zh2", '？？？？', x, y + (2.5 - i) * d - 20, 1,
+                    DrawText("main_font_zh_cn", l10n.general.terms.unknown, x, y + (2.5 - i) * d - 20, 1,
                         color(COLOR_BLACK, self.alpha), color(COLOR_DEEP_GRAY, self.alpha), 'centerpoint')
                 end
             end

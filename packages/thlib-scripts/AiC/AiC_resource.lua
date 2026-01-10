@@ -11,6 +11,8 @@
 aic.res = {}
 local lib = aic.res
 
+local l10n = aic.l10n[setting.locale]
+
 local dir_res = "mod/Danmaku_Resource/"
 
 ---全资源表，用于存放已加载的资源的类型与名称
@@ -140,18 +142,12 @@ function lib.SafeLoad(restype, resname, filename, ...)
         end,
         {
             [LoadFailed] = function()
-                if restype == "lua" then
-                    filename, resname = resname, "脚本"
-                elseif restype == "model" then
-                    filename, resname = resname, "模型"
-                elseif restype == "pack" then
-                    filename, resname = resname, "压缩包"
-                end
-                lstg.MsgBoxWarn("加载游戏资源 " .. resname .. " 时发现文件 " .. filename
-                    .. " 丢失。\n请检查该文件是否被移动或删除。\n若无法找到文件，请重新下载游戏。\n若文件存在且重启游戏后仍然出现此提示框，请报告作者。")
+                filename, resname = resname, l10n.exception.restype[restype]
+                lstg.MsgBoxWarn(l10n.exception.load_failed[1] .. resname .. l10n.exception.load_failed[2] .. filename
+                    .. l10n.exception.load_failed[3])
             end,
             [""] = function()
-                lstg.MsgBoxWarn("加载游戏资源" .. resname .. "时出现未知错误。\n若重启游戏后仍然出现此提示框，请报告作者。")
+                lstg.MsgBoxWarn(l10n.exception.load_failed[1] .. resname .. l10n.exception.load_failed[4])
             end
         },
         function()

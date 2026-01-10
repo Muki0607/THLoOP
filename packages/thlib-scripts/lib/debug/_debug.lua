@@ -24,5 +24,5 @@ _debug = {
     full_title = false, --显示完整窗口标题信息（包括FPS，Obj数信息）
     pmode = false, --将珠辉的笔记本的效果替换为开启完美无缺模式，此模式稳定性未经检验，极容易出错，请谨慎使用
     exception_handler_disabled = true, --关闭全局异常捕获，方便debug
-    l10n_tryexcept_disabled = false, --关闭l10n加载文件时的异常捕获
+    l10n_tryexcept_disabled = true, --关闭l10n加载文件时的异常捕获
 }

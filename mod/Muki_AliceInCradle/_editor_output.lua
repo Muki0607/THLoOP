@@ -593,13 +593,13 @@ _editor_tasks["Muki_AiC_LSC_auto_clear"]=function(t)
         _del(self,false)
     end
 end
-_editor_class["Muki_AiC_test"]=Class(_object)
-_editor_class["Muki_AiC_test"].init=function(self,_x,_y,_)
+_editor_class["Muki_AiC_test1"]=Class(_object)
+_editor_class["Muki_AiC_test1"].init=function(self,_x,_y,_)
     self.x,self.y=_x,_y
-    self.img="leaf"
-    self.layer=LAYER_ENEMY_BULLET
+    self.img="img_void"
+    self.layer=LAYER_BG-5
     self.group=GROUP_ENEMY_BULLET
-    self.hide=true
+    self.hide=false
     self.bound=true
     self.navi=false
     self.hp=10
@@ -607,8 +607,51 @@ _editor_class["Muki_AiC_test"].init=function(self,_x,_y,_)
     self.colli=true
     self._servants={}
     self._blend,self._a,self._r,self._g,self._b='',255,255,255,255
-    lasttask=task.New(self,function()
-    end)
+    CreateRenderTarget("test")
+end
+_editor_class["Muki_AiC_test1"].render=function(self)
+    PushRenderTarget('test')
+end
+_editor_class["Muki_AiC_test2"]=Class(_object)
+_editor_class["Muki_AiC_test2"].init=function(self,_x,_y,_)
+    self.x,self.y=_x,_y
+    self.img="leaf"
+    self.layer=LAYER_ENEMY_BULLET
+    self.group=GROUP_ENEMY_BULLET
+    self.hide=false
+    self.bound=true
+    self.navi=false
+    self.hp=10
+    self.maxhp=10
+    self.colli=true
+    self._servants={}
+    self._blend,self._a,self._r,self._g,self._b='',255,255,255,255
+    self.aura_alpha=255
+    self.aura_alpha_d=4
+end
+_editor_class["Muki_AiC_test2"].frame=function(self)
+    self.aura_alpha = self.aura_alpha + self.aura_alpha_d
+    self.aura_alpha = min(max(0, self.aura_alpha), 128)
+    self.class.base.frame(self)
+end
+_editor_class["Muki_AiC_test2"].render=function(self)
+    SetImageState('white','',Color(255,0,0,0))
+    aic.ui.RenderEclipse('white', 0, 0, 50)
+    PopRenderTarget('test')
+    local r,g,b,a=255,255,255,255
+    local x,y=self.x,self.y
+    PostEffect(
+        'fx:black_hole',
+        'test',
+        6,
+        '',
+        {
+            { x, y, 0, 0 },
+            { r / 255.0, g / 255.0, b / 255.0, a / 255.0 },
+            { 50.0, 2.5, 150.0, self.timer / 1.0 }
+        }
+    )
+    aic.ui.RedrawUI()
 end
 _editor_class["Muki_AiC_dialog_name"]=Class(_object)
 _editor_class["Muki_AiC_dialog_name"].init=function(self,_x,_y,name)
@@ -3257,19 +3300,19 @@ _editor_class["Muki_AiC_get_magic_ui"].render=function(self)
     if self.is_border then
     	SetImageState('image:Muki_AiC_spell5','',Color(self.alpha1,255,255,255))
         Render('image:Muki_AiC_spell5',screen.width/2,self.y1+self.y3+325,0,0.8)
-        RenderTTF2('main_font_zh2',aic.l10n.ui.new_skill_text[3],
+        RenderTTF2('main_font_zh_cn',aic.l10n[setting.locale].ui.new_skill_text[3],
             screen.width/2,screen.width/2,self.y2+self.y3+225,self.y2+self.y3+225,2,
             Color(self.alpha1,255,255,255),'centerpoint')
-        RenderTTF('main_font_zh2',aic.l10n.ui.new_skill_text[4],
+        RenderTTF('main_font_zh_cn',aic.l10n[setting.locale].ui.new_skill_text[4],
             screen.width/2,screen.width/2,self.y2+self.y3+125,self.y2+self.y3+125,
             Color(self.alpha1,255,255,255),'centerpoint')
     else
         SetImageState('image:Muki_AiC_spell5','',Color(self.alpha1,255,255,255))
         Render('image:Muki_AiC_spell5',screen.width/2,self.y1+self.y3+325,0,0.8)
-        RenderTTF2('main_font_zh2',aic.l10n.ui.new_skill_text[1],
+        RenderTTF2('main_font_zh_cn',aic.l10n[setting.locale].ui.new_skill_text[1],
             screen.width/2,screen.width/2,self.y2+self.y3+225,self.y2+self.y3+225,2,
             Color(self.alpha1,255,255,255),'centerpoint')
-        RenderTTF('main_font_zh2',aic.l10n.ui.new_skill_text[2],
+        RenderTTF('main_font_zh_cn',aic.l10n[setting.locale].ui.new_skill_text[2],
             screen.width/2,screen.width/2,self.y2+self.y3+125,self.y2+self.y3+125,
             Color(self.alpha1,255,255,255),'centerpoint')
     end
@@ -4096,10 +4139,10 @@ _editor_class["Muki_AiC_burst"].render=function(self)
     Render('image:Muki_AiC_square4',self.x,self.y,45,max(5,6-self.timer/self.t))
     if self.stun and self.timer<self.t+15 then
        if self.red then
-            DrawText('main_font_zh1','晕厥概率：'..self.stun..'%',self.x,self.y-self.timer-50,1,
+            DrawText('main_font_zh_cn','晕厥概率：'..self.stun..'%',self.x,self.y-self.timer-50,1,
                 color(COLOR_RED,self.alpha),color(COLOR_BLACK,self.alpha),'centerpoint')
         else
-            DrawText('main_font_zh1','晕厥概率：'..self.stun..'%',self.x,self.y-self.timer-50,1,
+            DrawText('main_font_zh_cn','晕厥概率：'..self.stun..'%',self.x,self.y-self.timer-50,1,
                 color(COLOR_WHITE,self.alpha),color(COLOR_BLACK,self.alpha),'centerpoint')
         end
     end
@@ -5205,7 +5248,7 @@ _editor_class["Muki_AiC_phase4_preparation_top"].render=function(self)
         {           0,screen.height*(0.5-0.5*s),0.5,           0,2*screen.height*(0.5+0.5*s),Color(255,255,255,255)}
     )
     if self.timer>=60 then
-        DrawText('main_font_zh1','自机与Boss身份互换了！\n操控Boss来发射弹幕！',
+        DrawText('main_font_zh_cn','自机与Boss身份互换了！\n操控Boss来发射弹幕！',
         screen.width/2+ran:Float(-1,1)*s2,screen.height/4+ran:Float(-1,1)*s2,1,
         Color(self.alpha,255,0,0),Color(self.alpha,0,0,0),'centerpoint')
     end
@@ -5544,8 +5587,8 @@ end
 --[[ 对话库，为方便调用先改个名
 ]]
 local lib = aic.custom_dialog
-local sc_list = aic.l10n.ui.sc_list
-local dialog = aic.l10n.dialog
+local sc_list = aic.l10n[setting.locale].ui.sc_list
+local dialog = aic.l10n[setting.locale].dialog
 _editor_class["Muki_AiC_Noel"]=Class(boss)
 _editor_class["Muki_AiC_Noel"].cards={}
 _editor_class["Muki_AiC_Noel"].name="Noel Cornehl"
@@ -5555,7 +5598,7 @@ _editor_class["Muki_AiC_Noel"].difficulty="All"
 _editor_class["Muki_AiC_Noel"].init=function(self,cards)
 boss.init(self,-384,256,_editor_class["Muki_AiC_Noel"].name,cards,New(_editor_class["Muki_AiC_cdbg"]),_editor_class["Muki_AiC_Noel"].difficulty)
     Noel=self
-    self.H=not setting.safemode
+    self.H=not setting.sfwmode
     aic.ui.SetCardLeft(4,'time')
     aic.ui.SetCardLeft(8,'great')
     aic.ui.SetCardLeft(10,'time')
@@ -6310,7 +6353,7 @@ function _tmp_sc:before()
     self._wisys:SetImage("Muki_AiC_Noel_spelling.png",4,4,{4,3,3,3},{1,1,2},9,16,16)
     self.shielder.active=true
     self.spellname=aic.ui.NewSpellname(self, sc_list[diff][3][3])
-    Ixia.spellname=aic.ui.NewSpellname(self, aic.l10n.ui.Ixia_scname[diff],2)
+    Ixia.spellname=aic.ui.NewSpellname(self, aic.l10n[setting.locale].ui.Ixia_scname[diff],2)
     last=New(_editor_class["Muki_AiC_NB_Portrait_AI"],0,0,_)
     last=New(_editor_class["Muki_AiC_NB_Portrait_AI"],80,0,'image:Muki_AiC_Ixia_face_default',0.5,80)
     task._Wait(60)
@@ -6811,7 +6854,7 @@ function _tmp_sc:before()
         end)
     end
     self.spelling=true
-    if setting.safemode then
+    if setting.sfwmode then
         last=New(_editor_class["Muki_AiC_NB_Portrait_AI"],0,0,_)
     else
         last=New(_editor_class["Muki_AiC_NB_Portrait_AI"],0,0,'image:Muki_AiC_Noel_face_lose2')
@@ -7061,7 +7104,7 @@ function _tmp_sc:before()
         end)
     end
     self.spelling=true
-    if setting.safemode then
+    if setting.sfwmode then
         last=New(_editor_class["Muki_AiC_NB_Portrait_AI"],0,0,_)
     else
         last=New(_editor_class["Muki_AiC_NB_Portrait_AI"],0,0,'image:Muki_AiC_Noel_face_lose3')
@@ -7388,7 +7431,7 @@ function _tmp_sc:before()
         end)
     end
     self.spelling=true
-    if setting.safemode then
+    if setting.sfwmode then
         last=New(_editor_class["Muki_AiC_NB_Portrait_AI"],0,0,_)
     else
         last=New(_editor_class["Muki_AiC_NB_Portrait_AI"],0,0,'image:Muki_AiC_Noel_face_lose4')
@@ -7556,7 +7599,7 @@ function _tmp_sc:before()
         end)
     end
     self.spelling=true
-    if setting.safemode then
+    if setting.sfwmode then
         last=New(_editor_class["Muki_AiC_NB_Portrait_AI"],0,0,_)
     else
         last=New(_editor_class["Muki_AiC_NB_Portrait_AI"],0,0,'image:Muki_AiC_Noel_face_lose4')
@@ -9111,7 +9154,7 @@ function _tmp_sc:init()
                     player.lifeleft=player.lifeleft-1
                     local format = '[%d-%02d-%02d %02d:%02d:%02d]'
                     local time = aic.sys.GetTime(os.time(), format)
-                    local msg = aic.l10n.dialog['dialog8.5'][8-player.lifeleft]
+                    local msg = aic.l10n[setting.locale].dialog['dialog8.5'][8-player.lifeleft]
                     if player.lifeleft ~= 0 then msg = time .. msg end
                     lstg.MessageBox('程序异常警告', msg,16)
                 else
@@ -11032,6 +11075,8 @@ stage.group.DefStageFunc('AliceInCradle@Normal','init',function(self)
     New(mask_fader,'open')
     if jstg then jstg.CreatePlayers() else New(_G[lstg.var.player_name]) end
     lasttask=task.New(self,function()
+        last=New(_editor_class["Muki_AiC_test1"],0,0,_)
+        last=New(_editor_class["Muki_AiC_test2"],0,0,_)
         New(magic_forest_fast_background)
         LoadMusicRecord("aic_bgm9")
         _play_music("aic_bgm9")

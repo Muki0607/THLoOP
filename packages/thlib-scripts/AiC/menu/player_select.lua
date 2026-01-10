@@ -1,5 +1,7 @@
 local lib = aic.menu
 
+local l10n = aic.l10n[setting.locale]
+
 ------------------------------------------------------------
 
 ---自机选择菜单
@@ -88,8 +90,8 @@ function lib.player_select:init()
     task.New(self, function()
         self.qte_checker = New(aic.misc.qte_checker_ex, {
             KEY.W, KEY.A, KEY.T, KEY.A, KEY.S, KEY.H, KEY.I, KEY.N, KEY.O,
-            KEY.O, KEY.N, KEY.A, KEY.N, KEY.I,
-            KEY.O, KEY.M, KEY.I, KEY.T, KEY.E, KEY.K, KEY.U, KEY.D, KEY.A, KEY.S, KEY.A, KEY.I })
+            KEY.O, KEY.N, KEY.A, KEY.N, KEY.I, KEY.I,
+            KEY.W, KEY.O, KEY.M, KEY.I, KEY.T, KEY.E, KEY.K, KEY.U, KEY.D, KEY.A, KEY.S, KEY.A, KEY.I })
         for _ = 1, _infinite do
             if self.qte_checker.finished then
                 self.qte_checker.finished = false
@@ -153,7 +155,7 @@ function lib.player_select:render()
         end
     end
 
-    lib.DrawTips(self, { '选择自机', '返回上一级菜单' })
+    lib.DrawTips(self, { l10n.ui.tips.select_player, l10n.ui.tips.back })
 
     SetViewMode('world')
 end

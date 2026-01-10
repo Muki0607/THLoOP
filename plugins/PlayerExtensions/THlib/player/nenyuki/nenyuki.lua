@@ -82,7 +82,7 @@ function nenyuki_player:init(slot)
     self.debug = false
     self.default_dmglist = { 0.2, 0.2, 0.2, 0.2 }
     self.dmglist = { 0.2, 0.2, 0.2, 0.2 }
-    self.spellname = { '魔梦「梦魂幻想」', '恋星「星魇火花」' }
+    self.spellname = aic.l10n.ui[setting.locale].player_sc_name
     self.deathtime = 4 --约等于没有
     self.default_deathtime = self.deathtime
     self.aura_rot = 0
@@ -195,12 +195,12 @@ function nenyuki_player:shoot()
         if self.slow == 0 then
             for i = 1, 7 do
                 local a = 90 - da * 8 + i * da * 2 + ba
-                New(nenyuki_bullet_main, 'nenyuki_bullet_main', self.x, self.y, 24, a, 3 / 7)
+                New(nenyuki_bullet_main, 'nenyuki_bullet_main', self.x, self.y, 24, a, 3.5 / 7)
             end
         else
             for i = 1, 3 do
                 local a = 90 - da * 2 + i * da + ba
-                New(nenyuki_bullet_main, 'nenyuki_bullet_main', self.x, self.y, 24, a, 3 / 3)
+                New(nenyuki_bullet_main, 'nenyuki_bullet_main', self.x, self.y, 24, a, 3.5 / 3)
             end
         end
     end
@@ -211,7 +211,7 @@ function nenyuki_player:shoot()
         if nextshoot < 4 then dmgfix2 = 1.5 end
         local num = 30 / (self.support + 1)
         for i = 1, 4 do
-            --				local angle=105-i*num
+            --local angle=105-i*num
             local angle = self.anglelist[min(int(lstg.var.power / 100) + 1, 5)][i]
             if self.sp[i] and self.sp[i][3] > 0.5 then
                 local target = nil
@@ -252,15 +252,15 @@ function nenyuki_player:shoot()
                     if self.slow == 1 and self.timer % 16 == 0 then
                         PlaySound('msl2', 0.3)
                         local a, r = ran:Float(0, 360), ran:Float(0, 6)
-                        New(nenyuki_laser_ef, target.x + r * cos(a), target.y + r * sin(a), self.dmglist[i] * 4, 5, target)
+                        New(nenyuki_laser_ef, target.x + r * cos(a), target.y + r * sin(a), self.dmglist[i] * 4.5, 5, target)
                     end
                     if target.class.base.take_damage then
-                        target.class.base.take_damage(target, self.dmglist[i] * 5 / 4 * dmgfix2 * dmgfix3)
+                        target.class.base.take_damage(target, self.dmglist[i] * 7 / 4 * dmgfix2 * dmgfix3)
                     end
                     if other then
                         for k, v in ipairs(other) do
                             if v.class.base.take_damage then
-                                v.class.base.take_damage(v, self.dmglist[i] * 3 / 4 * dmgfix2 * dmgfix3)
+                                v.class.base.take_damage(v, self.dmglist[i] * 5 / 4 * dmgfix2 * dmgfix3)
                             end
                         end
                     end

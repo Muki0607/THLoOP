@@ -1,4 +1,8 @@
+---THAIC Arranged
+
 achi = { list = {}, checklist = {} }
+
+local l10n = aic.l10n[setting.locale]
 
 for i = 1, 16 do
     LoadImageFromFile('achi_eff_' .. i, "weekend/achi/" .. i .. ".png")
@@ -49,12 +53,12 @@ function achi.ShowRender(x, y)
         end
         Render("achi_eff_" .. index, x, y, timer * 4.5, 0.5)
         Render("achi_eff_back", x, y, -timer / 3, scale / 2)
-        RenderTTF("dialog", "完成成就",
-                x + dx - 70, x + dx + 70, y + dy + 5, y + dy + 5,
-                Color(alpha, 255, 255, 255), "bottom", "center")
+        RenderTTF("dialog", l10n.ui.achievement.achivement_complished,
+            x + dx - 70, x + dx + 70, y + dy + 5, y + dy + 5,
+            Color(alpha, 255, 255, 255), "bottom", "center")
         RenderTTF("dialog", name,
-                x + dx - 70, x + dx + 70, y + dy - 25, y + dy - 25,
-                Color(alpha, 255, 255, 255), "bottom", "center")
+            x + dx - 70, x + dx + 70, y + dy - 25, y + dy - 25,
+            Color(alpha, 255, 255, 255), "bottom", "center")
     end
 end
 

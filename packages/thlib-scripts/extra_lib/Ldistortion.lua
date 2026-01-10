@@ -1,3 +1,4 @@
+---THAIC Arranged
 ---@diagnostic disable: assign-type-mismatch
 ---@Name:原作风Boss背后纹理扭曲特效(lstg.Mesh改进版)
 ---@Note:基于个人项目未考虑screen.scale等因素,如需使用请自行修改.
@@ -8,7 +9,7 @@
 ---||===============================================================================================================================================||
 ---@生成rendertarget
 
-local DtTex = "rt_eff_distortion_texture"
+local DtTex = "rt:distortion"
 lstg.CreateRenderTarget(DtTex)
 lstg.SetTextureSamplerState(DtTex, "linear+wrap")
 

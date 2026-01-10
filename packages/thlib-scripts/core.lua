@@ -77,6 +77,7 @@ if not _debug._debug then _debug = {} end
 
 ---加载在AiC模块前的外来模块(部分来自群文件)
 lstg.DoFile("extra_lib/Hana_AI_v_1.lua")--HanaAI，用于LSC中自机AI
+lstg.DoFile("extra_lib/Ldistortion.lua")--mesh实现版扭曲特效
 lstg.DoFile("extra_lib/RenderTargetExtension.lua")--RT扩展,用于简化RenderTarget渲染
 
 ---AiC模块
@@ -94,7 +95,7 @@ function DoFrame()
     --设置标题
     --lstg.SetTitle(string.format("%s | %.2f FPS | %d OBJ | %s", setting.mod, lstg.GetFPS(), lstg.GetnObj(), gconfig.window_title))
     --lstg.SetTitle(string.format("%s", gconfig.window_title)) -- 启动器阶段不用显示那么多信息
-    lstg.SetTitle("东方梦摇篮 ~ Alice In Cradle v" .. aic.version)
+    lstg.SetTitle(aic.l10n[setting.locale].general.title .. " v" .. aic.version)
     --获取输入
     GetInput()
     --切关处理

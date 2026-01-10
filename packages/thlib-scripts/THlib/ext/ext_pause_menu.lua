@@ -9,6 +9,8 @@
 ---@class ext.pausemenu @暂停菜单对象
 ext.pausemenu = plus.Class()
 
+local l10n = aic.l10n[setting.locale]
+
 function ext.pausemenu:init()
     self.kill = true
 
@@ -672,6 +674,8 @@ ext.manual = {
     end
 }
  
+local o = l10n.ui.option
+
 --同上
 ---@class manual @launcher风Option
 ext.option = {
@@ -696,43 +700,24 @@ ext.option = {
     setting = loadConfigureTable(), --因为需要存读文件，为了安全起见这边和插件菜单一样单独先存一份，保存时再存整个表到setting
     res = { { 640, 480, true }, { 800, 600 }, { 960, 720, true }, { 1024, 768, true }, { 1280, 960, true }, { 1600, 1200 }, { 1920, 1440, true } },
     text1 = {
-        { '用户名', setting.username, setting.username },
-        { '分辨率', 7, { 1, 3, 4, 5, 7 } },
-        { '显示模式', '全屏模式', '窗口模式' },
-        { '垂直同步', '关', '开' },
-        { '音效音量', 21, { 1, 5, 9, 13, 17, 21 } },
-        { '背景音乐音量', 21, { 1, 5, 9, 13, 17, 21 } },
-        { '自动射击', '关', '开' },
-        { '自动低速', '关', '开' },
-        { '双击闪避（未实装）', '关', '开' },
-        { '进入关卡时音效', '旧版', '新版' },
-        { '标题画面背景音乐', '普通版', '完全版' },
-        { '健全模式', '开', '开（超健全）' },
-        '键位设定',
-        '使用默认设定',
-        '保存并退出' },
-    text2 = {
-        '用户名仅可在标题画面更改。',
-        '设置窗口显示模式下\n游戏窗口的大小。',
-        '设置游戏的显示模式。',
-        '启用垂直同步（VSync）\n可避免画面撕裂。',
-        '设置音效的音量。',
-        '设置背景音乐的音量。',
-        '设置是否启用自动射击。\n若启用，需按住射击键以停火。\n不建议与自动低速一起使用。',
-        '设置是否启用自动低速。\n若启用，在开火时\n将自动进入低速模式。\n不建议与自动射击一起使用。',
-        '设置是否启用双击闪避（实验性）。\n若启用，双击方向键即可闪避。\n目前本功能尚处于测试阶段，\n若发生报错请报告作者。',
-        '设置进入关卡时播放的音效。\n旧版为0.24a之前的音效，\n新版为0.24a之后的音效。',
-        '设置标题画面的背景音乐。\n普通版为原作游戏的版本，\n完全版在普通版的基础上\n增加了一段额外旋律。',
-        '设置是否显示性方面的描写。\n\n\n当然在这里你是没法关掉它的……',
-        '更改键盘或手柄的按键。',
-        '将所有设定还原至默认值。',
-        '保存设定并退出。\n若不想保存设定，\n请直接按取消键退出。',
-    },
-    text3 = { { 'UP', '上移' }, { 'DOWN', '下移' }, { 'LEFT', '左移' }, { 'RIGHT', '右移' },
-        { 'SLOW', '低速移动' }, { 'SHOOT', '射击/确认' }, { 'SPELL', '符卡/取消' }, { 'SPECIAL', '系统特殊功能' },
-        { 'SKILL', '自机特殊功能' }, { 'REPFAST', '录像播放加速' }, { 'REPSLOW', '录像播放减速' },
-        { 'MENU', '暂停/返回' }, { 'SNAPSHOT', '截图' }, { 'RETRY', '快速重新开始' } },
-    setname = { 'username', 'resx', 'windowed', 'vsync', 'sevolume', 'bgmvolume', 'autofire', 'autoslow', 'autododge', 'newopening', 'newbgm', 'safemode' },
+        { o.username, setting.username, setting.username },
+        { o.resolution, 7, { 1, 3, 4, 5, 7 } },
+        { o.display_mode, o.fullscreen_mode, o.windowed_mode },
+        { o.vsync, l10n.general.terms.off, l10n.general.terms.on },
+        { o.SFX, 21, { 1, 5, 9, 13, 17, 21 } },
+        { o.BGM, 21, { 1, 5, 9, 13, 17, 21 } },
+        { o.autofire, l10n.general.terms.off, l10n.general.terms.on },
+        { o.autoslow, l10n.general.terms.off, l10n.general.terms.on },
+        { o.autododge, l10n.general.terms.off, l10n.general.terms.on },
+        { o.opening_se, o.old_version, o.new_version },
+        { o.title_bgm, o.normal_version, o.full_version },
+        { o.sfwmode, l10n.general.terms.on, o.supersafe },
+        o.key_binding,
+        o.reset,
+        o.save_and_quit },
+    text2 = o.text2,
+    text3 = o.text3,
+    setname = { 'username', 'resx', 'windowed', 'vsync', 'sevolume', 'bgmvolume', 'autofire', 'autoslow', 'autododge', 'newopening', 'newbgm', 'sfwmode' },
     
     init = function(self)
         for k, v in ipairs(self.res) do
@@ -743,7 +728,7 @@ ext.option = {
         for _, v in ipairs({ 'autofire', 'autoslow', 'autododge', 'newopening', 'newbgm' }) do 
             self.setting[v] = self.setting[v] or false
         end
-        self.setting.safemode = self.setting.safemode or true
+        self.setting.sfwmode = self.setting.sfwmode or true
     end,
     frame = function(self)
         task.Do(self)
@@ -787,7 +772,7 @@ ext.option = {
                         for _, v in ipairs({ 'autofire', 'autoslow', 'autododge', 'newopening', 'newbgm' }) do 
                             self.setting[v] = false
                         end
-                        self.setting.safemode = true
+                        self.setting.sfwmode = true
                     elseif self.pos1 == 15 then
                         --保存并退出
                         set.resx = self.res[self.pos_res][1]
@@ -816,7 +801,7 @@ ext.option = {
                     end
                 elseif KeyIsDown('left') then
                     self.wait = 8
-                    if self.pos1 == 1 or (self.pos1 == 5 and set.sevolume == 0) or (self.pos1 == 6 and set.bgmvolume == 0) or (self.pos1 == 12 and not set.safemode) then
+                    if self.pos1 == 1 or (self.pos1 == 5 and set.sevolume == 0) or (self.pos1 == 6 and set.bgmvolume == 0) or (self.pos1 == 12 and not set.sfwmode) then
                         PlaySound('aic_setting_limited', 0.3)
                     else
                         PlaySound('aic_setting_scroll', 0.5)
@@ -831,18 +816,18 @@ ext.option = {
                         set.sevolume = max(0, set.sevolume - 5)
                     elseif self.pos1 == 6 then
                         set.bgmvolume = max(0, set.bgmvolume - 5)
-                    elseif self.pos1 == 12 and set.safemode then
-                        set.safemode = not set.safemode
+                    elseif self.pos1 == 12 and set.sfwmode then
+                        set.sfwmode = not set.sfwmode
                     else
                         for k, v in pairs(self.setname) do
-                            if self.pos1 == k and v ~= 'safemode' then
+                            if self.pos1 == k and v ~= 'sfwmode' then
                                 set[v] = not set[v]
                             end
                         end
                     end
                 elseif KeyIsDown('right') then
                     self.wait = 8
-                    if self.pos1 == 1 or (self.pos1 == 5 and set.sevolume == 100) or (self.pos1 == 6 and set.bgmvolume == 100) or (self.pos1 == 12 and set.safemode) then
+                    if self.pos1 == 1 or (self.pos1 == 5 and set.sevolume == 100) or (self.pos1 == 6 and set.bgmvolume == 100) or (self.pos1 == 12 and set.sfwmode) then
                         PlaySound('aic_setting_limited', 0.3)
                     else
                         PlaySound('aic_setting_scroll', 0.5)
@@ -857,11 +842,11 @@ ext.option = {
                         set.sevolume = min(100, set.sevolume + 5)
                     elseif self.pos1 == 6 then
                         set.bgmvolume = min(100, set.bgmvolume + 5)
-                    elseif self.pos1 == 12 and not set.safemode then
-                        set.safemode = not set.safemode
+                    elseif self.pos1 == 12 and not set.sfwmode then
+                        set.sfwmode = not set.sfwmode
                     else
                         for k, v in pairs(self.setname) do
-                            if self.pos1 == k and v ~= 'safemode' then
+                            if self.pos1 == k and v ~= 'sfwmode' then
                                 set[v] = not set[v]
                             end
                         end
@@ -956,10 +941,10 @@ ext.option = {
                 local text = self.text1[i]
                 if type(text) == 'string' then
                     --键位设定、使用默认设定、保存并退出
-                    DrawText('main_font_zh2', text, x1, y + (self.pos1 / 3 - i) * d, 1,
+                    DrawText('main_font_zh_cn', text, x1, y + (self.pos1 / 3 - i) * d, 1,
                         color(COLOR_WHITE, self.alpha), nil, 'left')
                 else
-                    DrawText('main_font_zh2', text[1], x1, y + (self.pos1 / 3 - i) * d, 1,
+                    DrawText('main_font_zh_cn', text[1], x1, y + (self.pos1 / 3 - i) * d, 1,
                         color(COLOR_WHITE, self.alpha), nil, 'left')
                     if type(text[2]) == 'string' then
                         --选择项类型
@@ -972,7 +957,7 @@ ext.option = {
                             end
                         end
                         if self.setting[self.setname[i]] then
-                            DrawText('main_font_zh2', text[3], x2, y + (self.pos1 / 3 - i) * d,
+                            DrawText('main_font_zh_cn', text[3], x2, y + (self.pos1 / 3 - i) * d,
                                 1, color(COLOR_WHITE, self.alpha), nil, 'right')
                             if i ~= 1 then
                                 if i == 12 then
@@ -982,7 +967,7 @@ ext.option = {
                                 end
                             end
                         else
-                            DrawText('main_font_zh2', text[2], x2, y + (self.pos1 / 3 - i) * d,
+                            DrawText('main_font_zh_cn', text[2], x2, y + (self.pos1 / 3 - i) * d,
                                 1, color(COLOR_WHITE, self.alpha), nil, 'right')
                             if i ~= 1 then
                                 if i == 12 then
@@ -1032,21 +1017,21 @@ ext.option = {
 
             --分辨率
             local res = self.res[self.pos_res][1] .. 'x' .. self.res[self.pos_res][2]
-            if self.res[self.pos_res][3] then res = res .. '（推荐）' end
-            DrawText('main_font_zh2', res,
+            if self.res[self.pos_res][3] then res = res .. o.recommend end
+            DrawText('main_font_zh_cn', res,
                 x2, y + (self.pos1 / 3 - 2) * d, 1, color(COLOR_WHITE, self.alpha), nil, 'right')
 
             --音量
-            DrawText('main_font_zh2', self.setting.sevolume .. '%',
+            DrawText('main_font_zh_cn', self.setting.sevolume .. '%',
                 x2, y + (self.pos1 / 3 - 5) * d, 1, color(COLOR_WHITE, self.alpha), nil, 'right')
-            DrawText('main_font_zh2', self.setting.bgmvolume .. '%',
+            DrawText('main_font_zh_cn', self.setting.bgmvolume .. '%',
                 x2, y + (self.pos1 / 3 - 6) * d, 1, color(COLOR_WHITE, self.alpha), nil, 'right')
 
             --设置说明
-            DrawText('main_font_zh2', self.text2[self.pos1],
+            DrawText('main_font_zh_cn', self.text2[self.pos1],
                 x2 + 150, y - 5 * d, 1, color(COLOR_WHITE, self.alpha), nil, 'centerpoint')
             if self.pos1 == 12 then
-                DrawText('main_font_zh2', '\n未满18岁或正在录像的玩家\n请务必选择健全模式为开。',
+                DrawText('main_font_zh_cn', o.sfwmode_warning,
                     x2 + 150, y - 5 * d + 8, 1, color(COLOR_RED, self.alpha), nil, 'centerpoint')
             end
 
@@ -1054,9 +1039,9 @@ ext.option = {
             if not self.locked then
                 for i = 1, self.l1 do
                     if i == self.pos1 then
-                        DrawText('main_font_zh2', '<', x1 - 25 - 5 * sin(3 * self.timer),
+                        DrawText('main_font_zh_cn', '<', x1 - 25 - 5 * sin(3 * self.timer),
                             y + (self.pos1 / 3 - i) * d, 1, color(COLOR_WHITE, self.alpha), nil, 'left')
-                        DrawText('main_font_zh2', '>', x2 + 25 + 5 * sin(3 * self.timer),
+                        DrawText('main_font_zh_cn', '>', x2 + 25 + 5 * sin(3 * self.timer),
                             y + (self.pos1 / 3 - i) * d, 1, color(COLOR_WHITE, self.alpha), nil, 'right')
                     end
                 end
@@ -1093,25 +1078,25 @@ ext.option = {
                 end
 
                 --键位设定
-                DrawText('main_font_zh2', self.text3[i][1], x1, y + (self.pos2 / 3 - i) * d + 8, 0.5,
+                DrawText('main_font_zh_cn', self.text3[i][1], x1, y + (self.pos2 / 3 - i) * d + 8, 0.5,
                     color(COLOR_WHITE, self.alpha), nil, 'left')
-                DrawText('main_font_zh2', self.text3[i][2], x1, y + (self.pos2 / 3 - i) * d, 1,
+                DrawText('main_font_zh_cn', self.text3[i][2], x1, y + (self.pos2 / 3 - i) * d, 1,
                     color(COLOR_WHITE, self.alpha), nil, 'left')
                 if key then
-                    DrawText('main_font_zh2', key, x2, y + (self.pos2 / 3 - i) * d,
+                    DrawText('main_font_zh_cn', key, x2, y + (self.pos2 / 3 - i) * d,
                         1, color(COLOR_WHITE, self.alpha), nil, 'right')
                 end
             end
 
             --返回选项
-            DrawText('main_font_zh2', '返回设置', x1, y + (self.pos2 / 3 - self.l2) * d, 1,
+            DrawText('main_font_zh_cn', o.return_to_option, x1, y + (self.pos2 / 3 - self.l2) * d, 1,
                 color(COLOR_WHITE, self.alpha), nil, 'left')
             
             --设置说明
-            local text = '选择需要更改的键位。'
-            if self.key_changing then text = '按下新的键位。' end
-            if self.pos2 == self.l2 then text = '返回设置。\n键位设置将在设置保存的同时变更。' end
-            DrawText('main_font_zh2', text,
+            local text = o.choose_key_binding
+            if self.key_changing then text = o.input_new_key_binding end
+            if self.pos2 == self.l2 then text = o.return_to_option_and_save end
+            DrawText('main_font_zh_cn', text,
                 x2 + 150, y - 3 * d, 1, color(COLOR_WHITE, self.alpha), nil, 'centerpoint')
 
             --指示光标
@@ -1120,9 +1105,9 @@ ext.option = {
             if not self.locked then
                 for i = 1, self.l2 do
                     if i == self.pos2 then
-                        DrawText('main_font_zh2', l, x1 - 25 - 5 * sin(o * self.timer),
+                        DrawText('main_font_zh_cn', l, x1 - 25 - 5 * sin(o * self.timer),
                             y + (self.pos2 / 3 - i) * d, 1, color(COLOR_WHITE, self.alpha), nil, 'left')
-                        DrawText('main_font_zh2', r, x2 + 25 + 5 * sin(o * self.timer),
+                        DrawText('main_font_zh_cn', r, x2 + 25 + 5 * sin(o * self.timer),
                             y + (self.pos2 / 3 - i) * d, 1, color(COLOR_WHITE, self.alpha), nil, 'right')
                     end
                 end

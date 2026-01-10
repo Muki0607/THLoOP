@@ -97,7 +97,7 @@ function muki_player:init(slot)
     end
     self.default_dmglist = { 0.2, 0.2, 0.2, 0.2 }
     self.dmglist = { 0.2, 0.2, 0.2, 0.2 }
-    self.spellname = { '生灵「幻梦蝶华舞」', '散灵「刹那藤结术」', '「幻想华奏」' }
+    self.spellname = aic.l10n[setting.locale].ui.player_scname.muki
     self.deathtime = 12
     self.default_deathtime = self.deathtime
     self.have_death_spell = true

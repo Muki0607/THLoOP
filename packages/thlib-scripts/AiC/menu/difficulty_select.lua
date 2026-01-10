@@ -1,5 +1,7 @@
 local lib = aic.menu
 
+local l10n = aic.l10n[setting.locale]
+
 ------------------------------------------------------------
 
 ---难度选择菜单
@@ -27,10 +29,10 @@ function lib.difficulty_select:init()
     self.l = 4
     self.text =
     {
-        { '休闲', '伤害倍率：0.8x\n魔力槽碎裂概率：50%', '即使未接触过弹幕游戏的人\n也能安心享受的难度。\n放心大胆地miss吧。' },
-        { '普通', '伤害倍率：1.0x\n魔力槽碎裂概率：75%', '为曾接触过其他低密度\n弹幕游戏的玩家准备的难度。\n在符卡的使用上请不要吝啬。' },
-        { '噩梦', '伤害倍率：1.2x\n魔力槽碎裂概率：90%', '为有经验的东方玩家准备的难度，\n弹幕更具挑战性。\n从这里开始，不再有任何仁慈。' },
-        { '地狱', '伤害倍率：1.5x\n魔力槽碎裂概率：100%', '献给各位机师的难度。\n向LNNNN*进发吧。\n在此难度下如果处于插件过载状态，\n一次Miss就会满身疮痍。\n*Lunatic No Miss No Bomb No Dodge No Enhancer。' }
+        { l10n.general.difficulty.easy, l10n.ui.difficulty_select[1][1], l10n.ui.difficulty_select[1][2] },
+        { l10n.general.difficulty.normal, l10n.ui.difficulty_select[2][1], l10n.ui.difficulty_select[2][2] },
+        { l10n.general.difficulty.hard, l10n.ui.difficulty_select[3][1], l10n.ui.difficulty_select[3][2] },
+        { l10n.general.difficulty.lunatic, l10n.ui.difficulty_select[4][1], l10n.ui.difficulty_select[4][2] }
     }
     self.quit = function()
         task.New(self, function()
@@ -117,7 +119,7 @@ end
 function lib.difficulty_select:render()
     SetViewMode('ui')
     lib.DrawSubTitle(self)
-    lib.DrawTips(self, { '选择难度', '返回上一级菜单' })
+    lib.DrawTips(self, { l10n.ui.tips.select_diff, l10n.ui.tips.back })
 
     local x, y = self.x - screen.width * 1.25, self.y
     for i = 1, self.l do
@@ -132,13 +134,13 @@ function lib.difficulty_select:render()
 
     local x, y = screen.width * 0.7, screen.height * 0.35
     local co = { { 0, 144, 44 }, { 0, 84, 178 }, { 0, 9, 197 }, { 167, 66, 174 } } --各难度对应颜色
-    DrawText('aic_menu', self.text[self.text_pos][1], x, y + 135, 2,
+    DrawText('main_font_zh_cn', self.text[self.text_pos][1], x, y + 135, 2,
         Color(min(self.alpha, self.text_alpha), unpack(co[self.text_pos])), nil, 'centerpoint')
-    DrawText('aic_menu', self.text[self.text_pos][2], x, y + 80, 1,
+    DrawText('main_font_zh_cn', self.text[self.text_pos][2], x, y + 80, 1,
         Color(min(self.alpha, self.text_alpha), 255, 255, 255), nil, 'centerpoint')
     local dy = 0
     if self.text_pos == 4 then dy = -20 end
-    DrawText('aic_menu', self.text[self.text_pos][3] .. '\n弹幕难度区分尚未实装，\n目前难度仅影响系统。', x, y + 10 + dy, 1,
+    DrawText('main_font_zh_cn', self.text[self.text_pos][3] .. l10n.ui.difficulty_select.tip, x, y + 10 + dy, 1,
         Color(min(self.alpha, self.text_alpha), 255, 255, 255), nil, 'centerpoint')
 
     SetViewMode('world')

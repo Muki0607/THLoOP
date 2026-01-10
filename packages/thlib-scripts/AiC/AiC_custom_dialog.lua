@@ -105,7 +105,7 @@ sp.string = sp.string or lib.spstring --在无法调用sp.string时启用备用s
 ---@param start_pos number @对话开始位置
 ---@param end_pos number @对话结束位置
 function lib:AiCDialog(num, start_pos, end_pos)
-    local d = aic.l10n.dialog["dialog" .. num]
+    local d = aic.l10n[setting.locale].dialog["dialog" .. num]
     start_pos = start_pos or 1
     end_pos = end_pos or #d.text
     d.name = lib.MakeParamList(d.name, end_pos - start_pos + 1, '')
@@ -237,7 +237,7 @@ lib.text_effect = {
 ---| after_shader:在shader结束后执行，不执行结束函数
 
 ---增加自定义文字效果
----@param name string @文字效果名称，不能含有</>这三个符号
+---@param name string @文字效果名称，不能含有'<' '/' '>'这三个符号
 ---@param pos text_effect_pos @文字效果生效位置
 ---@param start_func function @文字效果开始函数，在对话进行到文字效果开始位置时调用
 ---@param end_func function @文字效果结束函数，在对话进行到文字效果结束位置时调用
@@ -2435,7 +2435,6 @@ end
 
 ---middle系对话气泡
 ---@class lib.ballon_middle
----@return lib.ballon_middle
 lib.ballon_middle = Class(object)
 local ballon_middle = lib.ballon_middle
 function ballon_middle:init(master, x, y, vpos, pic, text, n, balloon_blend, balloon_co, text_co, text_scale)
@@ -2896,7 +2895,6 @@ end
 --备用spstring库，预防特殊情况
 
 ---@class sp.string
----@return class
 lib.spstring = plus.Class()
 
 ---@param str string @要处理的字符串

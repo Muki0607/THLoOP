@@ -1,5 +1,7 @@
 local lib = aic.menu
 
+local l10n = aic.l10n[setting.locale]
+
 ------------------------------------------------------------
 
 ---library，直接抄了title
@@ -18,14 +20,14 @@ function lib.library:init(pos, l)
     self.t = 30
     self.wait = 30
     self.alpha = 0
-    self.text1 = { "查看得分排行", "查看符卡历史", "查看结局" }
-    self.text2 = { "Score Ranking", "Spellcard Record", "Ending" }
+    self.text1 = l10n.ui.library
+    self.text2 = { "Score Ranking", "Spellcard Record", "Ending" } --固定为英文
     self.jump =
     {
         { lib.player_data },
         {
             lib.player_data,
-            17 --#aic.l10n.ui.sc_list[1]
+            17 --#l10n.ui.sc_list[1]
         },
         { lib.ending },
         quit = lib.PopMenuStack
@@ -92,19 +94,23 @@ end
 function lib.library:render()
     SetViewMode('ui')
     lib.DrawSubTitle(self)
-    lib.DrawTips(self, { '选择', '返回上一级菜单' })
+    lib.DrawTips(self, { l10n.ui.tips.selecvt, l10n.ui.tips.back })
     local d, x, y, text1, text2 = 75, self.x, self.y - 25, self.text1, self.text2
     for i = 1, self.l do
         if i == self.pos then
-            DrawText("main_font_zh2", text1[i], x, y + (2.5 - i) * d, 1.25,
+            DrawText("main_font_zh_cn", text1[i], x, y + (2.5 - i) * d, 1.25,
                 color(COLOR_BLACK, self.alpha), Color(self.alpha, 32, 208, 255), 'centerpoint')
-            DrawText("main_font_zh2", text2[i], x, y + (2.5 - i) * d - 20, 1,
-                color(COLOR_BLACK, self.alpha), Color(self.alpha, 32, 208, 255), 'centerpoint')
+            if setting.locale ~= 'en_us' then
+                DrawText("main_font_zh_cn", text2[i], x, y + (2.5 - i) * d - 20, 1,
+                    color(COLOR_BLACK, self.alpha), Color(self.alpha, 32, 208, 255), 'centerpoint')
+            end
         else
-            DrawText("main_font_zh2", text1[i], x, y + (2.5 - i) * d, 1.25,
+            DrawText("main_font_zh_cn", text1[i], x, y + (2.5 - i) * d, 1.25,
                 color(COLOR_BLACK, self.alpha), color(COLOR_WHITE, self.alpha), 'centerpoint')
-            DrawText("main_font_zh2", text2[i], x, y + (2.5 - i) * d - 20, 1,
-                color(COLOR_BLACK, self.alpha), color(COLOR_WHITE, self.alpha), 'centerpoint')
+            if setting.locale ~= 'en_us' then
+                DrawText("main_font_zh_cn", text2[i], x, y + (2.5 - i) * d - 20, 1,
+                    color(COLOR_BLACK, self.alpha), color(COLOR_WHITE, self.alpha), 'centerpoint')
+            end
         end
     end
     SetViewMode('world')

@@ -285,14 +285,14 @@ function lib.opening_scene:render()
     SetImageState('white', '', color(COLOR_BLACK))
     RenderRect('white', 0, screen.width, 0, screen.height)
     if self.timer <= self.t / 3 then
-        DrawText('main_font_zh1', '制作', screen.width / 2, screen.height / 2 + 50,
+        DrawText('main_font_zh_cn', '制作', screen.width / 2, screen.height / 2 + 50,
             1.5, color(COLOR_WHITE, self.alpha), nil, 'centerpoint')
-        DrawText('main_font_zh1', '幻想华奏制作组', screen.width / 2, screen.height / 2,
+        DrawText('main_font_zh_cn', '幻想华奏制作组', screen.width / 2, screen.height / 2,
             3, color(COLOR_WHITE, self.alpha), nil, 'centerpoint')
     elseif self.timer <= self.t * 2 / 3 then
-        DrawText('main_font_zh1', '原作', screen.width / 2, screen.height / 2 + 50,
+        DrawText('main_font_zh_cn', '原作', screen.width / 2, screen.height / 2 + 50,
             1.5, color(COLOR_WHITE, self.alpha), nil, 'centerpoint')
-        DrawText('main_font_zh1', '上海爱丽丝幻乐团', screen.width / 2, screen.height / 2,
+        DrawText('main_font_zh_cn', '上海爱丽丝幻乐团', screen.width / 2, screen.height / 2,
             3, color(COLOR_WHITE, self.alpha), nil, 'centerpoint')
     else
         SetImageState('Muki_AiC_opening_scene', '', color(COLOR_WHITE, self.alpha))
@@ -398,7 +398,7 @@ lib.bgm_name = Class(object)
 function lib.bgm_name:init(n)
     self.group = GROUP_GHOST
     self.layer = LAYER_TOP
-    self.text = aic.l10n.ui.music_room.title
+    self.text = aic.l10n[setting.locale].ui.music_room.title
     --保留节目：暴力调参
     --由于♪无法被pixel字体渲染，渲染需要分为两部分进行，因此无法使用右对齐，只能手动对齐
     
@@ -430,19 +430,18 @@ end
 function lib.bgm_name:render()
     if _debug.bgm_debug then
         for i = 1, #self.text do
-            DrawText('main_font_en', '♪', self.x + self.offset[i], self.y - 3 + i * 10,
+            DrawText('main_font_en_us', '♪', self.x + self.offset[i], self.y - 3 + i * 10,
                 1, color(COLOR_WHITE, self.alpha), nil, 'right')
             DrawText('pixel', self.text[i], self.x + self.offset[i], self.y + i * 10,
                 1, color(COLOR_WHITE, self.alpha), nil, 'left')
         end
     else
-        DrawText('main_font_en', '♪', self.x, self.y - 3,
+        DrawText('main_font_en_us', '♪', self.x, self.y - 3,
             1, color(COLOR_WHITE, self.alpha), nil, 'right')
         DrawText('pixel', self.text[self.n], self.x, self.y,
             1, color(COLOR_WHITE, self.alpha), nil, 'left')
     end
 end
-
 
 ---闪避时为了使用shader而创建的假player
 lib.dodge_player = Class(object)
@@ -484,8 +483,7 @@ function lib.dodge_player:render()
         6,
         '',
         {
-            { ran:Float(0, 100), 0, 0, 0 },
-            { 5,                 0, 0, 0 }
+            { ran:Float(0, 100), 5, 0, 0 }
         }
     )
 end
@@ -746,10 +744,12 @@ for i = 1, 4 do
     LoadImageFromFile('Muki_AiC_loading_sign' .. i, 'THlib/UI/loading/Muki_AiC_loading_sign' .. i .. '.png')
 end
 
---闪避效果用的shader
-LoadFX('fx:glitch', 'THlib/shader/aic_glitch.fx')
---还没改好的上色shader
-LoadFX('fx:coloring', 'THlib/shader/aic_coloring.fx')
+--错乱效果（横向像素随机偏移）shader
+LoadFX('fx:glitch', 'THlib/shader/glitch.hlsl')
+--油漆桶shader
+LoadFX('fx:coloring', 'THlib/shader/coloring.hlsl')
+--黑洞shader
+LoadFX('fx:black_hole', 'THlib/shader/black_hole.hlsl')
 
 --符卡名相关
 LoadImageFromFile("Muki_AiC_spell_history", "THlib/UI/Muki_AiC_spell_history.png")

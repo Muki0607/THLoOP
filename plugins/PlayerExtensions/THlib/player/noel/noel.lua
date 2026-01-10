@@ -60,7 +60,7 @@ function noel_player:init(slot)
     }
     self.default_dmglist = { 0.3, 0.3, 0.3, 0.3 }
     self.dmglist = { 0.3, 0.3, 0.3, 0.3 }
-    self.spellname = { '箭咒「纯白之弓」', '爆咒「地面炸弹」', '引咒「聚能火球」' }
+    self.spellname = aic.l10n[setting.locale].player_scname.noel
     self.deathtime = 30 --长到令人睡着再醒来的决死时间
     self.default_deathtime = self.deathtime
     self._img = 'noel_player1' --真正渲染用的行走图

@@ -1,5 +1,7 @@
 local lib = aic.menu
 
+local l10n = aic.l10n[setting.locale]
+
 ---音乐相关的函数，因为经常暴毙所以套一层TryExcept
 
 --- 获取全局音乐音量
@@ -89,7 +91,7 @@ function lib.music_room:init(pos, l)
     --初始化，由于文本文件在THlib加载完成前不会加载，需要等到游戏打开后再执行
     function self.Initialize()
         self.init_sign = true
-        local text = aic.l10n.ui.music_room
+        local text = l10n.ui.music_room_text
         self.text1 = text.title
         self.text2 = text.comment
         self.text3 = text.warn1
@@ -217,7 +219,7 @@ end
 function lib.music_room:render()
     SetViewMode('ui')
     lib.DrawSubTitle(self)
-    lib.DrawTips(self, { '播放音乐', '返回上一级菜单', '暂停/继续音乐' }, { '选择音乐' })
+    lib.DrawTips(self, { l10n.ui.tips.play_music, l10n.ui.tips.back, l10n.ui.tips.pause_continue_music }, { l10n.ui.tips.select_music })
     local d, x, y, text1 = 20, self.x - 260, self.y + 110, self.text1
     for i = 1, self.l do
         local pos, text = i + self.headpos - 1
@@ -225,7 +227,7 @@ function lib.music_room:render()
         if self.CheckRecord(pos) then
             title = text1[pos]
         else
-            title = '？？？？？？？？？？？'
+            title = string.rep(l10n.general.terms.unknown, 3)
         end
         if pos < 10 then
             text = 'No.　' .. pos .. '　' .. title
@@ -233,16 +235,16 @@ function lib.music_room:render()
             text = 'No.  ' .. pos .. '　' .. title
         end
         if pos == self.pos then
-            DrawText("main_font_zh2", text, x - 10, y + (2.5 - i) * d, 0.9,
+            DrawText("main_font_zh_cn", text, x - 10, y + (2.5 - i) * d, 0.9,
                 Color(self.alpha, 223, 223, 103), color(COLOR_BLACK, self.alpha))
         elseif pos == self.prepos1 then
-            DrawText("main_font_zh2", text, x, y + (2.5 - i) * d, 0.9,
+            DrawText("main_font_zh_cn", text, x, y + (2.5 - i) * d, 0.9,
                 Color(self.alpha, 154, 154, 129), color(COLOR_BLACK, self.alpha))
         elseif pos == self.prepos2 then
-            DrawText("main_font_zh2", text, x, y + (2.5 - i) * d, 0.9,
+            DrawText("main_font_zh_cn", text, x, y + (2.5 - i) * d, 0.9,
                 Color(self.alpha, 134, 134, 129), color(COLOR_BLACK, self.alpha))
         else
-            DrawText("main_font_zh2", text, x, y + (2.5 - i) * d, 0.9,
+            DrawText("main_font_zh_cn", text, x, y + (2.5 - i) * d, 0.9,
                 Color(self.alpha, 129, 129, 129), color(COLOR_BLACK, self.alpha))
         end
     end
@@ -256,34 +258,34 @@ function lib.music_room:render()
                     text = text .. aic.table.Choice(self.text5)
                 end
             end
-            DrawText("main_font_zh2", '            ' .. text1[self.textpos] .. '\n' .. self.text2[self.textpos] .. text,
+            DrawText("main_font_zh_cn", '            ' .. text1[self.textpos] .. '\n' .. self.text2[self.textpos] .. text,
                 x - 50, y - 180, 1, color(COLOR_WHITE, alpha), color(COLOR_BLACK, alpha))
         else
-            DrawText("main_font_zh2", '            ' .. '\n' .. self.text4,
+            DrawText("main_font_zh_cn", '            ' .. '\n' .. self.text4,
                 x + 50, y - 180, 1, color(COLOR_DEEP_PURPLE, alpha), color(COLOR_BLACK, alpha))
         end
     else
         if self.CheckRecord(self.textpos) or not self.warn1 then
-            DrawText("main_font_en", '    ♪ ', x - 50, y - 180, 1, color(COLOR_WHITE, alpha), color(COLOR_BLACK, alpha))
+            DrawText("main_font_en_us", '    ♪ ', x - 50, y - 180, 1, color(COLOR_WHITE, alpha), color(COLOR_BLACK, alpha))
             if self.full_flag then
-                DrawText("main_font_zh2", '            ' .. text1[self.textpos] .. '(full ver.)\n' .. self.text2[self.textpos],
+                DrawText("main_font_zh_cn", '            ' .. text1[self.textpos] .. '(full ver.)\n' .. self.text2[self.textpos],
                     x - 50, y - 180, 1, color(COLOR_WHITE, alpha), color(COLOR_BLACK, alpha))
             else
-                DrawText("main_font_zh2", '            ' .. text1[self.textpos] .. '\n' .. self.text2[self.textpos],
+                DrawText("main_font_zh_cn", '            ' .. text1[self.textpos] .. '\n' .. self.text2[self.textpos],
                     x - 50, y - 180, 1, color(COLOR_WHITE, alpha), color(COLOR_BLACK, alpha))
             end
         else
-            DrawText("main_font_zh2", '            ' .. '\n' .. self.text3,
+            DrawText("main_font_zh_cn", '            ' .. '\n' .. self.text3,
                 x + 50, y - 180, 1, color(COLOR_RED, alpha), color(COLOR_BLACK, alpha))
         end
     end
     if self.debug then
         local str = tostring
-        DrawText("main_font_zh2", 'warn1=' .. str(self.warn1) .. '\nwarn2=' .. str(self.warn2)
+        DrawText("main_font_zh_cn", 'warn1=' .. str(self.warn1) .. '\nwarn2=' .. str(self.warn2)
             .. '\npos=' .. self.pos .. '\ntextpos=' .. self.textpos .. '\ncurr_bgm=' .. self.curr_bgm, 500, 300, 1,
             color(COLOR_WHITE, alpha), color(COLOR_BLACK, alpha))
         local music_pos = int(self.music_pos / 60)
-        DrawText("main_font_zh2", '当前播放位置：' .. int(music_pos / 60) .. ':' .. (music_pos % 60), 500, 150, 1,
+        DrawText("main_font_zh_cn", l10n.ui.music_room.curr_play_pos .. int(music_pos / 60) .. ':' .. (music_pos % 60), 500, 150, 1,
             color(COLOR_WHITE, alpha), color(COLOR_BLACK, alpha))
     end
     SetViewMode('world')

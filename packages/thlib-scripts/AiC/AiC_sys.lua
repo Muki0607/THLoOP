@@ -17,6 +17,8 @@
 aic.sys = {}
 local lib = aic.sys
 
+local l10n = aic.l10n[setting.locale]
+
 --插件编号
 ---@alias enhancer_num '1 = 盗垒滑步'|'2 = 藏巧守拙'|'3 = 双重闪避'|'4 = 超载咏唱'|'5 = 抓地鞋'|'6 = 长法杖'|'7 = 祈雨御守'|'8 = 濡湿预兆'|'9 = 恐高症'|'10 = 血之虹瞳'|'11 = 猫之缓降'|'12 = 珠辉的素描本'|'13 = 椎奈的编程指导书'|'14 = 菖蒲的小型终端'|'15 = 歌夜的耳机'|'16 = 诺艾儿的法杖'
 
@@ -224,12 +226,12 @@ function lib.SafeSave(func)
         func,
         {
             [PermissionDenied] = function()
-                lstg.MsgBoxWarn("检测到游戏存档文件被其他进程占用。\n请结束该进程后点击确定。\n若本提示框持续出现，请重启游戏。")
+                lstg.MsgBoxWarn(l10n.exception.permission_denied[1])
             end,
             [""] = function()
                 if not _debug.exception_handler_disabled then
                     Log(4, aic.py.last_exception)
-                    lstg.MsgBoxError("读取游戏存档文件时出现未知错误。\n请尝试重启游戏。\n若重启游戏后仍然出现本提示框，请报告作者。", "游戏出现异常", true)
+                    lstg.MsgBoxError(l10n.exception.permission_denied[2], l10n.exception.title, true)
                 else
                     raise()
                 end

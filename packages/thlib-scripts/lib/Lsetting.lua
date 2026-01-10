@@ -15,6 +15,7 @@ default_setting = {
     autododge = false,
     newopening = false,
     newbgm = false,
+    sfwmode = true,
 
     keys = {
         up = KEY.UP,

@@ -257,6 +257,7 @@ function stage.group.frame_sc_pr(self)
 end
 
 function stage.group.render(self)
+    SetViewMode 'ui'
     ui.DrawFrame(self)
     if lstg.var.init_player_data then
         ui.DrawScore(self)

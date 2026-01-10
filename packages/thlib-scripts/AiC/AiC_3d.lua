@@ -1,5 +1,4 @@
 ---@diagnostic disable: undefined-global, missing-return-value
----@diagnostic disable: undefined-global
 ---=====================================
 ---THAIC 3D v1.00a
 ---东方梦摇篮3D v1.00a

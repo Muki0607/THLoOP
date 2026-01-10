@@ -43,6 +43,7 @@ aic.version = '1.00a'
 ---@type boolean
 aic.DLC = false
 
+---有问题的话需要来这里调整各个库的加载顺序
 
 ---类型扩展
 DoFile("AiC/AiC_string.lua")--AiC string扩展库
@@ -63,8 +64,8 @@ DoFile("AiC/AiC_input.lua")--AiC输入
 DoFile("AiC/AiC_dinput.lua")--AiC DirectInput扩展
 
 ---游戏内
+DoFile("AiC/AiC_l10n.lua")--AiC本土化
 DoFile("AiC/AiC_custom_dialog.lua")--AiC自定义对话库
-DoFile("AiC/AiC_l10n.lua")--AiC本地化
 DoFile("AiC/AiC_menu.lua")--AiC菜单
 DoFile("AiC/AiC_ui.lua")--AiC UI
 DoFile("AiC/AiC_rpg.lua")--AiC RPG支持库

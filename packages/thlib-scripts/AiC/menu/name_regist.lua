@@ -1,5 +1,7 @@
 local lib = aic.menu
 
+local l10n = aic.l10n[setting.locale]
+
 ---记录名称（机签）
 ---这里参考TH18要存数据，所以先输一遍名字
 ---部分参考新版lstg菜单
@@ -183,7 +185,7 @@ end
 function lib.name_regist:render()
     SetViewMode('ui')
     lib.DrawSubTitle(self)
-    lib.DrawTips(self, { '输入字符', '删除字符' })
+    lib.DrawTips(self, { l10n.ui.tips.input_char, l10n.ui.tips.delete_char })
 
     -- 绘制键盘
     -- 未选中按键
@@ -201,20 +203,20 @@ function lib.name_regist:render()
             end
             if y == 6 then
                 if x == 12 then
-                    DrawText("main_font_zh2", '终',
+                    DrawText("main_font_zh_cn", '终',
                         self.x + (x - 5.5) * w, _y - (y - 3.5) * h,
                         0.7, color(COLOR_BLACK, 255 * self.alpha), co, 'centerpoint')
                 elseif x == 11 then
-                    DrawText("main_font_zh2", 'BS',
+                    DrawText("main_font_zh_cn", 'BS',
                         self.x + (x - 5.5) * w, _y - (y - 3.5) * h,
                         0.7, color(COLOR_BLACK, 255 * self.alpha), co, 'centerpoint')
                 else
-                    DrawText("main_font_zh2", string.char(self.keyboard[y * 13 + x + 1]),
+                    DrawText("main_font_zh_cn", string.char(self.keyboard[y * 13 + x + 1]),
                         self.x + (x - 5.5) * w, _y - (y - 3.5) * h,
                         0.75, color(COLOR_BLACK, 255 * self.alpha), co, 'centerpoint')
                 end
             else
-                DrawText("main_font_zh2", string.char(self.keyboard[y * 13 + x + 1]),
+                DrawText("main_font_zh_cn", string.char(self.keyboard[y * 13 + x + 1]),
                     self.x + (x - 5.5) * w, _y - (y - 3.5) * h,
                     0.75, color(COLOR_BLACK, 255 * self.alpha), co, 'centerpoint')
             end
@@ -226,18 +228,19 @@ function lib.name_regist:render()
     local yos = (self.l + 1) * lineh * 0.5
     local co1, co2 = { 247, 225, 158 }, { 166, 129, 193 }
     local data = self.data
-    local player = { "博丽 灵梦", "雾雨 魔理沙", "十六夜 咲夜", "小林 无记", "千幻 念雪" }
+    local player = { l10n.general.character_names.reimu, l10n.general.character_names.marisa,
+        l10n.general.character_names.sakuya, l10n.general.character_names.muki, l10n.general.character_names.nenyuki }
     local player_co = { { 255, 136, 170 }, { 221, 221, 85 }, { 85, 204, 255 }, { 76, 231, 235 }, { 165, 164, 249 } }
     --咲字渲不出来
-    if self._posX == 3 then
+    if self._posX == 3 and (setting.locale == 'zh_cn' or setting.locale == 'zh_tc') then
         DrawText('sc_name', "咲", x + 20, y + 198, 1.3,
             Color(self.alpha, unpack(player_co[self._posX])), nil, 'center')
     end
-    DrawText('main_font_zh2', player[self._posX], x, y + 195, 1.25,
+    DrawText('main_font_zh_cn', player[self._posX], x, y + 195, 1.25,
         Color(self.alpha, unpack(player_co[self._posX])), nil, 'center')
     
     local diff = { "EASY", "NORMAL", "HARD", "LUNATIC", "EXTRA" }
-    DrawText('main_font_zh2', diff[self._posY], x, y + 165, 1.25,
+    DrawText('main_font_zh_cn', diff[self._posY], x, y + 165, 1.25,
         color(COLOR_WHITE, self.alpha), nil, 'center')
     y = y + 25
     if data then
@@ -275,10 +278,10 @@ function lib.name_regist:render()
                     align = 'right'
                 end
                 if i == self.score_pos then
-                    DrawText("main_font_zh2", text, x + xos[j + 1],
+                    DrawText("main_font_zh_cn", text, x + xos[j + 1],
                         y - i * lineh + yos + 25, 0.9, Color(self.alpha, r, g, b), nil, align)
                 else
-                    DrawText("main_font_zh2", text, x + xos[j + 1],
+                    DrawText("main_font_zh_cn", text, x + xos[j + 1],
                         y - i * lineh + yos + 25, 0.9, Color(self.alpha, r - 100, g - 100, b - 100), nil, align)
                 end
             end
@@ -306,7 +309,7 @@ function lib.name_regist:render()
                     end
                     align = 'right'
                 end
-                DrawText("main_font_zh2", text, x + xos[j + 1],
+                DrawText("main_font_zh_cn", text, x + xos[j + 1],
                     y - 11 * lineh + yos + 25, 0.9, Color(self.alpha, r, g, b), nil, align)
             end
         end

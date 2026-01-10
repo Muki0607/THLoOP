@@ -1,5 +1,7 @@
 local lib = aic.menu
 
+local l10n = aic.l10n[setting.locale]
+
 ---录像保存菜单
 lib.save_replay = Class(object)
 
@@ -54,12 +56,12 @@ function lib.save_replay:init(data, rep_saved)
                 color[j] = ui.menu.focused_color1[j] * k + ui.menu.focused_color2[j] * (1 - k)
             end
             for m = 1, 7 do
-                DrawText("main_font_zh2", text[i][m] or 'nil', x + xos[m], y - max(0, (i - self.l * (self.page - 1))) * lineh + yos, 0.8,
+                DrawText("main_font_zh_cn", text[i][m] or 'nil', x + xos[m], y - max(0, (i - self.l * (self.page - 1))) * lineh + yos, 0.8,
                     Color(self.alpha, unpack(color)), nil, "vcenter", "left")
             end
         else
             for m = 1, 7 do
-                DrawText("main_font_zh2", text[i][m] or 'nil', x + xos[m], y - max(0, (i - self.l * (self.page - 1))) * lineh + yos, 0.8,
+                DrawText("main_font_zh_cn", text[i][m] or 'nil', x + xos[m], y - max(0, (i - self.l * (self.page - 1))) * lineh + yos, 0.8,
                     _color(COLOR_WHITE, self.alpha), nil, "vcenter", "left")
             end
         end
@@ -68,7 +70,7 @@ function lib.save_replay:init(data, rep_saved)
     ---渲染要保存的rep信息
     function self.DrawRepInfo2(xos, x, y, text)
         for m = 1, 7 do
-            DrawText("main_font_zh2", text[m] or 'nil', x + xos[m], y, 0.8,
+            DrawText("main_font_zh_cn", text[m] or 'nil', x + xos[m], y, 0.8,
                 color(COLOR_WHITE, self.alpha), nil, "vcenter", "left")
         end
     end
@@ -316,7 +318,7 @@ function lib.save_replay:render()
     Render('Muki_AiC_menu_replay_Primula', x + 150, y, 0, -0.5, 0.5)
 
     if self.level == 1 then
-        lib.DrawTips(self, { '选择保存位置', '取消保存Replay' }, { '移动', '翻页' })
+        lib.DrawTips(self, { l10n.ui.tips.select_save_pos, l10n.ui.tips.cancel_save_rep }, { l10n.ui.tips.move, l10n.ui.tips.page_up_down })
 
         --自动保存位
         self.DrawRepInfo(0, xos, yos, lineh, x, y, text, pos, timer)
@@ -326,10 +328,10 @@ function lib.save_replay:render()
 
         local text3, y = self.text3_kt, y - self.l * lineh * 0.5 + 20
         if self.warn1 then
-            DrawText("main_font_zh2", 'Replay尚未保存。是否退出？\n若要退出，请按下确认键。',
+            DrawText("main_font_zh_cn", l10n.ui.save_replay.warn1,
                 x + xos[1], y - lineh * 1.25, 0.75, _color(COLOR_RED, self.alpha))
         elseif self.warn2 then
-            DrawText("main_font_zh2", '该位置已有Replay。是否覆盖？\n若要覆盖，请再次按下确认键。',
+            DrawText("main_font_zh_cn", l10n.ui.save_replay.warn2,
                 x + xos[1], y - lineh * 1.25, 0.75, _color(COLOR_RED, self.alpha))
         else
             --额外信息渲染
@@ -337,11 +339,11 @@ function lib.save_replay:render()
                 local len = text3('len')
                 --通过键表实现对值表的散列部分进行有序读取（即有序字典）
                 for i = 1, len - 1 do
-                    DrawText("main_font_zh2", text3('get', i) .. ": " .. text3[i], x + xos[1], y - i * lineh * 1.25, 0.75,
+                    DrawText("main_font_zh_cn", text3('get', i) .. ": " .. text3[i], x + xos[1], y - i * lineh * 1.25, 0.75,
                         _color(COLOR_WHITE, self.alpha))
                 end
                 --对携带插件特化处理，给予足够空间渲染插件图标
-                DrawText("main_font_zh2", text3('get', len) .. ": ", x + xos[1], y - len * lineh * 1.25 - 10, 0.75,
+                DrawText("main_font_zh_cn", text3('get', len) .. ": ", x + xos[1], y - len * lineh * 1.25 - 10, 0.75,
                     _color(COLOR_WHITE, self.alpha))
                 for k, v in ipairs(text3[len]) do
                     local s = 0.35
@@ -351,7 +353,7 @@ function lib.save_replay:render()
             end
         end
     else
-        lib.DrawTips(self, { '输入字符', '删除字符' })
+        lib.DrawTips(self, { l10n.ui.tips.input_char, l10n.ui.tips.delete_char })
         -- 绘制键盘
         -- 未选中按键
         SetFontState("replay", "", Color(255 * self.alpha, unpack(ui.menu.unfocused_color)))
@@ -368,20 +370,20 @@ function lib.save_replay:render()
                 end
                 if y == 6 then
                     if x == 12 then
-                        DrawText("main_font_zh2", '终',
+                        DrawText("main_font_zh_cn", '终',
                             _x + (x - 5.5) * w, _y - (y - 3.5) * h,
                             0.7, color(COLOR_BLACK, 255 * self.alpha), co, 'centerpoint')
                     elseif x == 11 then
-                        DrawText("main_font_zh2", 'BS',
+                        DrawText("main_font_zh_cn", 'BS',
                             _x + (x - 5.5) * w, _y - (y - 3.5) * h,
                             0.7, color(COLOR_BLACK, 255 * self.alpha), co, 'centerpoint')
                     else
-                        DrawText("main_font_zh2", string.char(self.keyboard[y * 13 + x + 1]),
+                        DrawText("main_font_zh_cn", string.char(self.keyboard[y * 13 + x + 1]),
                             _x + (x - 5.5) * w, _y - (y - 3.5) * h,
                             0.75, color(COLOR_BLACK, 255 * self.alpha), co, 'centerpoint')
                     end
                 else
-                    DrawText("main_font_zh2", string.char(self.keyboard[y * 13 + x + 1]),
+                    DrawText("main_font_zh_cn", string.char(self.keyboard[y * 13 + x + 1]),
                         _x + (x - 5.5) * w, _y - (y - 3.5) * h,
                         0.75, color(COLOR_BLACK, 255 * self.alpha), co, 'centerpoint')
                 end

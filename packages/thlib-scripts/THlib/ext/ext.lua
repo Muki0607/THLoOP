@@ -10,6 +10,8 @@
 ---@class ext @额外游戏循环加强库
 ext = {}
 
+local l10n = aic.l10n[setting.locale]
+
 local extpath = "THlib/ext/"
 
 DoFile(extpath .. "ext_pause_menu.lua")
@@ -114,7 +116,7 @@ end
 ---设置标题
 function ChangeGameTitle()
     --local mod = setting.mod and #setting.mod > 0 and setting.mod
-    local game = "东方梦摇篮　~ Alice In Cradle v" .. aic.version
+    local game = aic.l10n[setting.locale].general.title .. " v" .. aic.version
     local ext =
         table.concat(
             {
@@ -418,7 +420,7 @@ function FrameFunc()
                 if not _debug.exception_handler_disabled and ext.error_level <= 5 then
                     ext.error_level = ext.error_level + 1
                     lstg.Log(4, aic.py.last_exception)
-                    lstg.MsgBoxError("游戏运行时出现帧逻辑错误。\n请将游戏日志发送给作者。", "游戏出现异常", true)
+                    lstg.MsgBoxError(l10n.exception.framefunc_error, l10n.exception.title, true)
                     stage.QuitGame()
                 else
                     raise()
@@ -439,7 +441,7 @@ function RenderFunc()
                 if not _debug.exception_handler_disabled and ext.error_level <= 5 then
                     ext.error_level = ext.error_level + 1
                     lstg.Log(4, aic.py.last_exception)
-                    lstg.MsgBoxError("游戏运行时出现渲染逻辑错误。\n请将游戏日志发送给作者。", "游戏出现异常", true)
+                    lstg.MsgBoxError(l10n.exception.rendering_error, l10n.exception.title, true)
                     stage.QuitGame()
                 else
                     raise()

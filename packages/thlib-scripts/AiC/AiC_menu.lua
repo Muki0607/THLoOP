@@ -37,6 +37,8 @@
 aic.menu = {}
 local lib = aic.menu
 
+local l10n = aic.l10n[setting.locale]
+
 ---仿TH18菜单（其实差别很大）
 ---本菜单库纯手工制作，没有先定义菜单类，工程量极大
 ---不过正因如此怎么加新东西都没问题
@@ -274,23 +276,27 @@ function lib:GetExtRepInfo()
         ---@class plus.ReplayManager.SaveData.StageData
         local st = slot.stages[1]
         if not st then self.text3_kt = nil return end
-        local finish = { "是", [0] = "否" }
-        local player = { Reimu = "博丽 灵梦", Marisa = "雾雨 魔理沙", Sakuya = "十六夜 咲夜", Muki = "小林 无记", Nenyuki = "千幻 念雪" }
-        local difficulty = { "简单", "普通", "噩梦", "地狱" }
+        local finish = { l10n.general.terms.yes, [0] = l10n.general.terms.no }
+        local player = { Reimu = l10n.general.character_names.reimu, Marisa = l10n.general.character_names.marisa, Sakuya = l10n.general.character_names.sakuya, Muki = l10n.general.character_names.muki, Nenyuki = l10n.general.character_names.nenyuki }
+        local difficulty = { l10n.general.difficulty.easy, l10n.general.difficulty.normal, l10n.general.difficulty.hard, l10n.general.difficulty.lunatic }
         local var = DeSerialize(st.stageExtendInfo)
         self.text3 = {
-            --["用户名"] = slot.userName,
-            ["是否通关"] = finish[slot.group_finish],
-            ["时间"] = aic.sys.GetTime(st.stageDate + setting.timezone * 3600),
-            ["总分"] = st.score,
+            --[l10n.general.rep_info.username] = slot.userName,
+            [l10n.general.rep_info.is_finished] = finish[slot.group_finish],
+            [l10n.general.rep_info.time] = aic.sys.GetTime(st.stageDate + setting.timezone * 3600),
+            [l10n.general.rep_info.score] = st.score,
             --["随机数种子"] = st.randomSeed,
-            ["自机"] = player[st.stagePlayer] or "未知自机",
-            ["游戏版本"] = var.aic_version or "未知版本",
-            ["难度选择"] = difficulty[var.difficulty] or "未知难度",
-            ["携带插件"] = var.enhancer_select or {}
+            [l10n.general.rep_info.player] = player[st.stagePlayer] or l10n.general.terms.unknown_player,
+            [l10n.general.rep_info.version] = var.aic_version or l10n.general.terms.unknown_version,
+            [l10n.general.rep_info.difficulty] = difficulty[var.difficulty] or l10n.general.terms.unknown_difficulty,
+            [l10n.general.rep_info.enhancer_select] = var.enhancer_select or {}
         }
-        self.text3_kt = setvaluetable({ "是否通关", "时间", "总分", "自机",
-            "游戏版本", "难度选择", "携带插件" }, self.text3)
+        self.text3_kt = setvaluetable({
+            l10n.general.rep_info.is_finished, l10n.general.rep_info.time, l10n.general.rep_info.score,
+            l10n.general.rep_info.player, l10n.general.rep_info.version, l10n.general.rep_info.difficulty, l10n.general.rep_info.enhancer_select
+            --"是否通关", "时间", "总分", "自机",
+            --"游戏版本", "难度选择", "携带插件"
+        }, self.text3)
     else
         self.text3_kt = nil
     end
@@ -327,18 +333,18 @@ function lib:DrawTips(keys, move)
         for _, v in ipairs({ 'up', 'down', 'left', 'right' }) do
             text = text .. key[setting.keys[v]]
         end
-        text = text .. '移动 '
+        text = text .. l10n.general.terms.move .. ' '
     end
     --其他操作
     for k, v in ipairs({ 'shoot', 'spell', 'special', 'slow' }) do
         if keys[k] then
-            text = text .. key[setting.keys[v]] .. '键 ' .. keys[k] .. ' '
+            text = text .. key[setting.keys[v]] .. l10n.general.terms.key .. ' ' .. keys[k] .. ' '
         end
     end
     if keys[5] then
-        text = text .. key[setting.keysys.repfast] .. '键 ' .. keys[5]
+        text = text .. key[setting.keysys.repfast] .. l10n.general.terms.key .. ' ' .. keys[5]
     end
-    DrawText('aic_menu', text,
+    DrawText('main_font_zh_cn', text,
         screen.width, 10, 0.5, Color(self.alpha, 255, 255, 255), nil, 'right')
 end 
 
@@ -483,9 +489,6 @@ end
 
 ----------------------------------------
 ---资源
-
---字体
-LoadTTF('aic_menu', 'THlib/UI/menu/Muki_AiC_menu_font.ttf', 35)
 
 --标题菜单
 for _, m in ipairs({ { 'title', 9 }, { 'difficulty_select', 4 }, { 'player_select', 8 }, { 'enhancer_select', 16 } }) do

@@ -929,7 +929,7 @@ function ResetUI()
 
     function ui.DrawScore()
         if not IsValid(_lstg_ui) then
-            New(lstg.lstg_ui_object)
+            lstg.ui_obj = New(lstg.lstg_ui_object)
         end
     end
 end

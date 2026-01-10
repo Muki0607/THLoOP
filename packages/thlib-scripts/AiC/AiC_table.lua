@@ -596,7 +596,6 @@ end
     当尝试为键表赋值时也会进行相似的操作，
     即语句kt[key] = value等价于vt[kt[key]] = value（仅为示意，获取键表的值应参考下面的写法）。
     同样地,#kt等价于#vt。
-    这类似于C/C++中指针的行为。
     你可以为一个键表设置键表，实现键表的嵌套。
     你也可以为一个值表设置多个键表。
     不能将一个键表的值表设置为它本身，否则会产生循环调用，导致栈溢出。
@@ -614,7 +613,7 @@ end
     1.10b新增：可以将键表的值表设为一个字符串，若如此做，
     键表将在进行操作时将_G[valuetable]（即名称为该字符串的全局表）作为值表。
     请注意，操作前不会检查该全局表是否存在。
-    不能以键表调用ipairs或pairs；这会导致报错。
+    不能以键表为参数调用ipairs或pairs；这会导致报错。
 --]=]
 
 ---键表索引元方法
@@ -739,6 +738,7 @@ function lib.SetKeyTable(vt, kt)
 end
 
 ---为一个表设置值表，作用与`setkeytable`相同，只是参数顺序与返回值不同
+---注意：此操作会清空kt并返回一个内容和kt相同的新表，所以只建议以一个新创建的表作为kt
 ---@param kt table @要设置的键表
 ---@param vt table @要设置的值表
 ---@return keytable @传入的键表
@@ -774,6 +774,7 @@ function lib.SetValueTable(kt, vt)
 end
 
 ---使用一个值表制作键表
+---注意：这样得到的键表中键是无序的
 ---@param vt table @要制作键表的值表
 ---@return keytable @键表
 function lib.MakeKeyTable(vt)
@@ -799,7 +800,7 @@ function lib.GetValueTable(kt)
 end
 
 ---使用例
----@diagnostic disable-next-line: empty-block
+---@diagnostic disable-next-line: unnecessary-if
 if false then
     local kt, vt = { 'one', 'two' }, { one = 1, two = 2, three = 3 }
     setvaluetable(kt, vt)

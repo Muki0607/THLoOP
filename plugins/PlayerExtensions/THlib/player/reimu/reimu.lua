@@ -70,7 +70,7 @@ function reimu_player:init(slot)
     }
     self.default_dmglist = { 0.3, 0.3, 0.3, 0.3 }
     self.dmglist = { 0.3, 0.3, 0.3, 0.3 }
-    self.spellname = { '灵符「梦想封印」', '结界「扩散结界」' }
+    self.spellname = aic.l10n[setting.locale].player_scname.reimu
     self.deathtime = 24 --长到令人睡着的决死时间
     self.default_deathtime = self.deathtime
 end

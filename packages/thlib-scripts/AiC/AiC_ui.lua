@@ -100,7 +100,7 @@ end
 ---@param co2 lstg.Color @描边颜色
 ---@vararg align @对齐方式
 function lib.DrawText(font, text, x, y, s, co1, co2, ...)
-    font = font or "main_font_zh2"
+    font = font or "main_font_zh_cn"
     text = tostring(text)
     s = s or 1
     co1 = co1 or Color(255, 255, 255, 255)
@@ -109,7 +109,7 @@ function lib.DrawText(font, text, x, y, s, co1, co2, ...)
     local _x, _y
     if CheckRes('fnt', font) then
         SetFontState(font, '', co2)
-        for i = 0, 8 do
+        for i = 1, 8 do
             _x = x + sqrt(2) * cos(i * 45)
             _y = y + sqrt(2) * sin(i * 45)
             RenderText(font, text, _x, _y, s, ...)
@@ -117,7 +117,7 @@ function lib.DrawText(font, text, x, y, s, co1, co2, ...)
         SetFontState(font, '', co1)
         RenderText(font, text, x, y, s, ...)
     else
-        for i = 0, 8 do
+        for i = 1, 8 do
             _x = x + sqrt(2) * cos(i * 45)
             _y = y + sqrt(2) * sin(i * 45)
             RenderTTF2(font, text, _x, _x, _y, _y, s, co2, ...)
@@ -444,7 +444,7 @@ function lib.spellname:init(b, name, slot, score, lay, xc, yu, IsPlayer, t, font
     self._dy = 0
     self._dy2 = 0
     self.t = t
-    self.font = font or 'main_font_zh1'
+    self.font = font or 'main_font_zh_cn'
     if self.IsPlayer then
         self.waitx = 1000
         self.default_waitx = self.waitx
@@ -974,6 +974,18 @@ function lib.CheckSPPoint(num)
     local b = _boss
     if not (b and IsValid(b)) then return end
     return #b._sp_point_auto < num
+end
+
+---重绘UI，用于解决跨层使用shader导致UI消失的问题
+---@param frame boolean @是否重绘UI框（默认为true）
+---@param score boolean @是否重绘分数（默认为true）
+function lib.RedrawUI(frame, score)
+    if frame or frame == nil then
+        lstg.ui_obj.ui:drawFrame()
+    end
+    if score or score == nil then
+        lstg.ui_obj.ui:drawScore()
+    end
 end
 
 ----------------------------------------

@@ -1,5 +1,7 @@
 local lib = aic.menu
 
+local l10n = aic.l10n[setting.locale]
+
 ---录像播放菜单
 ---部分参考新版lstg菜单
 lib.replay = Class(object)
@@ -106,12 +108,12 @@ function lib.replay:init(pos, page)
                 color[j] = ui.menu.focused_color1[j] * k + ui.menu.focused_color2[j] * (1 - k)
             end
             for m = 1, 7 do
-                DrawText("main_font_zh2", text[i][m] or 'nil', x + xos[m], y - max(0, (i - self.l * (self.page - 1))) * lineh + yos, 0.8,
+                DrawText("main_font_zh_cn", text[i][m] or 'nil', x + xos[m], y - max(0, (i - self.l * (self.page - 1))) * lineh + yos, 0.8,
                     Color(self.alpha, unpack(color)), nil, "vcenter", "left")
             end
         else
             for m = 1, 7 do
-                DrawText("main_font_zh2", text[i][m] or 'nil', x + xos[m], y - max(0, (i - self.l * (self.page - 1))) * lineh + yos, 0.8,
+                DrawText("main_font_zh_cn", text[i][m] or 'nil', x + xos[m], y - max(0, (i - self.l * (self.page - 1))) * lineh + yos, 0.8,
                     _color(COLOR_WHITE, self.alpha), nil, "vcenter", "left")
             end
         end
@@ -269,11 +271,11 @@ function lib.replay:render()
         SetImageState('Muki_AiC_menu_replay_Primula', '', color(COLOR_WHITE, self.alpha))
         Render('Muki_AiC_menu_replay_Primula', x + 150, y, 0, -0.5, 0.5)
 
-        lib.DrawTips(self, { '播放Replay', '返回上一级菜单' })
+        lib.DrawTips(self, { l10n.ui.tips.play_replay, l10n.ui.tips.back })
         
         local text3, y = self.text3_kt, y - self.l * lineh * 0.5 + 20
         if self.warn then
-            DrawText("main_font_zh2", '该Replay游戏版本与当前版本相差较大，播放可能导致错误。是否继续播放？\n若要播放，请再次按下确认键。',
+            DrawText("main_font_zh_cn", l10n.ui.replay.warning,
                 x + xos[1], y - 1 * lineh * 1.25, 0.75, _color(COLOR_RED, self.alpha))
         else
             --额外信息渲染
@@ -281,11 +283,11 @@ function lib.replay:render()
                 local len = text3('len')
                 --通过键表实现对值表的散列部分进行有序读取（即有序字典）
                 for i = 1, len - 1 do
-                    DrawText("main_font_zh2", text3('get', i) .. ": " .. text3[i], x + xos[1], y - i * lineh * 1.25, 0.75,
+                    DrawText("main_font_zh_cn", text3('get', i) .. ": " .. text3[i], x + xos[1], y - i * lineh * 1.25, 0.75,
                         _color(COLOR_WHITE, self.alpha))
                 end
                 --对携带插件特化处理，给予足够空间渲染插件图标
-                DrawText("main_font_zh2", text3('get', len) .. ": ", x + xos[1], y - len * lineh * 1.25 - 10, 0.75,
+                DrawText("main_font_zh_cn", text3('get', len) .. ": ", x + xos[1], y - len * lineh * 1.25 - 10, 0.75,
                     _color(COLOR_WHITE, self.alpha))
                 for k, v in ipairs(text3[len]) do
                     local s = 0.35
@@ -295,7 +297,7 @@ function lib.replay:render()
             end
         end
     else
-        lib.DrawTips(self, { '播放Replay', '返回' }, { '选择关卡' })
+        lib.DrawTips(self, { l10n.ui.tips.play_replay, l10n.ui.tips.back }, { l10n.ui.tips.select_stage })
         local x, y, text, pos, alpha = self.x, self.y + 80, self.text2, self.pos2, self.alpha
         local lineh = 22
         local xos = { -60, 20 }
@@ -304,14 +306,14 @@ function lib.replay:render()
         for i = 1, #text do
             if i == pos then
                 --local xos=ui.menu.shake_range*sin(ui.menu.shake_speed*shake)
-                DrawText('main_font_zh2', text[i][1], x + xos[1], y - i * lineh + yos, 0.75,
+                DrawText('main_font_zh_cn', text[i][1], x + xos[1], y - i * lineh + yos, 0.75,
                     Color(alpha, unpack(color[1])), nil, "vcenter", "noclip")
-                DrawText('main_font_zh2', text[i][2], x + xos[2], y - i * lineh + yos, 0.75,
+                DrawText('main_font_zh_cn', text[i][2], x + xos[2], y - i * lineh + yos, 0.75,
                     Color(alpha, unpack(color[1])), nil, "vcenter", "noclip")
             else
-                DrawText('main_font_zh2', text[i][1], x + xos[1], y - i * lineh + yos, 0.75,
+                DrawText('main_font_zh_cn', text[i][1], x + xos[1], y - i * lineh + yos, 0.75,
                     Color(alpha, unpack(color[2])), nil, "vcenter", "noclip")
-                DrawText('main_font_zh2', text[i][2], x + xos[2], y - i * lineh + yos, 0.75,
+                DrawText('main_font_zh_cn', text[i][2], x + xos[2], y - i * lineh + yos, 0.75,
                     Color(alpha, unpack(color[2])), nil, "vcenter", "noclip")
             end
         end

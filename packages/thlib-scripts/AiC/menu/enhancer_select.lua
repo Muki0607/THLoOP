@@ -1,5 +1,7 @@
 local lib = aic.menu
 
+local l10n = aic.l10n[setting.locale]
+
 ------------------------------------------------------------
 
 --最屎山的一个菜单，没有之一
@@ -109,28 +111,7 @@ function lib.enhancer_select:init()
     end
     self.cost = { 2, 2, 3, 4, 1, 1, 2, 3, 2, 2, 2, 5, 0, 2, 3, scoredata.enhancer_slot + 1 } --各插件消耗
 
-    self.text =
-    {
-        { '盗垒滑步', '使携带者免疫体术攻击，\n闪避后的无敌时间增加30f。' },
-        { '藏巧守拙', '携带者Miss时不丢失魔力，\n但禁用收点线。\n\n适用于经常Miss的人。\n\n※不能与濡湿预兆同时携带' },
-        { '双重闪避', '允许携带者连续闪避两次，\n闪避消耗降低25%。\n\n适用于喜欢闪避的人。' },
-        { '超载咏唱', '允许携带者释放符卡时\n使用魔力补足缺少的过充魔力；\n符卡消耗增加10%。\n\n适用于经常使用符卡的人。' },
-        { '抓地鞋', '允许携带者使用闪避时\n不按下方向键，\n此时将不进行移动。\n\n适用于只需要无敌时间的人。' },
-        { '长法杖', '使携带者的射击\n判定大小增加50%，\n但伤害不变。\n对激光无效。' },
-        { '祈雨御守', '当携带者击破敌人时，\n增加道具的掉落数量。' },
-        { '濡湿预兆', '无论携带者Miss前魔力为多少，\n总会产生500魔力。\n\n适用于恐惧火力不足的人。\n\n※不能与藏巧守拙同时携带' },
-        { '恐高症', '使携带者使用符卡后\n无敌时间增加60f。' },
-        { '血之虹瞳', '携带者拾取过充魔力道具时\n不再增加5点过充魔力，\n而是增加1点生命值。' },
-        { '猫之缓降', '当携带者处于收点线以上时\n获得60f无敌时间，\n冷却时间300f。\n\n适用于经常在收点时Miss的人。' },
-        { '珠辉的素描本', '将符卡变为「珠辉的素描本」，\n伤害较低、无敌时间较短。\n符卡消耗降低60%。' },
-        { '椎奈的编程指导书', '跳过所有对话。' },
-        { '菖蒲的小型终端', '最大闪避距离增加100%。' },
-        { '歌夜的耳机', '禁用符卡和闪避，\n受到伤害降低50%。' },
-        { '诺艾儿的法杖', '射击伤害增加50%，\n单次Miss时魔力槽碎裂程度\n增加100%。\n若难度为噩梦则\n额外增加50%射击速度。\n\n本插件消耗插槽数始终为\n最大插槽数+1。' },
-    }
-    if _debug.pmode then
-        self.text[12] = { '珠辉的素描本', '开启完美无缺模式。\n游戏会自动存档，\n当Miss时可以回到上一个存档点。' }
-    end
+    self.text = l10n.ui.enhancer_select
 
     --一堆乱七八糟的函数
 
@@ -526,12 +507,14 @@ function lib.enhancer_select:render()
     --文字说明
     local x, y = self.x - screen.width * 0.45, self.y
     if self.cost_calc() > scoredata.enhancer_slot then
-        DrawText('aic_menu', '插件过载', x, y + screen.height * 0.25 + 10, 1, Color(self.alpha, 184, 96, 184))
+        DrawText('main_font_zh_cn', l10n.ui.enhancer_select_tips.enhancer_overload,
+        x, y + screen.height * 0.25 + 10, 1, Color(self.alpha, 184, 96, 184))
     else
-        DrawText('aic_menu', '已装备', x, y + screen.height * 0.25 + 10, 1, Color(self.alpha, 255, 255, 255))
+        DrawText('main_font_zh_cn', l10n.ui.enhancer_select_tips.equipped_enhancer,
+        x, y + screen.height * 0.25 + 10, 1, Color(self.alpha, 255, 255, 255))
     end
-    DrawText('aic_menu', '插件槽', x, y + screen.height * 0.1 - 10, 1, Color(self.alpha, 255, 255, 255))
-
+    DrawText('main_font_zh_cn', l10n.ui.enhancer_select_tips.enhancer_slot,
+    x, y + screen.height * 0.1 - 10, 1, Color(self.alpha, 255, 255, 255))
     --已装备插件区背景
     if self.cost_calc() > scoredata.enhancer_slot then
         SetImageState('Muki_AiC_menu_enhancer_select_bg', '', Color(self.alpha, 184, 96, 184))
@@ -587,11 +570,11 @@ function lib.enhancer_select:render()
         bool = self.text_pos and self.text_pos <= #self.cost and not CheckEnhancer(self.text_pos)
     end
     if bool and self.text[pos] then
-        DrawText('aic_menu', self.text[pos][1], x + 30, y,
+        DrawText('main_font_zh_cn', self.text[pos][1], x + 30, y,
             1, Color(min(self.alpha, self.text_alpha), 255, 255, 255), nil, 'centerpoint')
-        DrawText('aic_menu', self.text[pos][2], x - 50, y - 200,
+        DrawText('main_font_zh_cn', self.text[pos][2], x - 50, y - 200,
             0.75, Color(min(self.alpha, self.text_alpha), 255, 255, 255), nil, 'vcenter')
-        DrawText('aic_menu', '消耗', x - 20, y - 100,
+        DrawText('main_font_zh_cn', l10n.ui.enhancer_select.cost, x - 20, y - 100,
             0.75, Color(min(self.alpha, self.text_alpha), 255, 255, 255), nil, 'vcenter')
         SetImageState('Muki_AiC_menu_enhancer_select_slot2', '', Color(min(self.alpha, self.text_alpha), 255, 255, 255))
         if self.cost[pos] <= 6 then
@@ -610,7 +593,7 @@ function lib.enhancer_select:render()
             end
         else
             Render('Muki_AiC_menu_enhancer_select_slot2', x + 30, y - 100, 0, 0.5)
-            DrawText('aic_menu', 'x ' .. self.cost[pos], x + 50, y - 100,
+            DrawText('main_font_zh_cn', 'x ' .. self.cost[pos], x + 50, y - 100,
                 0.85, Color(min(self.alpha, self.text_alpha), 255, 255, 255), nil, 'vcenter')
         end
         SetImageState('Muki_AiC_menu_enhancer_select' .. pos, '', Color(min(self.alpha, self.text_alpha), 255, 255, 255))
@@ -620,8 +603,8 @@ function lib.enhancer_select:render()
     end
 
     --键位提示
-    local key1 = { '卸下插件', '返回上一级菜单', '开始游戏' }
-    local key2 = { '携带插件', '返回上一级菜单', '开始游戏' }
+    local key1 = { l10n.ui.tips.unequip_enhancer, l10n.ui.tips.back, l10n.ui.tips.start_game }
+    local key2 = { l10n.ui.tips.equip_enhancer, l10n.ui.tips.back, l10n.ui.tips.start_game }
     if CheckEnhancer(pos) then
         lib.DrawTips(self, key1)
     else
@@ -708,10 +691,10 @@ function lib.enhancer_cursor:render()
     SetViewMode('ui')
     object.render(self)
     if self.debug then
-        DrawText('aic_menu', 'level=' .. self.master.level, self.x, self.y + 50)
-        DrawText('aic_menu', 'pos1=' .. self.master.pos1, self.x, self.y + 25)
-        DrawText('aic_menu', 'pos2=' .. self.master.pos2, self.x, self.y)
-        DrawText('aic_menu', 'posn=' .. self.master.posn, self.x, self.y - 25)
+        DrawText('main_font_zh_cn', 'level=' .. self.master.level, self.x, self.y + 50)
+        DrawText('main_font_zh_cn', 'pos1=' .. self.master.pos1, self.x, self.y + 25)
+        DrawText('main_font_zh_cn', 'pos2=' .. self.master.pos2, self.x, self.y)
+        DrawText('main_font_zh_cn', 'posn=' .. self.master.posn, self.x, self.y - 25)
         local t = ''
         if #lstg.var.enhancer_select > 0 then
             for i = 1, #lstg.var.enhancer_select do
@@ -724,7 +707,7 @@ function lib.enhancer_cursor:render()
         else
             t = 'nothing...'
         end
-        DrawText('aic_menu', 'select=' .. t, self.x, self.y - 50)
+        DrawText('main_font_zh_cn', 'select=' .. t, self.x, self.y - 50)
     end
     SetViewMode('world')
 end

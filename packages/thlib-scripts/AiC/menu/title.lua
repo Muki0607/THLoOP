@@ -217,7 +217,7 @@ function lib.title:render()
         end
         Render('Muki_AiC_menu_title' .. i, x, y + (5 - i) * d, 0, self.scale)
     end
-    DrawText('main_font_zh2', "v" .. aic.version, 5, 15, 0.75,
+    DrawText('main_font_zh_cn', "v" .. aic.version, 5, 15, 0.75,
         color(COLOR_WHITE, self.alpha), nil, "left")
     SetViewMode('world')
 end
