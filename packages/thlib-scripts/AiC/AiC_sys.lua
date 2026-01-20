@@ -17,7 +17,7 @@
 aic.sys = {}
 local lib = aic.sys
 
-local l10n = aic.l10n[setting.locale]
+
 
 --插件编号
 ---@alias enhancer_num '1 = 盗垒滑步'|'2 = 藏巧守拙'|'3 = 双重闪避'|'4 = 超载咏唱'|'5 = 抓地鞋'|'6 = 长法杖'|'7 = 祈雨御守'|'8 = 濡湿预兆'|'9 = 恐高症'|'10 = 血之虹瞳'|'11 = 猫之缓降'|'12 = 珠辉的素描本'|'13 = 椎奈的编程指导书'|'14 = 菖蒲的小型终端'|'15 = 歌夜的耳机'|'16 = 诺艾儿的法杖'
@@ -117,7 +117,7 @@ function lib.SetFullScreen(fullscreen, s)
     s = s or 0.5
     if fullscreen then
         Player_scale = s
-        aic.sys.SetWorld('FULLSCREEN')
+        lib.SetWorld('FULLSCREEN')
         CloseUI = true
         player.bound = false
         player.grazer.bound = false
@@ -135,7 +135,7 @@ function lib.SetFullScreen(fullscreen, s)
         player.grazer.vscale = s
     else
         Player_scale = 1
-        aic.sys.SetWorld('THAIC')
+        lib.SetWorld('THAIC')
         CloseUI = false
         player.bound = true
         player.grazer.bound = true

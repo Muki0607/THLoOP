@@ -16,7 +16,7 @@ The code in `<>` is text effect. To change text effect, see `AiC_text_effect.lua
 `<>`中的代码是文字效果。要更改文字效果，参见`AiC_text_effect.lua`。
 --]=]
 
-local lib = aic.l10n.zh_cn.general
+local lib = aic.l10n.ja_jp.general
 
 lib.title = "东方梦摇篮 ~ Alice In Cradle"
 

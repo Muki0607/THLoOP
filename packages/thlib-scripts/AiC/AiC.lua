@@ -44,35 +44,36 @@ aic.version = '1.00a'
 aic.DLC = false
 
 ---有问题的话需要来这里调整各个库的加载顺序
+---虽说理论上以下依赖关系都不会被加载顺序影响，只要游戏启动时依赖的库存在即可
 
 ---类型扩展
 DoFile("AiC/AiC_string.lua")--AiC string扩展库
-DoFile("AiC/AiC_function.lua")--AiC function扩展库
+DoFile("AiC/AiC_function.lua")--AiC function扩展库，依赖aic.table,aic.string
 DoFile("AiC/AiC_table.lua")--AiC table扩展库
 
 ---杂项
-DoFile("AiC/AiC_debug.lua")--AiC Debug
-DoFile("AiC/AiC_py.lua")--AiC Python扩展库
-DoFile("AiC/AiC_3d.lua")--AiC 3d
-DoFile("AiC/AiC_misc.lua")--AiC杂项
-DoFile("AiC/AiC_pmode.lua")--AiC 完美无缺模式
+DoFile("AiC/AiC_debug.lua")--AiC Debug，依赖aic.input,aic.func,aic.table,aic.ui,aic.py
+DoFile("AiC/AiC_py.lua")--AiC Python扩展库，依赖aic.table,aic.func
+DoFile("AiC/AiC_3d.lua")--AiC 3d，依赖aic.math
+DoFile("AiC/AiC_misc.lua")--AiC杂项，依赖aic.input,aic.ui
+DoFile("AiC/AiC_pmode.lua")--AiC 完美无缺模式，依赖aic.ext,aic.menu,aic.sys
 DoFile("AiC/AiC_math.lua")--AiC数学库
-DoFile("AiC/AiC_sdl.lua")--SDL支持
+DoFile("AiC/AiC_sdl.lua")--AiC SDL支持（未完成）
 
 ---输入
-DoFile("AiC/AiC_input.lua")--AiC输入
+DoFile("AiC/AiC_input.lua")--AiC输入，依赖aic.table,aic.math
 DoFile("AiC/AiC_dinput.lua")--AiC DirectInput扩展
 
 ---游戏内
 DoFile("AiC/AiC_l10n.lua")--AiC本土化
-DoFile("AiC/AiC_custom_dialog.lua")--AiC自定义对话库
-DoFile("AiC/AiC_menu.lua")--AiC菜单
-DoFile("AiC/AiC_ui.lua")--AiC UI
+DoFile("AiC/AiC_custom_dialog.lua")--AiC自定义对话库，依赖aic.string,aic.l10n,aic.table
+DoFile("AiC/AiC_menu.lua")--AiC菜单，依赖aic.sys,aic.input,aic.l10n,aic.table,aic.string,aic.ui
+DoFile("AiC/AiC_ui.lua")--AiC UI，依赖aic.custom_dialog，依赖aic.l10n,aic.table,aic.string
 DoFile("AiC/AiC_rpg.lua")--AiC RPG支持库
 
 ---系统相关
-DoFile("AiC/AiC_ext.lua")--AiC ext扩展库
-DoFile("AiC/AiC_sys.lua")--AiC 系统
+DoFile("AiC/AiC_ext.lua")--AiC ext扩展库，依赖aic.view3d
+DoFile("AiC/AiC_sys.lua")--AiC 系统，依赖aic.py
 
 ---API全局化
 DoFile("AiC/AiC_api.lua")--AiC API

@@ -69,7 +69,6 @@ function marisa_player:init(slot)
     end
     self.default_dmglist = { 0.2, 0.2, 0.2, 0.2 }
     self.dmglist = { 0.2, 0.2, 0.2, 0.2 }
-    self.spellname = aic.l10n[setting.locale].ui.player_scname.marisa
     self.deathtime = 8
     self.default_deathtime = self.deathtime
 end

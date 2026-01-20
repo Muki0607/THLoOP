@@ -1,6 +1,6 @@
 local lib = aic.menu
 
-local l10n = aic.l10n[setting.locale]
+
 
 ------------------------------------------------------------
 
@@ -94,7 +94,7 @@ end
 function lib.library:render()
     SetViewMode('ui')
     lib.DrawSubTitle(self)
-    lib.DrawTips(self, { l10n.ui.tips.selecvt, l10n.ui.tips.back })
+    lib.DrawTips(self, { l10n.ui.tips.select, l10n.ui.tips.back })
     local d, x, y, text1, text2 = 75, self.x, self.y - 25, self.text1, self.text2
     for i = 1, self.l do
         if i == self.pos then

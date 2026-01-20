@@ -1,6 +1,6 @@
 local lib = aic.menu
 
-local l10n = aic.l10n[setting.locale]
+
 
 ---记录名称（机签）
 ---这里参考TH18要存数据，所以先输一遍名字

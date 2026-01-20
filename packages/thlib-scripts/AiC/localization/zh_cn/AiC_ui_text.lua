@@ -67,7 +67,7 @@ lib.music_room_text = {
         ]],
         [[
             原曲：An-fillnote - Title
-            出处：ひなゆあ/橋野みずは - 《AliceInCradle》
+            出处：Hinayua/桥野みずは - 《AliceInCradle》
 
             　标题画面的主题曲。
 
@@ -75,13 +75,13 @@ lib.music_room_text = {
         ]],
         [[
             原曲：ginkiha - Extra stage
-            出处：くろば·U - 《Star Shooter!》
+            出处：Cloba·U - 《Star Shooter!》
 
             「数据删除」
         ]],
         [[
             原曲：ginkiha - Star Chaser! 
-            出处：くろば·U - 《Star Chaser!》
+            出处：Cloba·U - 《Star Chaser!》
             
             「数据删除」
         ]],
@@ -92,7 +92,7 @@ lib.music_room_text = {
         ]],
         [[
             原曲：ginkiha - 通常Boss
-            出处：くろば·U - 《Star Shooter!》
+            出处：Cloba·U - 《Star Shooter!》
             
             「数据删除」
         ]],
@@ -103,7 +103,7 @@ lib.music_room_text = {
             「数据删除」
         ]],
         [[
-            原曲：AliceSoft - 湿羽色的疾风
+            原曲：AliceSoft - 濡羽色GUSTYWIND
             出处：AliceSoft - 《多娜多娜 一起来干坏事吧》
             
             「数据删除」
@@ -125,7 +125,7 @@ lib.music_room_text = {
         ]],
         [[
             原曲：ginkiha - 编织者之森(Battle)
-            出处：ひなゆあ/橋野みずは - 《AliceInCradle》
+            出处：Hinayua/桥野みずは - 《AliceInCradle》
             
             　诺艾儿·柯涅尔的一阶段主题曲。
             
@@ -135,7 +135,7 @@ lib.music_room_text = {
         ]],
         [[
             原曲：ginkiha - 伊夏·波利斯塔切尔
-            出处：ひなゆあ/橋野みずは - 《AliceInCradle》
+            出处：Hinayua/桥野みずは - 《AliceInCradle》
             
             　伊夏·波利斯塔切尔的主题曲。
             
@@ -145,7 +145,7 @@ lib.music_room_text = {
         ]],
         [[
             原曲：Feryquitous - Ha-chan
-            出处：くろば·U - 《Star Shooter!》
+            出处：Cloba·U - 《Star Shooter!》
             
             　普莉姆拉的主题曲。
             
@@ -155,7 +155,7 @@ lib.music_room_text = {
         ]],
         [[
             原曲：Feryquitous - Unknown wisdom
-            出处：くろば·U - 《Star Liner!》
+            出处：Cloba·U - 《Star Liner!》
             
             　诺艾儿·柯涅尔的二阶段主题曲。
             
@@ -164,8 +164,8 @@ lib.music_room_text = {
             　是时候将它们如数奉还了。
         ]],
         [[
-            原曲：An-fillnote - 森のヌシ
-            出处：ひなゆあ/橋野みずは - 《AliceInCradle》
+            原曲：An-fillnote - 森之领主
+            出处：Hinayua/桥野みずは - 《AliceInCradle》
             
             　圣光爆发的主题曲。
             
@@ -175,8 +175,8 @@ lib.music_room_text = {
             　晕厥概率：412%
         ]],
         [[
-            原曲：森のヌシ - 东方风Remix
-            出处：BV1f8411P7fG
+            原曲：森之领主 - 东方风Remix
+            出处：https://www.bilibili.com/video/BV1f8411P7fG/
             
             　诺艾儿·柯涅尔的最终阶段主题曲。
             
@@ -198,7 +198,7 @@ lib.music_room_text = {
         ]],
         [[
             原曲：watson - 森之记忆
-            出处：ひなゆあ/橋野みずは - 《AliceInCradle》
+            出处：Hinayua/桥野みずは - 《AliceInCradle》
             
             　结局A的主题曲。
             
@@ -208,7 +208,7 @@ lib.music_room_text = {
         ]],
         [[
             原曲：An-fillnote - 魔女的杂货店
-            出处：ひなゆあ/橋野みずは - 《AliceInCradle》
+            出处：Hinayua/桥野みずは - 《AliceInCradle》
             
             　结局B的主题曲。
             
@@ -219,12 +219,12 @@ lib.music_room_text = {
         ]],
         [[
             原曲：ginkiha - Staff
-            出处：くろば·U - 《Star Chaser!》
+            出处：Cloba·U - 《Star Chaser!》
             
             　Staff画面的主题曲。
             
             　在那星空之上，才是故事真正开始的地方。
-            　未来的路还很长，请陪诺艾儿，爱丽丝和菲奥蕾特一起走下去吧。
+            　未来的路还很长，请陪诺艾儿和爱丽丝一起走下去吧。
             　愿能再相见。
         ]],
         [[
@@ -293,7 +293,7 @@ lib.music_room_text = {
         ]],
         [[
             原曲：An-fillnote - City of Grace
-            出处：ひなゆあ/桥野 水叶 - 《AliceInCradle》
+            出处：Hinayua/桥野 水叶 - 《AliceInCradle》
 
             　标题画面的主题曲（新）。
 
@@ -342,7 +342,7 @@ lib.sc_list = {
     {
         { "「ステラの弾幕」", "Default Attack「Starry Shooting」" },
         {},
-        { "爆咒「地面炸弹」", "箭咒「纯白之弓」",
+        { "爆咒「地面炸弹」", "箭咒「纯白之箭」",
             "引咒「聚能火球」", "防咒「魔法障壁」", "唤咒「使魔召唤」", "仿魔咒「空中回廊」",
             "仿赤咒「炎舞神乐」", "「不顾一切的圣光爆发！」", "境符「光与影的限间」", "结界「八重护盾结界」",
             "「繁星若梦」", "Reality Reverse" }
@@ -350,7 +350,7 @@ lib.sc_list = {
     {
         { "「ステラの弾幕」", "Default Attack「Starry Shooting」" },
         {},
-        { "爆咒「地面炸弹」", "箭咒「纯白之弓」",
+        { "爆咒「地面炸弹」", "箭咒「纯白之箭」",
             "引咒「聚能火球」", "防咒「魔法障壁」", "唤咒「使魔召唤」", "仿魔咒「空中回廊」",
             "仿赤咒「炎舞神乐」", "「不顾一切的圣光爆发！」", "境符「光与影的限间」", "结界「八重护盾结界」",
             "「繁星若梦」", "Reality Reverse" }
@@ -358,32 +358,32 @@ lib.sc_list = {
     {
         { "「ステラの弾幕」", "Default Attack「Starry Shooting」" },
         {},
-        { "爆咒「地面炸弹　速」", "散咒「纯白之弓　散」",
+        { "爆咒「地面炸弹　速」", "散咒「纯白之箭　散」",
             "引咒「聚能火球　改」", "护咒「魔法加护」", "唤咒「使魔召唤　御」", "仿星咒「银河铁道」",
-            "仿焱咒「红莲祭仪」", "「拼上性命的圣光爆发！」", "境界「明与灭的樊笼」", "结界「十六重护盾大结界」",
+            "仿焱咒「红莲祭仪」", "「拼上性命的圣光爆发！」", "境界「明与灭的囚笼」", "结界「十六重护盾大结界」",
             "「月华流转」", "Reality Reverse" }
     },
     {
         { "「ステラの弾幕」", "Default Attack「Starry Shooting」" },
         {},
-        { "爆咒「地面炸弹　速」", "散咒「纯白之弓　散」",
+        { "爆咒「地面炸弹　速」", "散咒「纯白之箭　散」",
             "引咒「聚能火球　改」", "护咒「魔法加护」", "唤咒「使魔召唤　御」", "仿月咒「空明流光」",
-            "仿彗咒「流星祈愿」", "「拼上性命的圣光爆发！」", "境界「明与灭的樊笼」", "结界「十六重护盾大结界」",
+            "仿彗咒「流星祈愿」", "「拼上性命的圣光爆发！」", "境界「明与灭的囚笼」", "结界「十六重护盾大结界」",
             "「幻梦的摇篮」", "Reality Reverse" }
     }
 }
 
-lib.Ixia_scname = { "追咒「纯白之弓　诱」", "追咒「纯白之弓　诱」", "追咒「纯白之弓　改」", "追咒「纯白之弓　改」" }
+lib.Ixia_scname = { "追咒「纯白之箭　诱」", "追咒「纯白之箭　诱」", "追咒「纯白之箭　改」", "追咒「纯白之箭　改」" }
 
 lib.sphit_name = "「珠辉的素描本」"
 
 lib.player_scname = {
-    reimu = { '灵符「梦想封印」', '结界「扩散结界」' },
-    marisa = { '魔符「星尘幻想」', '恋符「极限火花」' },
-    sakuya = { '幻葬「夜雾幻影杀人鬼」', '幻世「口关夜的世界」' },
-    muki = { '生灵「幻梦蝶华舞」', '散灵「刹那藤结术」', '「幻想华奏」' },
-    nenyuki = { '魔梦「梦魂幻想」', '恋星「星魇火花」' },
-    noel = { '箭咒「纯白之弓」', '爆咒「地面炸弹」', '引咒「聚能火球」' }
+    Reimu = { '灵符「梦想封印」', '结界「扩散结界」' },
+    Marisa = { '魔符「星尘幻想」', '恋符「极限火花」' },
+    Sakuya = { '幻葬「夜雾幻影杀人鬼」', '幻世「咲夜的世界」' },
+    Muki = { '生灵「幻梦蝶华舞」', '散灵「刹那藤结术」', '「幻想华奏」' },
+    Nenyuki = { '魔梦「梦魂幻想」', '恋星「星魇火花」' },
+    Noel = { '箭咒「纯白之箭」', '爆咒「地面炸弹」', '引咒「聚能火球」' }
 }
 
 lib.new_skill_text = {
@@ -429,6 +429,7 @@ lib.tips = {
 }
 
 lib.enhancer_select_tips = {
+    cost = '消耗',
     enhancer_overload = '插件过载',
     equipped_enhancer = '已装备',
     enhancer_slot = '插件槽',
@@ -506,6 +507,7 @@ end
 
 lib.option = {
     username = '用户名',
+    locale = '语言　Language',
     resolution = '分辨率',
     display_mode = '显示模式',
     fullscreen_mode = '全屏模式', 
@@ -535,6 +537,7 @@ lib.option = {
     recommend = '（推荐）',
     text2 = {
         '更改用户名。\n按Backspace键删除已输入字符，\n按Esc键保存更改。\n用户名与游戏存档绑定，\n更改用户名可以更换存档\n（需重启游戏）。',
+        '更改语言设定。\n更改語言設定。\nChoose your display language.\n言語設定を変更します。\n对语言的改变将会立即生效。',
         '设置窗口显示模式下\n游戏窗口的大小。',
         '设置游戏的显示模式。',
         '启用垂直同步（VSync）\n可避免画面撕裂。',

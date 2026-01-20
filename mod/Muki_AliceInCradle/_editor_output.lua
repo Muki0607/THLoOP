@@ -5993,7 +5993,7 @@ _tmp_sc.perform=false
 table.insert(_editor_class["Muki_AiC_Noel"].cards,_tmp_sc)
 table.insert(_sc_table,{"Muki_AiC_Noel","「通常攻击2」",_tmp_sc,#_editor_class["Muki_AiC_Noel"].cards,false})
 table.insert(_editor_class["Muki_AiC_Noel"].cards,boss.move.New(0,120,60,MOVE_ACC_DEC))
-_tmp_sc=boss.card.New("箭咒「纯白之弓」",2,5,60,1000,{10,10,10},true)
+_tmp_sc=boss.card.New("箭咒「纯白之箭」",2,5,60,1000,{10,10,10},true)
 function _tmp_sc:before()
     self.shielder.active=true
     self.spellname=aic.ui.NewSpellname(self, sc_list[diff][3][2])
@@ -6135,8 +6135,8 @@ function _tmp_sc:after()
 end
 _tmp_sc.perform=false
 table.insert(_editor_class["Muki_AiC_Noel"].cards,_tmp_sc)
-table.insert(_sc_table,{"Muki_AiC_Noel","箭咒「纯白之弓」",_tmp_sc,#_editor_class["Muki_AiC_Noel"].cards,false})
---[[ 散咒「纯白之弓　散」
+table.insert(_sc_table,{"Muki_AiC_Noel","箭咒「纯白之箭」",_tmp_sc,#_editor_class["Muki_AiC_Noel"].cards,false})
+--[[ 散咒「纯白之箭　散」
 ]]
 table.insert(_editor_class["Muki_AiC_Noel"].cards,boss.move.New(60,120,60,MOVE_ACC_DEC))
 --[[ phase2
@@ -8155,7 +8155,7 @@ end
 _tmp_sc.perform=false
 table.insert(_editor_class["Muki_AiC_Noel"].cards,_tmp_sc)
 table.insert(_sc_table,{"Muki_AiC_Noel","境符「光与影的限间」",_tmp_sc,#_editor_class["Muki_AiC_Noel"].cards,false})
---[[ 境界「明与灭的樊笼」
+--[[ 境界「明与灭的囚笼」
 ]]
 _tmp_sc=boss.card.New("结界「八重护盾结界」",50,50,50,1800,{30,30,30},true)
 function _tmp_sc:before()
@@ -10002,7 +10002,7 @@ _editor_class["Muki_AiC_Ixia"].frame=function(self)
                     task._Wait(90)
                 end
             end)
-        --[[ 追咒「纯白之弓　诱」/追咒「纯白之弓　改」
+        --[[ 追咒「纯白之箭　诱」/追咒「纯白之箭　改」
         ]]
         elseif self.spellnum==4 then
             lasttask=task.New(self,function()

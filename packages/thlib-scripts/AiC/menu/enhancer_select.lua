@@ -1,6 +1,6 @@
 local lib = aic.menu
 
-local l10n = aic.l10n[setting.locale]
+
 
 ------------------------------------------------------------
 
@@ -574,7 +574,7 @@ function lib.enhancer_select:render()
             1, Color(min(self.alpha, self.text_alpha), 255, 255, 255), nil, 'centerpoint')
         DrawText('main_font_zh_cn', self.text[pos][2], x - 50, y - 200,
             0.75, Color(min(self.alpha, self.text_alpha), 255, 255, 255), nil, 'vcenter')
-        DrawText('main_font_zh_cn', l10n.ui.enhancer_select.cost, x - 20, y - 100,
+        DrawText('main_font_zh_cn', l10n.ui.enhancer_select_tips.cost, x - 20, y - 100,
             0.75, Color(min(self.alpha, self.text_alpha), 255, 255, 255), nil, 'vcenter')
         SetImageState('Muki_AiC_menu_enhancer_select_slot2', '', Color(min(self.alpha, self.text_alpha), 255, 255, 255))
         if self.cost[pos] <= 6 then

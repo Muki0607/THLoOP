@@ -398,7 +398,7 @@ lib.bgm_name = Class(object)
 function lib.bgm_name:init(n)
     self.group = GROUP_GHOST
     self.layer = LAYER_TOP
-    self.text = aic.l10n[setting.locale].ui.music_room.title
+    self.text = l10n.ui.music_room_text.title
     --保留节目：暴力调参
     --由于♪无法被pixel字体渲染，渲染需要分为两部分进行，因此无法使用右对齐，只能手动对齐
     
@@ -452,7 +452,7 @@ function lib.dodge_player:init()
     self.img = player.img
     self.x = player.x
     self.y = player.y
-    CreateRenderTarget('rt:aic_player_dodge')
+    aic.ui.CreateRT('rt:aic_player_dodge')
 end
 
 function lib.dodge_player:frame()
@@ -465,7 +465,7 @@ end
 
 function lib.dodge_player:render()
     PushRenderTarget('rt:aic_player_dodge')
-    RenderClear(Color(0, 0, 0, 0))
+    RenderClearViewMode(Color(0, 0, 0, 0))
     --手动渲染子机和判定点
     local p = lstg.var.player_name
     local s = Player_scale or 1

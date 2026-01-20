@@ -1,46 +1,49 @@
 {
+	"resx": 1280,
+	"resy": 960,
 	"vsync": false,
+	"sevolume": 100,
+	"bgmvolume": 25,
 	"keys2": {
-		"spell": 68,
-		"special": 70,
-		"skill": 32,
-		"up": 101,
 		"down": 98,
 		"left": 97,
 		"right": 99,
 		"slow": 65,
-		"shoot": 83
+		"shoot": 83,
+		"spell": 68,
+		"special": 70,
+		"up": 101
 	},
 	"keysys": {
-		"retry": 82,
 		"repfast": 17,
 		"repslow": 16,
 		"menu": 27,
-		"snapshot": 36
+		"snapshot": 36,
+		"retry": 82
 	},
-	"sevolume": 100,
-	"bgmvolume": 100,
 	"joysticks": {
-		"spell": 1,
-		"special": 2,
-		"skill": 2,
-		"up": -1,
 		"down": -3,
 		"left": -4,
 		"right": -2,
 		"slow": 6,
-		"shoot": 4
+		"shoot": 4,
+		"spell": 1,
+		"special": 2,
+		"up": -1
 	},
 	"joysticksys": {
-		"retry": 5,
 		"repfast": 11,
 		"repslow": 12,
 		"menu": 10,
-		"snapshot": 13
+		"snapshot": 13,
+		"retry": 5
 	},
-	"username": "Muki",
-	"locale": "zh_tc",
+	"nosplash": true,
+	"joyblindarea": 0.2,
 	"last_mod": "Muki_AliceInCradle",
+	"mod": "Muki_AliceInCradle",
+	"locale": "zh_cn",
+	"username": "Muki",
 	"timezone": 8,
 	"autofire": false,
 	"autoslow": false,
@@ -49,20 +52,14 @@
 	"newbgm": false,
 	"sfwmode": true,
 	"keys": {
-		"spell": 88,
-		"special": 67,
-		"skill": 32,
-		"up": 38,
 		"down": 40,
 		"left": 37,
 		"right": 39,
 		"slow": 16,
-		"shoot": 90
+		"shoot": 90,
+		"spell": 88,
+		"special": 67,
+		"up": 38
 	},
-	"joyblindarea": 0.2,
-	"nosplash": true,
-	"mod": "Muki_AliceInCradle",
-	"windowed": true,
-	"resx": 1280,
-	"resy": 960
+	"windowed": true
 }

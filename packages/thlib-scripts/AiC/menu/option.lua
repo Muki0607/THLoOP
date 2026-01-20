@@ -1,6 +1,6 @@
 local lib = aic.menu
 
-local l10n = aic.l10n[setting.locale]
+
 
 ---option（大致与ext的option相同）
 lib.option = Class(object)
@@ -14,7 +14,7 @@ function lib.option:init()
     self.pos1 = 1
     self.pos2 = 1
     self.t = 16
-    self.l1 = 15
+    self.l1 = 16
     self.l2_key = 9
     self.l2_keysys = 5
     self.l2 = self.l2_key + self.l2_keysys
@@ -28,40 +28,13 @@ function lib.option:init()
     self.username = setting.username
     self.bound = false
     self.setting = loadConfigureTable() --因为需要存读文件，为了安全起见这边和插件菜单一样单独先存一份，保存时再存整个表到setting
-    self.res = { { 640, 480, true }, { 800, 600 }, { 960, 720, true }, { 1024, 768, true }, { 1280, 960, true }, { 1600, 1200 }, { 1920, 1440, true } }
-    local o = l10n.ui.option
-    self.text1 = {
-        { o.locale, l10n.lang.zh_cn[2], l10n.lang.zh_tc[2], l10n.lang.en_us[2], l10n.lang.ja_jp[2] },
-        { o.username, self.username, self.username },
-        { o.resolution, 7, { 1, 3, 4, 5, 7 } },
-        { o.display_mode, o.fullscreen_mode, o.windowed_mode },
-        { o.vsync, l10n.general.terms.off, l10n.general.terms.on },
-        { o.SFX, 21, { 1, 5, 9, 13, 17, 21 } },
-        { o.BGM, 21, { 1, 5, 9, 13, 17, 21 } },
-        { o.autofire, l10n.general.terms.off, l10n.general.terms.on },
-        { o.autoslow, l10n.general.terms.off, l10n.general.terms.on },
-        { o.autododge, l10n.general.terms.off, l10n.general.terms.on },
-        { o.opening_se, o.old_version, o.new_version },
-        { o.title_bgm, o.normal_version, o.full_version },
-        { o.sfwmode, l10n.general.terms.on, o.supersafe },
-        o.key_binding,
-        o.reset,
-        o.save_and_quit }
-    self.text2 = o.text2
-    self.text3 = o.text3
-    self.setname = { 'locale', 'username', 'resx', 'windowed', 'vsync', 'sevolume', 'bgmvolume', 'autofire', 'autoslow', 'autododge', 'newopening', 'newbgm', 'sfwmode' }
+    self.res = { { 640, 480 }, { 800, 600 }, { 960, 720 }, { 1024, 768 }, { 1280, 960 }, { 1600, 1200 },
+        { 1920, 1440 }, { 2560, 1920 }, { 3200, 2400 }, { 3840, 2880 }, { 4320, 3240 }, { 5120, 3840 } }
     
-    for k, v in ipairs(self.res) do
-        if v[1] == self.setting.resx then
-            self.pos_res = k
-        end
-    end
-    for _, v in ipairs({ 'autofire', 'autoslow', 'autododge', 'newopening', 'newbgm' }) do 
-        self.setting[v] = self.setting[v] or false
-    end
-    self.setting.sfwmode = self.setting.sfwmode or true
 
     self.applySetting = function(newsetting)
+        setting.locale = newsetting.locale
+        aic.l10n.Reload()
         setting.resx, setting.resy, setting.windowed, setting.vsync = newsetting.resx, newsetting.resy, newsetting.windowed, newsetting.vsync
         if not lstg.ChangeVideoMode(setting.resx, setting.resy, setting.windowed, setting.vsync) then
             setting.windowed = true
@@ -77,6 +50,61 @@ function lib.option:init()
         loadConfigure()
         ResetScreen(true)
         ResetUI()
+    end
+
+    self.reload = function()
+        local o = l10n.ui.option
+        self.text1 = {
+            { o.username, self.username, self.username },
+            { o.locale --[[ aic.l10n.lang[zh_cn][2], aic.l10n.lang[zh_tc][2], aic.l10n.lang[en_us][2], aic.l10n.lang[ja_jp][2], ... ]] }, --实际为在下面读取l10n中已加载语言
+            { o.resolution, 7, { 1, 3, 4, 5, 7 } },
+            { o.display_mode, o.fullscreen_mode, o.windowed_mode },
+            { o.vsync, l10n.general.terms.off, l10n.general.terms.on },
+            { o.SFX, 21, { 1, 5, 9, 13, 17, 21 } },
+            { o.BGM, 21, { 1, 5, 9, 13, 17, 21 } },
+            { o.autofire, l10n.general.terms.off, l10n.general.terms.on },
+            { o.autoslow, l10n.general.terms.off, l10n.general.terms.on },
+            { o.autododge, l10n.general.terms.off, l10n.general.terms.on },
+            { o.opening_se, o.old_version, o.new_version },
+            { o.title_bgm, o.normal_version, o.full_version },
+            { o.sfwmode, l10n.general.terms.on, o.supersafe },
+            o.key_binding,
+            o.reset,
+            o.save_and_quit }
+        self.text2 = o.text2
+        self.text3 = o.text3
+        self.setname = { 'username', 'locale', 'resx', 'windowed', 'vsync', 'sevolume', 'bgmvolume', 'autofire', 'autoslow', 'autododge', 'newopening', 'newbgm', 'sfwmode' }
+
+        --实际为在下面读取l10n中已加载语言
+        local lang = {
+            --[[
+            zh_cn = "简体中文(CN)",
+            zh_tc = "繁體中文(TC)",
+            en_us = "English(US)",
+            ja_jp = "日本語(JP)",
+            --]]
+        }
+        for k, _ in pairs(aic.l10n.lang) do
+            lang[k] = aic.l10n.lang[k][2]
+        end
+        self.lang_kt = setvaluetable(sp.copy(aic.l10n.lang_list), lang)
+        ---对键表调用ipairs会按顺序返回键值对，并额外返回一个计数变量
+        for k, v, i in ipairs(self.lang_kt) do
+            if k == self.setting.locale then
+                self.pos_locale = i
+            end
+            table.insert(self.text1[2], v)
+        end
+
+        for k, v in ipairs(self.res) do
+            if v[1] == self.setting.resx then
+                self.pos_res = k
+            end
+        end
+        for _, v in ipairs({ 'autofire', 'autoslow', 'autododge', 'newopening', 'newbgm' }) do 
+            self.setting[v] = self.setting[v] or false
+        end
+        self.setting.sfwmode = self.setting.sfwmode or true
     end
 
     self.flyin = function()
@@ -120,6 +148,8 @@ function lib.option:init()
             lib.PopMenuStack()
         end
     end
+
+    self.reload()
     lib.Fly(self, 1, 'right')
 end
 
@@ -160,10 +190,11 @@ function lib.option:frame()
             end
             if KeyIsPressed('shoot') then
                 self.wait = self.t
+                --这里写死位置说实话不太好，但没什么更好的解决办法了
                 if self.pos1 == 1 then
                     PlaySound('ok00', 0.5)
                     self.username_changing = true
-                elseif self.pos1 == 13 then
+                elseif self.pos1 == 14 then
                     --进入键位设置
                     PlaySound('ok00', 0.5)
                     self.key_changing = false
@@ -179,15 +210,16 @@ function lib.option:frame()
                         end
                         self.locked = false
                     end)
-                elseif self.pos1 == 14 then
+                elseif self.pos1 == 15 then
                     --还原默认设置
                     PlaySound('ok00', 0.5)
                     self.setting = sp.copy(default_setting) --抄一份默认设置
+                    --我忘记这几个为什么要单独写出来了，可能是因为原版setting没有吧
                     for _, v in ipairs({ 'autofire', 'autoslow', 'autododge', 'newopening', 'newbgm' }) do 
                         self.setting[v] = false
                     end
                     self.setting.sfwmode = true
-                elseif self.pos1 == 15 then
+                elseif self.pos1 == 16 then
                     --保存并退出
                     set.resx = self.res[self.pos_res][1]
                     set.resy = self.res[self.pos_res][2]
@@ -215,22 +247,29 @@ function lib.option:frame()
                 end
             elseif KeyIsDown('left') then
                 self.wait = 8
-                if self.pos1 == 1 or (self.pos1 == 5 and set.sevolume == 0) or (self.pos1 == 6 and set.bgmvolume == 0) or (self.pos1 == 12 and not set.sfwmode) then
+                --又是写死……哎
+                if self.pos1 == 1 or (self.pos1 == 2 and self.pos_locale == 1) or (self.pos1 == 6 and set.sevolume == 0) or (self.pos1 == 7 and set.bgmvolume == 0) or (self.pos1 == 13 and not set.sfwmode) then
                     PlaySound('aic_setting_limited', 0.3)
                 else
                     PlaySound('aic_setting_scroll', 0.5)
                 end
                 if self.pos1 == 2 then
+                    self.pos_locale = max(self.pos_locale - 1, 1)
+                    set.locale = self.lang_kt('get', self.pos_locale)
+                    setting.locale = set.locale
+                    aic.l10n.Reload()
+                    self.reload()
+                elseif self.pos1 == 3 then
                     if self.pos_res > 1 then
                         self.pos_res = self.pos_res - 1
                     else
                         self.pos_res = 7
                     end
-                elseif self.pos1 == 5 then
-                    set.sevolume = max(0, set.sevolume - 5)
                 elseif self.pos1 == 6 then
+                    set.sevolume = max(0, set.sevolume - 5)
+                elseif self.pos1 == 7 then
                     set.bgmvolume = max(0, set.bgmvolume - 5)
-                elseif self.pos1 == 12 and set.sfwmode then
+                elseif self.pos1 == 13 and set.sfwmode then
                     set.sfwmode = not set.sfwmode
                 else
                     for k, v in pairs(self.setname) do
@@ -241,22 +280,28 @@ function lib.option:frame()
                 end
             elseif KeyIsDown('right') then
                 self.wait = 8
-                if self.pos1 == 1 or (self.pos1 == 5 and set.sevolume == 100) or (self.pos1 == 6 and set.bgmvolume == 100) or (self.pos1 == 12 and set.sfwmode) then
+                if self.pos1 == 1 or (self.pos1 == 2 and self.pos_locale == self.lang_kt('len')) or (self.pos1 == 6 and set.sevolume == 100) or (self.pos1 == 7 and set.bgmvolume == 100) or (self.pos1 == 13 and set.sfwmode) then
                     PlaySound('aic_setting_limited', 0.3)
                 else
                     PlaySound('aic_setting_scroll', 0.5)
                 end
                 if self.pos1 == 2 then
+                    self.pos_locale = min(self.pos_locale + 1, self.lang_kt('len'))
+                    set.locale = self.lang_kt('get', self.pos_locale)
+                    setting.locale = set.locale
+                    aic.l10n.Reload()
+                    self.reload()
+                elseif self.pos1 == 3 then
                     if self.pos_res < 7 then
                         self.pos_res = self.pos_res + 1
                     else
                         self.pos_res = 1
                     end
-                elseif self.pos1 == 5 then
-                    set.sevolume = min(100, set.sevolume + 5)
                 elseif self.pos1 == 6 then
+                    set.sevolume = min(100, set.sevolume + 5)
+                elseif self.pos1 == 7 then
                     set.bgmvolume = min(100, set.bgmvolume + 5)
-                elseif self.pos1 == 12 and not set.sfwmode then
+                elseif self.pos1 == 13 and not set.sfwmode then
                     set.sfwmode = not set.sfwmode
                 else
                     for k, v in pairs(self.setname) do
@@ -269,9 +314,12 @@ function lib.option:frame()
         else
             if self.key_changing then
                 if aic.input.InputState ~= 'keyboard' then
-                    local KEY, keylist
-                    if aic.input.dinput.isConnected(1) then KEY, keylist = DJOY
-                    else KEY = XJOY end
+                    local KEY
+                    if aic.input.dinput.isConnected(1) then
+                        KEY = DJOY
+                    else
+                        KEY = XJOY
+                    end
                     local key = aic.input.GetLastJoy()
                     for _, v in pairs(KEY) do
                         if key == v and v ~= 0 then
@@ -350,9 +398,11 @@ function lib.option:render()
     SetImageState('Muki_AiC_square_middle', '', color(COLOR_WHITE, self.alpha))
     local d, x, y = 30, self.x - 30, self.y + screen.height * 0.45
     local x1, x2 = x - screen.width * 0.4, x + screen.width * 0.1
+    local lang = self.lang_kt
+    local lang_square_offset = 5
 
     if self.level == 1 then
-        lib.DrawTips(self, { l10n.ui.tips.selecvt, l10n.ui.tips.back }, { l10n.ui.tips.select_option, l10n.ui.tips.change_option })
+        lib.DrawTips(self, { l10n.ui.tips.select, l10n.ui.tips.back }, { l10n.ui.tips.select_option, l10n.ui.tips.change_option })
         --设置名称与值
         for i = 1, self.l1 do
             local text = self.text1[i]
@@ -366,32 +416,57 @@ function lib.option:render()
                 if type(text[2]) == 'string' then
                     --选择项类型
                     local x, dx, dy = (x1 + x2) / 2, 5, -10
-                    if i ~= 1 then
+                    --注意：这里是写死的位置
+                    if i ~= 1 and i ~= 2 then
                         Render('Muki_AiC_square_empty', x - dx, y + (self.pos1 / 3 - i) * d + dy, 0, 0.25)
                         Render('Muki_AiC_square_empty', x + dx, y + (self.pos1 / 3 - i) * d + dy, 0, 0.25)
-                        if i == 12 then
+                        --多于两个选项的特殊处理
+                        if i == 13 then
                             Render('Muki_AiC_square_empty', x + 3 * dx, y + (self.pos1 / 3 - i) * d + dy, 0, 0.25)
                         end
                     end
+                    if i == 2 then
+                        for j = 1, lang('len') do
+                            Render('Muki_AiC_square_empty', x + (2 * j - lang_square_offset) * dx, y + (self.pos1 / 3 - i) * d + dy, 0, 0.25)
+                        end
+                    end
+                    --这里原来只考虑了只有真假两种状态的选择项，对用户名和语言要特殊处理
                     if self.setting[self.setname[i]] then
+                        --注意：这里是写死的位置
                         if i == 1 then
                             --不知道为什么这里直接用表里的不行
                             DrawText('main_font_zh_cn', self.username, x2, y + (self.pos1 / 3 - i) * d,
                                 1, color(COLOR_WHITE, self.alpha), nil, 'right')
                         else
-                            DrawText('main_font_zh_cn', text[3], x2, y + (self.pos1 / 3 - i) * d,
-                                1, color(COLOR_WHITE, self.alpha), nil, 'right')
-                            if i == 12 then
-                                Render('Muki_AiC_square_middle', x + 3 * dx, y + (self.pos1 / 3 - i) * d + dy, 0, 0.25)
+                            if i == 2 then
+                                DrawText('main_font_zh_cn', text[self.pos_locale + 1], x2, y + (self.pos1 / 3 - i) * d,
+                                    1, color(COLOR_WHITE, self.alpha), nil, 'right')
+                                for j = 1, lang('len') do
+                                    if lang('get', j) == self.setting.locale then
+                                        Render('Muki_AiC_square_middle', x + (2 * j - lang_square_offset) * dx, y + (self.pos1 / 3 - i) * d + dy, 0, 0.25)
+                                    end
+                                end
                             else
-                                Render('Muki_AiC_square_middle', x + dx, y + (self.pos1 / 3 - i) * d + dy, 0, 0.25)
+                                DrawText('main_font_zh_cn', text[3], x2, y + (self.pos1 / 3 - i) * d,
+                                    1, color(COLOR_WHITE, self.alpha), nil, 'right')
+                                if i == 13 then
+                                    Render('Muki_AiC_square_middle', x + 3 * dx, y + (self.pos1 / 3 - i) * d + dy, 0, 0.25)
+                                else
+                                    Render('Muki_AiC_square_middle', x + dx, y + (self.pos1 / 3 - i) * d + dy, 0, 0.25)
+                                end
                             end
                         end
                     else
-                        DrawText('main_font_zh_cn', text[2], x2, y + (self.pos1 / 3 - i) * d,
-                            1, color(COLOR_WHITE, self.alpha), nil, 'right')
-                        if i ~= 1 then
-                            if i == 12 then
+                        --注意：这里是写死的位置
+                        if i == 2 then
+                            DrawText('main_font_zh_cn', text[self.pos_locale + 1], x2, y + (self.pos1 / 3 - i) * d,
+                                1, color(COLOR_WHITE, self.alpha), nil, 'right')
+                        else
+                            DrawText('main_font_zh_cn', text[2], x2, y + (self.pos1 / 3 - i) * d,
+                                1, color(COLOR_WHITE, self.alpha), nil, 'right')
+                        end
+                        if i ~= 1 and i ~= 2 then
+                            if i == 13 then
                                 Render('Muki_AiC_square_middle', x + dx, y + (self.pos1 / 3 - i) * d + dy, 0, 0.25)
                             else
                                 Render('Muki_AiC_square_middle', x - dx, y + (self.pos1 / 3 - i) * d + dy, 0, 0.25)
@@ -412,11 +487,12 @@ function lib.option:render()
                             y + (self.pos1 / 3 - i) * d + dy, y + (self.pos1 / 3 - i) * d + len + dy)
                         local y0 = y + (self.pos1 / 3 - i) * d + dy + 15
                         local p
-                        if i == 2 then
+                        --注意：这里是写死的位置
+                        if i == 3 then
                             p = self.pos_res
-                        elseif i == 5 then
-                            p = self.setting.sevolume / 5 + 1
                         elseif i == 6 then
+                            p = self.setting.sevolume / 5 + 1
+                        elseif i == 7 then
                             p = self.setting.bgmvolume / 5 + 1
                         end
                         if j == p then
@@ -436,22 +512,22 @@ function lib.option:render()
             end
         end
 
+        --注意：这里是写死的位置（渲染位置和警告的显示）
         --分辨率
         local res = self.res[self.pos_res][1] .. 'x' .. self.res[self.pos_res][2]
-        if self.res[self.pos_res][3] then res = res .. l10n.ui.option.recommend end
         DrawText('main_font_zh_cn', res,
-            x2, y + (self.pos1 / 3 - 2) * d, 1, color(COLOR_WHITE, self.alpha), nil, 'right')
+            x2, y + (self.pos1 / 3 - 3) * d, 1, color(COLOR_WHITE, self.alpha), nil, 'right')
 
         --音量
         DrawText('main_font_zh_cn', self.setting.sevolume .. '%',
-            x2, y + (self.pos1 / 3 - 5) * d, 1, color(COLOR_WHITE, self.alpha), nil, 'right')
-        DrawText('main_font_zh_cn', self.setting.bgmvolume .. '%',
             x2, y + (self.pos1 / 3 - 6) * d, 1, color(COLOR_WHITE, self.alpha), nil, 'right')
+        DrawText('main_font_zh_cn', self.setting.bgmvolume .. '%',
+            x2, y + (self.pos1 / 3 - 7) * d, 1, color(COLOR_WHITE, self.alpha), nil, 'right')
 
         --设置说明
         DrawText('main_font_zh_cn', self.text2[self.pos1],
             x2 + 150, y - 5 * d, 1, color(COLOR_WHITE, self.alpha), nil, 'centerpoint')
-        if self.pos1 == 12 then
+        if self.pos1 == 13 then
             DrawText('main_font_zh_cn', l10n.ui.option.sfwmode_warning,
                 x2 + 150, y - 5 * d + 8, 1, color(COLOR_RED, self.alpha), nil, 'centerpoint')
         end

@@ -287,7 +287,7 @@ function SetViewMode(mode)
     elseif mode == 'ui' then
         SetRenderRect(0, screen.width, 0, screen.height, 0, screen.width, 0, screen.height)
     else
-        error('Invalid arguement.')
+        error('Invalid argument.')
     end
 end
 
@@ -375,7 +375,7 @@ function SetRenderRect(l, r, b, t, scrl, scrr, scrb, scrt)
         --设置图像缩放比
         SetImageScale(1)
     else
-        error("Invalid arguement.")
+        error("Invalid argument.")
     end
 end
 ----------------------------------------

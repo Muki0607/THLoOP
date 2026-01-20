@@ -157,9 +157,12 @@ function lib.PosTrans(x, y, from, to)
         if from == "world" then
             return WorldToUI(x, y)
         else -- from == "uv"
-            return
+            return (x - screen.dx) / screen.scale,
+                screen.height - (y - screen.dy) / screen.scale
+            --[[
                 x / screen.hScale,
                 screen.height - y / screen.vScale
+            --]]
         end
     end
     ---由 ui 系转换
@@ -170,9 +173,12 @@ function lib.PosTrans(x, y, from, to)
                 w.l + (w.r - w.l) * (x - w.scrl) / (w.r - w.scrl),
                 w.b + (w.t - w.b) * (y - w.scrb) / (w.t - w.scrb)
         else -- to == "uv"
-            return
+            return screen.dx + screen.scale * x,
+                screen.dy + screen.scale * (screen.height - y)
+            --[[
                 x * screen.hScale,
                 (screen.height - y) * screen.vScale
+            --]]
         end
     end
     ---其他情况

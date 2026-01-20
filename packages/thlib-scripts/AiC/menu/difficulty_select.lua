@@ -1,6 +1,6 @@
 local lib = aic.menu
 
-local l10n = aic.l10n[setting.locale]
+
 
 ------------------------------------------------------------
 

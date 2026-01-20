@@ -82,7 +82,6 @@ function nenyuki_player:init(slot)
     self.debug = false
     self.default_dmglist = { 0.2, 0.2, 0.2, 0.2 }
     self.dmglist = { 0.2, 0.2, 0.2, 0.2 }
-    self.spellname = aic.l10n.ui[setting.locale].player_sc_name
     self.deathtime = 4 --约等于没有
     self.default_deathtime = self.deathtime
     self.aura_rot = 0

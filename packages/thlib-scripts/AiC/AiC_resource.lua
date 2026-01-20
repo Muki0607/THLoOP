@@ -11,7 +11,7 @@
 aic.res = {}
 local lib = aic.res
 
-local l10n = aic.l10n[setting.locale]
+
 
 local dir_res = "mod/Danmaku_Resource/"
 

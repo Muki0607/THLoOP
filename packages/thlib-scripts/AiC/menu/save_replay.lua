@@ -1,6 +1,6 @@
 local lib = aic.menu
 
-local l10n = aic.l10n[setting.locale]
+
 
 ---录像保存菜单
 lib.save_replay = Class(object)

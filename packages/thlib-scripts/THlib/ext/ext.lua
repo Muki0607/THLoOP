@@ -10,7 +10,7 @@
 ---@class ext @额外游戏循环加强库
 ext = {}
 
-local l10n = aic.l10n[setting.locale]
+
 
 local extpath = "THlib/ext/"
 
@@ -185,10 +185,9 @@ function GetInput()
         lib.InputState = 'keyboard'
     end
 
-    -- 获取额外键盘输入
+    -- 获取额外键盘输入，不会被写入录像
     lib.GetKeyboardInput()
-    -- 获取鼠标输入
-    -- 暂时没有把鼠标输入加入录像系统的必要
+    -- 获取鼠标输入，不会被吸入录像
     lib.GetMouseInput()
     -- 获取手柄输入
     if xinput.isConnected(1) or lib.dinput.isConnected(1) then
@@ -209,7 +208,7 @@ function GetInput()
     -- 不是录像时更新按键状态
     if not ext.replay.IsReplay() then
         for k, v in pairs(setting.keys) do
-            --支持手柄
+            --通过模拟键盘输入的方式实现手柄支持
             if lib.InputState == 'xjoy' then
                 KeyState[k] = lib.JoystickState[aic.table.Search(XJOY, setting.joysticks[k])]
             elseif lib.InputState == 'djoy' then

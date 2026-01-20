@@ -1,6 +1,6 @@
 local lib = aic.menu
 
-local l10n = aic.l10n[setting.locale]
+
 
 ---manual（大致与ext的manual相同）
 lib.manual = Class(object)
@@ -151,7 +151,7 @@ function lib.manual:render()
     SetViewMode('ui')
     --副标题
     lib.DrawSubTitle(self)
-    lib.DrawTips(self, { l10n.ui.tips.selecvt, l10n.ui.tips.back })
+    lib.DrawTips(self, { l10n.ui.tips.select, l10n.ui.tips.back })
 
     local d, x, y = 30, self.x, self.y
     if self.level == 1 then
@@ -181,7 +181,7 @@ function lib.manual:render()
         Render('Muki_AiC_help' .. self.pos, x, y, 0, self.scale)
     end
 
-    lib.DrawTips(self, { l10n.ui.tips.selecvt, l10n.ui.tips.back })
+    lib.DrawTips(self, { l10n.ui.tips.select, l10n.ui.tips.back })
 
     SetViewMode('world')
 end

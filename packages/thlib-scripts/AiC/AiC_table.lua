@@ -165,6 +165,36 @@ function lib.Min(t, raw)
     if n < INFINITE then return n, kn end
 end
 
+---复制表，作用与sp.copy相同
+---@param t table @要复制的表
+---@param all boolean @是否深度复制
+---@return table
+function lib.Copy(t, all)
+    local lookup = {}
+    local function _copy(t)
+        if type(t) ~= 'table' then
+            return t
+        elseif lookup[t] then
+            return lookup[t]
+        end
+        local ref = {}
+        lookup[t] = ref
+        for k, v in pairs(t) do
+            ref[_copy(k)] = _copy(v)
+        end
+        return setmetatable(ref, getmetatable(t))
+    end
+    if all then
+        return _copy(t)
+    else
+        local ref = {}
+        for k, v in pairs(t) do
+            ref[k] = v
+        end
+        return setmetatable(ref, getmetatable(t))
+    end
+end
+
 ---寻找表中特定元素，返回对应的索引
 ---若有多个相同元素则可指定返回第几个，此时使用ipairs，只搜索数组部分元素
 ---若无指定元素则返回nil，因此也可用于判断表中是否有指定元素
@@ -617,8 +647,10 @@ end
 --]=]
 
 ---键表索引元方法
+---对键表索引时，将返回值表中以键表中对应值为键取得的值
 ---@param kt keytable @键表
 ---@param key any @索引
+---@return any @值
 local function kt_index(kt, key)
     local vt = getmetatable(kt).valuetable
     assert((type(vt) == 'table' or type(vt) == 'string')
@@ -628,6 +660,7 @@ local function kt_index(kt, key)
 end
 
 ---键表赋值元方法
+---对键表赋值时，将在值表中以键表中对应值为键设置值
 ---@param kt keytable @键表
 ---@param key any @索引
 ---@param value any @值
@@ -640,6 +673,13 @@ local function kt_newindex(kt, key, value)
 end
 
 ---键表调用元方法，用于对键表本身的值进行操作
+---调用kt('set', key, value)可将键表视为普通表设置一个键值对
+---调用kt('get', key)可将键表视为普通表获取键表中的值
+---调用kt('setall', value)可将键表设置为另一个表
+---调用kt('getall')可获取键表
+---调用kt('len')可获取键表长度
+---调用kt('ipairs')可使用ipairs迭代键表
+---调用kt('pairs')可使用pairs迭代键表
 ---@generic K, V
 ---@param kt keytable @键表，自动传入
 ---@param func string | '"set"' | '"get"' | '"setall"' | '"getall"' | '"len"' | '"ipairs"' | '"pairs"' @调用的操作
@@ -670,6 +710,9 @@ local function kt_call(kt, func, key, value)
     end
 end
 
+---对键表取长度时返回值表的长度
+---@param kt keytable @键表
+---@return number @值表的长度
 local function kt_len(kt)
     local vt = getmetatable(kt).valuetable
     assert((type(vt) == 'table' or type(vt) == 'string')
@@ -678,27 +721,52 @@ local function kt_len(kt)
     if vt then return #vt end
 end
 
+---对键表调用ipairs时返回值表的有序键值对，并额外返回一个计数变量
+---@param kt keytable @键表
+---@return function, nil, nil @迭代器函数，迭代状态（ipairs无状态），初始键（nil）
 local function kt_ipairs(kt)
     local n = kt("len")
     local i = 0
     local kt_ipairs_iterator = function()
         i = i + 1
-        if i < n then
-            return kt("get", i), kt[i]
+        if i <= n then
+            return kt("get", i), kt[i], i
         end
     end
     return kt_ipairs_iterator, nil, nil
 end
 
+---对键表调用pairs时，迭代返回三个值：值表中的值、键表中的值（值表键名）、键表中的键
+---@param kt keytable @键表
+---@return function, table, nil iterator @迭代器函数，迭代状态（键表的data表），初始键（nil）
 local function kt_pairs(kt)
-    local k, v
-    local kt_pairs_iterator = function()
-        k, v = next(kt("getall"), k)
-        if v then
-            return v, kt[v]
-        end
+    local mt = getmetatable(kt)
+    local data = mt.data
+    local vt = mt.valuetable
+    
+    -- 处理值表可能是字符串的情况
+    if type(vt) == 'string' then
+        vt = _G[vt]
     end
-    return kt_pairs_iterator, nil, nil
+    
+    assert(vt and type(vt) == 'table', "invalid valuetable.")
+    
+    -- 创建迭代器函数
+    local kt_pairs_iterator = function(state, last_key)
+        -- 从data表中获取下一个键值对
+        local kt_key, vt_key_name = next(state, last_key)
+        
+        if kt_key then
+            -- 获取值表中对应的值
+            local vt_value = vt[vt_key_name]
+            -- 返回三个值：值表中的值、值表键名、键表键
+            return vt_value, vt_key_name, kt_key
+        end
+        
+        return nil
+    end
+    
+    return kt_pairs_iterator, data, nil
 end
 
 ---为一个表设置键表
@@ -745,7 +813,7 @@ end
 function lib.SetValueTable(kt, vt)
     --检查参数是否合法
     assert((type(vt) == 'table' or type(vt) == 'string')
-        and type(kt) == 'table', ArguementError)
+        and type(kt) == 'table', ArgumentError)
     assert(kt ~= vt, "setting valuetable of a table as itself is forbidden.")
     --存储键表中所有初始值，之后将把所有初始值放入data
     local value = {}
@@ -782,7 +850,7 @@ function lib.MakeKeyTable(vt)
     for k, _ in pairs(vt) do
         table.insert(kt, k)
     end
-    return setvaluetable(kt, vt)
+    return lib.SetValueTable(kt, vt)
 end
 
 ---获取键表对应的值表

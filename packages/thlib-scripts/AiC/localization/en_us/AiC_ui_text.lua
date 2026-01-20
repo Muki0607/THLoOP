@@ -1,6 +1,6 @@
 ---=====================================
 ---THAIC Localization Dialog
----东方梦摇篮本土化 对话
+---Thohou Dream Cradle Localization Dialog
 ---=====================================
 
 --[=[
@@ -16,34 +16,33 @@ The code in `<>` is text effect. To change text effect, see `AiC_text_effect.lua
 `<>`中的代码是文字效果。要更改文字效果，参见`AiC_text_effect.lua`。
 --]=]
 
-local lib = aic.l10n.zh_cn.ui
+local lib = aic.l10n.en_us.ui
 
----音乐室文本
 ---Music room text
 lib.music_room_text = {
     title = {
-        [0] = "遥远彼方的记忆",
-        "梦境彼方 摇篮仙境",
+        [0] = "Memories from Afar",
+        "Dreamland Beyond - The Cradle Wonderland",
         "Wonderland of 0 & 1",
         "Star Chaser",
         "Star Rider",
-        "/*死鱼眼_日照不足_往返跑部*/",
-        "正午时分的妖精宴会",
+        "/*Dead Fish Eyes_Insufficient Sunlight_Round-trip Running Club*/",
+        "Fairy Banquet at High Noon",
         "G.H.O.S.T",
-        "缥缈之风　～ Assassinatroid",
-        "魔法使的祭典　～ Starry Forest",
-        "森林中的未知际遇",
-        "纯白之花",
-        "守护之光",
-        "超越空想的Stella",
-        "即使已然无力回天",
-        "于乐园中仰望繁星　～ Alice In Gensokyo",
-        "失色的星之梦　～ Reality or Fantasy?",
-        "森之意志",
-        "宁静的夏夜",
+        "Phantom Wind ~ Assassinatroid",
+        "Magician's Festival ~ Starry Forest",
+        "Unknown Encounters in the Forest",
+        "Flower of Pure White",
+        "Light of Protection",
+        "Stella Beyond Imagination",
+        "Though Powerless to Alter the Sky's Decree",
+        "Gazing at the Stars in Paradise ~  Alice In Gensokyo",
+        "Faded Dream of the Stars ~  Reality or Fantasy?",
+        "Will of the Forest",
+        "Tranquil Summer Night",
         "Above Star",
-        "梦醒之时",
-        --以下是DLC曲目
+        "Moment of Awakening",
+        --The following are DLC tracks
         "DOORS_OF_MYSTERIES",
         "BACK_DANCERS",
         "INDESCRIBABLE",
@@ -53,274 +52,278 @@ lib.music_room_text = {
         "EYE_OF_LAPLACE",
         "LAST_DANCE",
         "VIOLET_NIGHT",
-        "乐园与群星与永远之梦"
-        
+        "Paradise, Stars, and the Eternal Dream"
     },
     comment = {
         [0] = [[
-            出处：LuaSTG标题画面主题曲
+            Origin: LuaSTG Title Screen Theme
 
-            　LuaSTG默认的标题画面的主题曲。
+            The default title theme for LuaSTG.
 
-            　虽然不知从何而来，但这段旋律早已深入每一位LuaSTGer的心中。
-            　继续以弹幕为笔，描绘这美妙的幻想世界吧。
+            Though its origin is unknown,
+            this melody is deeply ingrained in the heart of every LuaSTGer.
+            Let us continue to paint this wondrous world of fantasy
+            with the brush of Danmaku.
         ]],
         [[
-            原曲：An-fillnote - Title
-            出处：ひなゆあ/橋野みずは - 《AliceInCradle》
+            Original: An-fillnote - Title
+            Origin: Hinayua/Hashino Mizuha - 《AliceInCradle》
 
-            　标题画面的主题曲。
+            Title screen theme.
 
-            　十分令人安心的旋律，即使没有听过也是一样。
+            A very comforting melody, even if you've never heard it before.
         ]],
         [[
-            原曲：ginkiha - Extra stage
-            出处：くろば·U - 《Star Shooter!》
+            Original: ginkiha - Extra stage
+            Origin: Cloba·U - 《Star Shooter!》
 
-            「数据删除」
+            [Data Expunged]
         ]],
         [[
-            原曲：ginkiha - Star Chaser! 
-            出处：くろば·U - 《Star Chaser!》
-            
-            「数据删除」
-        ]],
-        [[
-            原曲：ginkiha - The Star Hill
+            Original: ginkiha - Star Chaser!
+            Origin: Cloba·U - 《Star Chaser!》
 
-            「数据删除」
+            [Data Expunged]
         ]],
         [[
-            原曲：ginkiha - 通常Boss
-            出处：くろば·U - 《Star Shooter!》
-            
-            「数据删除」
-        ]],
-        [[
-            原曲：上海爱丽丝幻乐团 - 午夜的妖精舞会
-            出处：上海爱丽丝幻乐团 - 《妖精大战争 　～ 东方三月精》
-            
-            「数据删除」
-        ]],
-        [[
-            原曲：AliceSoft - 湿羽色的疾风
-            出处：AliceSoft - 《多娜多娜 一起来干坏事吧》
-            
-            「数据删除」
-        ]],
-        [[
-            原曲：AliceSoft - Breakthru>>>
-            出处：AliceSoft - 《多娜多娜 一起来干坏事吧》
-            
-            「数据删除」
-        ]],
-        [[
-            原曲：上海爱丽丝幻乐团 - 魔法使的忧郁
-            出处：上海爱丽丝幻乐团 - 《The Grimoire of Marisa》附带CD
-            
-            　EX面道中的主题曲。
-            
-            　因为还在魔法森林，所以还在幻想乡境内。
-            　理所当然地用了幻想乡的曲子。
-        ]],
-        [[
-            原曲：ginkiha - 编织者之森(Battle)
-            出处：ひなゆあ/橋野みずは - 《AliceInCradle》
-            
-            　诺艾儿·柯涅尔的一阶段主题曲。
-            
-            　节奏十分轻快，因为诺艾儿这时还并未意识到对手有多强大。
-            　听着这首曲子，就仿佛能看见笨拙地挥动着法杖的诺艾儿呢。
-            　闻起来像散落的魔力。
-        ]],
-        [[
-            原曲：ginkiha - 伊夏·波利斯塔切尔
-            出处：ひなゆあ/橋野みずは - 《AliceInCradle》
-            
-            　伊夏·波利斯塔切尔的主题曲。
-            
-            　慌慌张张的感觉。
-            　伊夏还未从与森主的战斗中恢复，
-            　即便如此，她也想为诺艾儿争取一点时间。
-        ]],
-        [[
-            原曲：Feryquitous - Ha-chan
-            出处：くろば·U - 《Star Shooter!》
-            
-            　普莉姆拉的主题曲。
-            
-            　气氛突然变得紧张。
-            　普莉姆拉身为兽人难以使用魔法战斗……
-            　即便如此，她也想为诺艾儿争取一点时间。
-        ]],
-        [[
-            原曲：Feryquitous - Unknown wisdom
-            出处：くろば·U - 《Star Liner!》
-            
-            　诺艾儿·柯涅尔的二阶段主题曲。
-            
-            　诺艾儿开始全力以赴，因为背后有她要守护的人。
-            　从这里开始，或许能看到诺艾儿曾见过的攻击。
-            　是时候将它们如数奉还了。
-        ]],
-        [[
-            原曲：An-fillnote - 森のヌシ
-            出处：ひなゆあ/橋野みずは - 《AliceInCradle》
-            
-            　圣光爆发的主题曲。
-            
-            　连续使用圣光爆发会对施法者的精神造成极大的损伤。
-            　但诺艾儿已经没有余暇去思考后果了。
-            　强烈的晕眩感撕裂着她的理智。
-            　晕厥概率：412%
-        ]],
-        [[
-            原曲：森のヌシ - 东方风Remix
-            出处：BV1f8411P7fG
-            
-            　诺艾儿·柯涅尔的最终阶段主题曲。
-            
-            　极其具有幻想乡风味的曲子。
-            　借助幻想的境界之力与秘匿的背后之力，最后与眼前的敌人一战吧。
-            　弹幕的奥义，正是这梦幻泡影般的美丽。
-            　幻想乡，又何尝不是幻想的摇篮呢。
-        ]],
-        [[
-            原曲：Feryquitous - The Amplifier
+            Original: ginkiha - The Star Hill
 
-            　诺艾儿·柯涅尔的Last Spellcard主题曲。
-            
-            　对诺艾儿来说，她所生活的世界无疑就是现实；
-            　而对于我们来说，她的世界不过是摇篮中的幻想。
-            　但是，我们真的有资格定义什么是现实吗？
-            　这个问题的答案，想必各位都已了然于心。
-            　*游戏中播放版本为删减版，按住低速键播放完整版
+            [Data Expunged]
         ]],
         [[
-            原曲：watson - 森之记忆
-            出处：ひなゆあ/橋野みずは - 《AliceInCradle》
-            
-            　结局A的主题曲。
-            
-            　让人十分有安心感的曲子。
-            　接下来就交给她吧。
-            　「所以，请自豪地挺起胸膛吧，少女」
-        ]],
-        [[
-            原曲：An-fillnote - 魔女的杂货店
-            出处：ひなゆあ/橋野みずは - 《AliceInCradle》
-            
-            　结局B的主题曲。
-            
-            　大家都回到了日常的生活。
-            　但是，也许对于两个人来说，有什么发生了改变……
-            　闻起来像大吉岭。
-            
-        ]],
-        [[
-            原曲：ginkiha - Staff
-            出处：くろば·U - 《Star Chaser!》
-            
-            　Staff画面的主题曲。
-            
-            　在那星空之上，才是故事真正开始的地方。
-            　未来的路还很长，请陪诺艾儿，爱丽丝和菲奥蕾特一起走下去吧。
-            　愿能再相见。
-        ]],
-        [[
-            原曲：上海爱丽丝幻乐团 - Player Score
-            出处：上海爱丽丝幻乐团 - 《东方风神录　～ Mountain of Faith》
-            
-            　满身疮痍的主题曲。
-            
-            　这次又是在哪里醒来呢？
-            　小心不要太沉溺于梦境。
-        ]],
-        --以下是DLC曲目
-        [[
-            原曲：上海爱丽丝幻乐团 - 禁断之门对面，是此世还是彼世
-            出处：上海爱丽丝幻乐团 - 《东方天空璋 　～ Hidden Star in Four Seasons》
-            
-            「数据删除」
-        ]],
-        [[
-            原曲：上海爱丽丝幻乐团 - Crazy Back Dancers
-            出处：上海爱丽丝幻乐团 - 《东方天空璋 　～ Hidden Star in Four Seasons》
-            
-            「数据删除」
-        ]],
-        [[
-            原曲：上海爱丽丝幻乐团 - 秘神摩多罗　～ Hidden Star in All Seasons. & 被隐匿的四季
-            出处：上海爱丽丝幻乐团 - 《东方天空璋 　～ Hidden Star in Four Seasons》
-            
-            「数据删除」
-        ]],
-        [[
-            原曲：上海爱丽丝幻乐团 - 妖妖跋扈 　～ Who done it!
-            出处：上海爱丽丝幻乐团 - 《东方妖妖梦 　～ Perfect Cherry Blossom》
-            
-            「数据删除」
-        ]],
-        [[
-            原曲：上海爱丽丝幻乐团 - 两方世界
-            出处：上海爱丽丝幻乐团 - 《东方三月精 　～ Strange and Bright Nature Deity.》附属CD
+            Original: ginkiha - Normal Boss
+            Origin: Cloba·U - 《Star Shooter!》
 
-            「数据删除」
+            [Data Expunged]
         ]],
         [[
-            原曲：上海爱丽丝幻乐团 - Necro-Fantasia
-            出处：上海爱丽丝幻乐团 - 《东方妖妖梦 　～ Perfect Cherry Blossom》
-            
-            「数据删除」
-        ]],
-        [[
-            原曲：上海爱丽丝幻乐团 - 夜幕降临 　～ Evening Star
-            出处：上海爱丽丝幻乐团 - 《东方萃梦想　～ Immaterial and Missing Power》
-            
-            「数据删除」
-        ]],
-        [[
-            原曲：上海爱丽丝幻乐团 - 凭坐处于梦与现实之间　～ Necro-Fantasia
-            出处：上海爱丽丝幻乐团 - 《东方凭依华　～ Antinomy of Common Flowers》
-            
-            「数据删除」
-        ]],
-        [[
-            原曲：上海爱丽丝幻乐团 - 毕竟就算不是夜晚也有鬼怪
-            出处：上海爱丽丝幻乐团 - 《七夕坂梦幻能　～ Taboo Japan Disentanglement》
-            
-            「数据删除」
-        ]],
-        [[
-            原曲：An-fillnote - City of Grace
-            出处：ひなゆあ/桥野 水叶 - 《AliceInCradle》
+            Original: Team Shanghai Alice - A Midnight Fairy Dance
+            Origin: Team Shanghai Alice - 《Great Fairy Wars》
 
-            　标题画面的主题曲（新）。
+            [Data Expunged]
+        ]],
+        [[
+            Original: AliceSoft - 濡羽色GUSTYWIND
+            Origin: AliceSoft - 《Dohna Dohna Let's Do Bad Things Together》
 
-            　如同幻想乡般，群星笼罩的摇篮。
-            　永远之梦，与现实也并无二致。
+            [Data Expunged]
+        ]],
+        [[
+            Original: AliceSoft - Breakthru>>>
+            Origin: AliceSoft - 《Dohna Dohna Let's Do Bad Things Together》
+
+            [Data Expunged]
+        ]],
+        [[
+            Original: Team Shanghai Alice - The Magician's Melancholy
+            Origin: Team Shanghai Alice - 《The Grimoire of Marisa》 Bonus CD
+
+            EX Stage Mid-Boss theme.
+
+            Since we're still in the Magic Forest, we're still within Gensokyo.
+            Naturally, a Gensokyo tune is used.
+        ]],
+        [[
+            Original: ginkiha - Battle
+            Origin: Hinayua/Hashino Mizuha - 《AliceInCradle》
+
+            Noel Cornehl's Phase 1 Theme.
+
+            A very lighthearted rhythm,
+            as Noel hasn't yet realized how strong her opponent is.
+            Listening to this, one can almost see Noel clumsily swinging her staff.
+            Smells like scattered magic.
+        ]],
+        [[
+            Original: ginkiha - Ixia Battle
+            Origin: Hinayua/Hashino Mizuha - 《AliceInCradle》
+
+            Ixia Polystachya's Theme.
+
+            A panicked, flustered feeling.
+            Ixia hasn't fully recovered from her battle with the Forest Lord,
+            yet she still wants to buy Noel some time.
+        ]],
+        [[
+            Original: Feryquitous - Ha-chan
+            Origin: Cloba·U - 《Star Shooter!》
+
+            Primula's Theme.
+
+            The mood suddenly becomes tense.
+            As a beastkin, Primula struggles to use magic in combat...
+            Yet she too wants to buy Noel some time.
+        ]],
+        [[
+            Original: Feryquitous - Unknown wisdom
+            Origin: Cloba·U - 《Star Liner!》
+
+            Noel Cornehl's Phase 2 Theme.
+
+            Noel begins to fight with all her might,
+            for there are people she must protect.
+            From here on, you might see attacks Noel has witnessed before.
+            It's time to return them in kind.
+        ]],
+        [[
+            Original: An-fillnote - Lord of the Forest
+            Origin: Hinayua/Hashino Mizuha - 《AliceInCradle》
+
+            Holy Burst's Theme.
+
+            Consecutive use of Holy Burst causes severe mental strain on the caster.
+            But Noel has no time to consider the consequences.
+            Intense dizziness tears at her sanity.
+            Unconsciousness Probability: 412%
+        ]],
+        [[
+            Original: Lord of the Forest - Thohou-style Remix
+            Origin: https://www.bilibili.com/video/BV1f8411P7fG/
+
+            Noel Cornehl's Final Phase Theme.
+
+            An intensely Gensokyo-flavored track.
+            Fight the final battle using the power of Gensokyo's borders
+            and hidden backing forces.
+            The true art of Danmaku lies in this ephemeral, dreamlike beauty.
+            Isn't Gensokyo itself a cradle of fantasy?
+        ]],
+        [[
+            Original: Feryquitous - The Amplifier
+
+            Noel Cornehl's Last Spellcard Theme.
+
+            To Noel, the world she lives in is undoubtedly reality;
+            To us, her world is but a fantasy within a cradle.
+            But do we truly have the right to define what is real?
+            The answer to this, I believe, is already clear in your hearts.
+            *The in-game version is abridged. Hold the Slow key for the full version.
+        ]],
+        [[
+            Original: watson - Forest Memories
+            Origin: Hinayua/Hashino Mizuha - 《AliceInCradle》
+
+            Ending A Theme.
+
+            A very reassuring melody.
+            Leave the rest to her.
+            "So, please hold your head high with pride, young lady."
+        ]],
+        [[
+            Original: An-fillnote - Witch's General Store
+            Origin: Hinayua/Hashino Mizuha - 《AliceInCradle》
+
+            Ending B Theme.
+
+            Everyone returned to their daily lives.
+            But perhaps, for two people, something has changed...
+            Smells like Darjeeling.
+        ]],
+        [[
+            Original: ginkiha - Staff
+            Origin: Cloba·U - 《Star Chaser!》
+
+            Staff Roll Theme.
+
+            Beyond that starry sky is where the story truly begins.
+            The road ahead is long; please move forward together with Noel and Alice.
+            Hoping to meet again.
+        ]],
+        [[
+            Original: Team Shanghai Alice - Player Score
+            Origin: Team Shanghai Alice - 《Thohou Mountain of Faith》
+
+            Beaten and Bruised theme.
+
+            Where will you awaken this time?
+            Be careful not to lose yourself too deeply in the dream.
+        ]],
+        --The following are DLC tracks
+        [[
+            Original: Team Shanghai Alice - Does the Forbidden Door Lead to This
+            World, or the World Beyond?
+            Origin: Team Shanghai Alice - 《Thohou Hidden Star in Four Seasons》
+
+            [Data Expunged]
+        ]],
+        [[
+            Original: Team Shanghai Alice - Crazy Back Dancers
+            Origin: Team Shanghai Alice - 《Thohou Hidden Star in Four Seasons》
+
+            [Data Expunged]
+        ]],
+        [[
+            Original: Team Shanghai Alice - Secret God Matara ~  Hidden Star in All
+            Seasons. & The Hidden Four Seasons
+            Origin: Team Shanghai Alice - 《Thohou Hidden Star in Four Seasons》
+
+            [Data Expunged]
+        ]],
+        [[
+            Original: Team Shanghai Alice - Spiritual Domination ~  Who done it!
+            Origin: Team Shanghai Alice - 《Thohou Perfect Cherry Blossom》
+
+            [Data Expunged]
+        ]],
+        [[
+            Original: Team Shanghai Alice - Two Worlds
+            Origin: Team Shanghai Alice - 《Strange and Bright Nature Deity》 Bonus CD
+
+            [Data Expunged]
+        ]],
+        [[
+            Original: Team Shanghai Alice - Necro-Fantasia
+            Origin: Team Shanghai Alice - 《Thohou Perfect Cherry Blossom.》
+
+            [Data Expunged]
+        ]],
+        [[
+            Original: Team Shanghai Alice - Night Falls ~  Evening Star
+            Origin: Team Shanghai Alice - 《Thohou Immaterial and Missing Power》
+
+            [Data Expunged]
+        ]],
+        [[
+            Original: Team Shanghai Alice - Yorimashi Between Dreams and Reality ~  Necro-Fantasia
+            Origin: Team Shanghai Alice - 《Thohou Antinomy of Common Flowers》
+
+            [Data Expunged]
+        ]],
+        [[
+            Original: Team Shanghai Alice - Ghosts Exist Even When It's Not Night
+            Origin: Team Shanghai Alice - 《Taboo Japan Disentanglement》
+
+            [Data Expunged]
+        ]],
+        [[
+            Original: An-fillnote - City of Grace
+            Origin: Hinayua/Hashino Mizuha - 《AliceInCradle》
+
+            Title screen theme (New).
+
+            A cradle enveloped by stars, much like Gensokyo.
+            The eternal dream is no different from reality.
         ]]
-        
     },
     warn1 =
     [[
-        ＊＊　选择的音乐尚未在游戏进行的过程中播放过　＊＊
+        ** The selected music has not been played during the game yet. **
 
-        　　　　　　音乐的评论可能会造成剧透，
-        　　　　　　　即使那样也要播放吗？
-    
-        　　　　想现在播放的话，请再次按下确定键。
-        不想现在播放的话，请选择其它已开启的音乐进行欣赏。
+        The music comments may contain spoilers.
+        Do you still wish to play it?
+
+        To play now, press Confirm again.
+        To select a different unlocked music, choose another track.
     ]],
     warn2 =
     [[
-        ＊＊　选择的音乐已经在游戏进行的过程中播放过　＊＊
+        ** The selected music has already been played during the game. **
 
-        　　　　　音乐的评论可能会造成流向的改变，
-        　　　　　　　即使那样也要播放吗？
-        
-        　　　　想现在播放的话，请再次按下确定键。
-        不想现在播放的话，请选择其它已开启的音乐进行欣赏。
+        The music comments may alter your perception of the flow.
+        Do you still wish to play it?
+
+        To play now, press Confirm again.
+        To select a different unlocked music, choose another track.
     ]],
     --[=[
         This is chararacter source of comment of 22.EYE OF LAPLACE.
@@ -337,230 +340,225 @@ lib.music_room_text = {
     }
 }
 
----完整版符卡名称
+---Full Spellcard Names
 lib.sc_list = {
     {
         { "「ステラの弾幕」", "Default Attack「Starry Shooting」" },
         {},
-        { "爆咒「地面炸弹」", "箭咒「纯白之弓」",
-            "引咒「聚能火球」", "防咒「魔法障壁」", "唤咒「使魔召唤」", "仿魔咒「空中回廊」",
-            "仿赤咒「炎舞神乐」", "「不顾一切的圣光爆发！」", "境符「光与影的限间」", "结界「八重护盾结界」",
-            "「繁星若梦」", "Reality Reverse" }
+        { "Explosion Sigil「Ground Bomb」", "Arrow Sigil「White Arrow」",
+            "Aiming Sigil「Energy Ball」", "Barrier Sigil「Magic Wall」", "Summon Sigil「Familiar Summon」", "Mimic Magic Sigil「Aerial Corridor」",
+            "Mimic Flame Sigil「Kagura of Flames」", "「Reckless Holy Burst!」", "Border Sign「Border of Light and Shadow」", "Barrier「Eightfold Shield Barrier」",
+            "「Starry Dreams」", "Reality Reverse" }
     },
     {
         { "「ステラの弾幕」", "Default Attack「Starry Shooting」" },
         {},
-        { "爆咒「地面炸弹」", "箭咒「纯白之弓」",
-            "引咒「聚能火球」", "防咒「魔法障壁」", "唤咒「使魔召唤」", "仿魔咒「空中回廊」",
-            "仿赤咒「炎舞神乐」", "「不顾一切的圣光爆发！」", "境符「光与影的限间」", "结界「八重护盾结界」",
-            "「繁星若梦」", "Reality Reverse" }
+        { "Explosion Sigil「Ground Bomb」", "Arrow Sigil「White Arrow」",
+            "Aiming Sigil「Energy Ball」", "Barrier Sigil「Magic Wall」", "Summon Sigil「Familiar Summon」", "Mimic Magic Sigil「Aerial Corridor」",
+            "Mimic Flame Sigil「Kagura of Flames」", "「Reckless Holy Burst!」", "Border Sign「Border of Light and Shadow」", "Barrier「Eightfold Shield Barrier」",
+            "「Starry Dreams」", "Reality Reverse" }
     },
     {
         { "「ステラの弾幕」", "Default Attack「Starry Shooting」" },
         {},
-        { "爆咒「地面炸弹　速」", "散咒「纯白之弓　散」",
-            "引咒「聚能火球　改」", "护咒「魔法加护」", "唤咒「使魔召唤　御」", "仿星咒「银河铁道」",
-            "仿焱咒「红莲祭仪」", "「拼上性命的圣光爆发！」", "境界「明与灭的樊笼」", "结界「十六重护盾大结界」",
-            "「月华流转」", "Reality Reverse" }
+        { "Explosion Sigil「Ground Bomb - Swift」", "Scatter Sigil「White Arrow - Scatter」",
+            "Aiming Sigil「Energy Ball - Modified」", "Protection Sigil「Magic Blessing」", "Summon Sigil「Familiar Summon - Control」", "Mimic Star Sigil「Galactic Railroad」",
+            "Mimic Blaze Sigil「Red Lotus Rite」", "「Staking My Life Holy Burst!」", "Kyokai「Cage of Light and Extinction」", "Barrier「Sixteenfold Shield Great Barrier」",
+            "「Flowing Moonlight」", "Reality Reverse" }
     },
     {
         { "「ステラの弾幕」", "Default Attack「Starry Shooting」" },
         {},
-        { "爆咒「地面炸弹　速」", "散咒「纯白之弓　散」",
-            "引咒「聚能火球　改」", "护咒「魔法加护」", "唤咒「使魔召唤　御」", "仿月咒「空明流光」",
-            "仿彗咒「流星祈愿」", "「拼上性命的圣光爆发！」", "境界「明与灭的樊笼」", "结界「十六重护盾大结界」",
-            "「幻梦的摇篮」", "Reality Reverse" }
+        { "Explosion Sigil「Ground Bomb - Swift」", "Scatter Sigil「White Arrow - Scatter」",
+            "Aiming Sigil「Energy Ball - Modified」", "Protection Sigil「Magic Blessing」", "Summon Sigil「Familiar Summon - Control」", "Mimic Moon Sigil「Serene Flowing Light」",
+            "Mimic Comet Sigil「Shooting Star Wish」", "「Staking My Life Holy Burst!」", "Kyokai「Cage of Light and Extinction」", "Barrier「Sixteenfold Shield Great Barrier」",
+            "「Cradle of Dreams」", "Reality Reverse" }
     }
 }
 
-lib.Ixia_scname = { "追咒「纯白之弓　诱」", "追咒「纯白之弓　诱」", "追咒「纯白之弓　改」", "追咒「纯白之弓　改」" }
+lib.Ixia_scname = { "Pursuit Sigil「White Arrow - Homing」", "Pursuit Sigil「White Arrow - Homing」", "Pursuit Sigil「White Arrow - Modified」", "Pursuit Sigil「White Arrow - Modified」" }
 
-lib.sphit_name = "「珠辉的素描本」"
+lib.sphit_name = "「Tamaki's Sketchbook」"
 
 lib.player_scname = {
-    reimu = { '灵符「梦想封印」', '结界「扩散结界」' },
-    marisa = { '魔符「星尘幻想」', '恋符「极限火花」' },
-    sakuya = { '幻葬「夜雾幻影杀人鬼」', '幻世「口关夜的世界」' },
-    muki = { '生灵「幻梦蝶华舞」', '散灵「刹那藤结术」', '「幻想华奏」' },
-    nenyuki = { '魔梦「梦魂幻想」', '恋星「星魇火花」' },
-    noel = { '箭咒「纯白之弓」', '爆咒「地面炸弹」', '引咒「聚能火球」' }
+    Reimu = { 'Spirit Sign「Fantasy Seal」', 'Barrier「Spread Barrier」' },
+    Marisa = { 'Magic Sign「Stardust Reverie」', 'Love Sign「Master Spark」' },
+    Sakuya = { "Phantom Funeral「Night Fog's Phantom Assassin」", "Phantom World「Sakuya's World」" },
+    Muki = { 'Living Spirit「Phantom Butterfly Dance」', 'Scattered Spirits「Momentary Vine Binding」', '「Fantasia Melody」' },
+    Nenyuki = { 'Magic Dream「Dream Soul Fantasy」', 'Love Star「Stellar Nightmare Spark」' },
+    Noel = { 'Arrow Sigil「White Arrow」', 'Explosion Sigil「Ground Bomb」', 'Aiming Sigil「Energy Ball」' }
 }
 
 lib.new_skill_text = {
-    "使魔召唤", [[
-    将能量汇聚在杖端，召唤辅助战斗的使魔。
-    因为术式复杂导致咏唱时间较长且魔力消耗较大，
-    但与此相对使魔带来的火力优势也相当强大。
-    对术式稍加修改就可大幅改变使魔的行为，
-    甚至可以复制曾经见过的攻击方式，
-    是效果相当多样的泛用型魔法。]],
-    "秘仪结界", [[
-    来自神秘乐子人贤者的力量。
-    符卡被替换为秘仪结界。
-    使用秘仪结界后立即进行一次全屏消弹，
-    并获得一个持续一段时间的护盾。
-    护盾可以抵消一次miss并在生效时提供短暂无敌时间。
+    "Familiar Summon", [[
+    Gather energy at the tip of the staff to summon a familiar that aids in battle.
+    Due to the complex incantation, it has a long casting time and high mana cost,
+    but in return, the firepower advantage provided by the familiar is considerable.
+    Slight modifications to the formula can greatly alter the familiar's behavior,
+    even allowing replication of previously seen attack patterns,
+    making it a versatile and effective magic.
+    ]],
+    "Secret Art Barrier", [[
+    Power granted by a mysterious prankster sage.
+    Spellcards are replaced with Secret Art Barriers.
+    Using a Secret Art Barrier immediately performs a full-screen bullet clear
+    and grants a shield that lasts for a duration.
+    The shield can negate one miss and provides brief invincibility while active.
     ]]
 }
 
 lib.tips = {
-    select = '选择',
-    back = '返回上一级菜单',
-    select_diff = '选择难度',
-    select_player = '选择自机',
-    equip_enhancer = '携带插件',
-    unequip_enhancer = '卸下插件',
-    start_game = '开始游戏',
-    play_music = '播放音乐',
-    pause_continue_music = '暂停/继续音乐',
-    select_music = '选择音乐',
-    input_char = '输入字符',
-    delete_char = '删除字符',
-    select_option = '选择设置项',
-    change_option = '更改设置项',
-    change_key_binding = '更改键位',
-    select_key_binding = '选择键位',
-    play_replay = '播放回放',
-    select_stage = '选择关卡',
-    select_save_pos = '选择保存位置',
-    cancel_save_rep = '取消保存回放',
-    move = '移动',
-    page_up_down = '翻页',
+    select = 'Select',
+    back = 'Back',
+    select_diff = 'Select Difficulty',
+    select_player = 'Select Player Character',
+    equip_enhancer = 'Equip Enhancer',
+    unequip_enhancer = 'Unequip Enhancer',
+    start_game = 'Start Game',
+    play_music = 'Play Music',
+    pause_continue_music = 'Pause/Continue Music',
+    select_music = 'Select Music',
+    input_char = 'Input Character',
+    delete_char = 'Delete Character',
+    select_option = 'Select Option',
+    change_option = 'Change Option',
+    change_key_binding = 'Change Key Bindings',
+    select_key_binding = 'Select Key Binding',
+    play_replay = 'Play Replay',
+    select_stage = 'Select Stage',
+    select_save_pos = 'Select Save Slot',
+    cancel_save_rep = 'Cancel Saving Replay',
+    move = 'Move',
+    page_up_down = 'Page Up/Down',
 }
 
 lib.enhancer_select_tips = {
-    enhancer_overload = '插件过载',
-    equipped_enhancer = '已装备',
-    enhancer_slot = '插件槽',
+    cost = 'Cost',
+    enhancer_overload = 'Enhancer Overload',
+    equipped_enhancer = 'Equipped',
+    enhancer_slot = 'Enhancer Slot',
 }
 
-lib.library = { "查看得分排行", "查看符卡历史", "查看结局" }
+lib.library = { "View Score Rankings", "View Spellcard History", "View Endings" }
 
 lib.player_data = {
-    total_play_times = '总游戏次数',
-    play_time = '游玩时长',
-    finish_times = '通关次数',
+    total_play_times = 'Total Plays',
+    play_time = 'Play Time',
+    finish_times = 'Clears',
 }
 
 lib.enhancer_select = {
-    cost = '消耗'
+    cost = 'Cost'
 }
 
 lib.music_room = {
-    curr_play_pos = '当前播放位置：'
+    curr_play_pos = 'Current Play Position:'
 }
 
 lib.achievement = {
-    achivement_complished = "完成成就"
+    achivement_complished = "Achievement Unlocked"
 }
 
----！注意！
----以下文本通过换行符\n控制每行长度在合理范围内，在翻译时请通过调试确定合适的换行位置。
 lib.difficulty_select = {
     --easy
-    --kawaisou is kibishii（厳しい）
-    { '伤害倍率：0.8x\n魔力槽碎裂概率：50%', '即使未接触过弹幕游戏的人\n也能安心享受的难度。\n放心大胆地miss吧。' },
+    { 'Damage Multiplier: 0.8x\nMana Gauge Shatter Chance: 50%', 'A difficulty safe for those\nnew to Danmaku games.\nFeel free to miss.' },
     --normal
-    --kawaisou is kowai（怖い）
-    { '伤害倍率：1.0x\n魔力槽碎裂概率：75%', '为曾接触过其他低密度\n弹幕游戏的玩家准备的难度。\n在符卡的使用上请不要吝啬。' },
+    { 'Damage Multiplier: 1.0x\nMana Gauge Shatter Chance: 75%', "For players experienced with\nlow-density Danmaku games.\nDon't hesitate to use Spellcards." },
     --hard
-    --kawaisou is kawaii（可愛い）
-    { '伤害倍率：1.2x\n魔力槽碎裂概率：90%', '为有经验的东方玩家准备的难度，\n弹幕更具挑战性。\n从这里开始，不再有任何仁慈。' },
+    { 'Damage Multiplier: 1.2x\nMana Gauge Shatter Chance: 90%', 'For seasoned Thohou players.\nThe Danmaku offers more challenge.\nFrom here on, there is no mercy.' },
     --lunatic
-    --kawaisou is kakkoii（かっこいい）
-    { '伤害倍率：1.5x\n魔力槽碎裂概率：100%', '献给各位机师的难度。\n向LNNNN*进发吧。\n在此难度下如果处于插件过载状态，\n一次Miss就会满身疮痍。\n*Lunatic No Miss No Bomb No Dodge No Enhancer。' },
-    tip = "\n弹幕难度区分尚未实装，\n目前难度仅影响系统。"
+    { 'Damage Multiplier: 1.5x\nMana Gauge Shatter Chance: 100%', 'A difficulty for the masters.\nAim for LNNNN*.\nIn this difficulty, if in Enhancer Overload,\na single Miss leads to a beaten state.\n*Lunatic No Miss No Bomb No Dodge No Enhancer.' },
+    tip = "\nDanmaku difficulty differentiation is not yet implemented.\nCurrent difficulty only affects systems."
 }
 
 lib.journey_select = {
     --In Cradle
-    --kawaisou is kimochii（気持ちいい）……？
-    { '闪避无敌时间：1.0x', '作为厨圣直面诺艾儿的审判。\n你所做的一切，都需在此偿还。' },
+    { 'Dodge Invincibility Duration: 1.0x', "Face Noel's judgment as a so-called 'ABUSER'.\nEverything you've done must be repaid here." },
     --Alice
-    --kawaisou is kakenai（描けない）
-    { '闪避无敌时间：0.5x', '与诺艾儿一同面对爱丽丝。\n她究竟是敌人，还是朋友？' }
+    { 'Dodge Invincibility Duration: 0.5x', 'Face Alice alongside Noel.\nIs she an enemy, or a friend?' }
 }
 
 lib.enhancer_select = {
-    { '盗垒滑步', '使携带者免疫体术攻击，\n闪避后的无敌时间增加30f。' },
-    { '藏巧守拙', '携带者Miss时不丢失魔力，\n但禁用收点线。\n\n适用于经常Miss的人。\n\n※不能与濡湿预兆同时携带' },
-    { '双重闪避', '允许携带者连续闪避两次，\n闪避消耗降低25%。\n\n适用于喜欢闪避的人。' },
-    { '超载咏唱', '允许携带者释放符卡时\n使用魔力补足缺少的过充魔力；\n符卡消耗增加10%。\n\n适用于经常使用符卡的人。' },
-    { '抓地鞋', '允许携带者使用闪避时\n不按下方向键，\n此时将不进行移动。\n\n适用于只需要无敌时间的人。' },
-    { '长法杖', '使携带者的射击\n判定大小增加50%，\n但伤害不变。\n对激光无效。' },
-    { '祈雨御守', '当携带者击破敌人时，\n增加道具的掉落数量。' },
-    { '濡湿预兆', '无论携带者Miss前魔力为多少，\n总会产生500魔力。\n\n适用于恐惧火力不足的人。\n\n※不能与藏巧守拙同时携带' },
-    { '恐高症', '使携带者使用符卡后\n无敌时间增加60f。' },
-    { '血之虹瞳', '携带者拾取过充魔力道具时\n不再增加5点过充魔力，\n而是增加1点生命值。' },
-    { '猫之缓降', '当携带者处于收点线以上时\n获得60f无敌时间，\n冷却时间300f。\n\n适用于经常在收点时Miss的人。' },
-    { '珠辉的素描本', '将符卡变为「珠辉的素描本」，\n伤害较低、无敌时间较短。\n符卡消耗降低60%。' },
-    { '椎奈的编程指导书', '跳过所有对话。' },
-    { '菖蒲的小型终端', '最大闪避距离增加100%。' },
-    { '歌夜的耳机', '禁用符卡和闪避，\n受到伤害降低50%。' },
-    { '诺艾儿的法杖', '射击伤害增加50%，\n单次Miss时魔力槽碎裂程度\n增加100%。\n若难度为噩梦则\n额外增加50%射击速度。\n\n本插件消耗插槽数始终为\n最大插槽数+1。' },
+    { 'Stolen Base Slide', 'Makes the wearer immune to physical attacks.\nIncreases invincibility time after dodging by 30 frames.' },
+    { 'Hidden Art, Guarded Simplicity', 'Prevents mana loss on Miss,\nbut disables the point collection line.\n\nFor those who miss frequently.\n\n※Cannot be equipped with Omen of Dampness' },
+    { 'Double Dodge', 'Allows the wearer to dodge twice consecutively.\nDodge cost reduced by 25%.\n\nFor those who enjoy dodging.' },
+    { 'Overload Chant', 'Allows the wearer to use mana to make up for missing overcharge mana when casting Spellcards.\nSpellcard cost increased by 10%.\n\nFor those who frequently use Spellcards.' },
+    { 'Grip Shoes', 'Allows the wearer to dodge without holding a direction key,\ncausing no movement.\n\nFor those who only need the invincibility frames.' },
+    { 'Long Staff', "Increases the wearer's shot hitbox size by 50%,\nbut damage remains unchanged.\nDoes not affect lasers." },
+    { 'Rain Prayer Charm', 'Increases item drop count when the wearer defeats enemies.' },
+    { 'Omen of Dampness', 'Always generates 500 mana upon Miss, regardless of pre-Miss mana.\n\nFor those fearful of insufficient firepower.\n\n※Cannot be equipped with Hidden Art, Guarded Simplicity' },
+    { 'Acrophobia', "Increases the wearer's invincibility time after using a Spellcard by 60 frames." },
+    { 'Crimson Rainbow Eyes', 'When the wearer collects an overcharge mana item, grants 1 HP instead of 5 overcharge mana.' },
+    { "Cat's Gentle Descent", 'Grants 60 frames of invincibility when the wearer is above the point collection line.\nCooldown: 300 frames.\n\nFor those who often Miss while point collecting.' },
+    { "Tamaki's Sketchbook", "Changes Spellcards to 「Tamaki's Sketchbook」.\nLower damage, shorter invincibility time.\nSpellcard cost reduced by 60%." },
+    { "Shiina's Programming Guidebook", 'Skip all dialogue.' },
+    { "Ayame's Small Terminal", 'Maximum dodge distance increased by 100%.' },
+    { "Kayo's Headphones", 'Disables Spellcards and dodging.\nDamage taken reduced by 50%.' },
+    { "Noel's Staff", "Shot damage increased by 50%.\nMana gauge shatter amount per Miss increased by 100%.\nIf difficulty is Nightmare, additionally increases shot speed by 50%.\n\nThis Enhancer's slot cost is always Max Slots + 1." },
 }
 
 if _debug.pmode then
-    lib.enhancer_select[12][2] = '开启完美无缺模式。\n游戏会自动存档，\n当Miss时可以回到上一个存档点。'
+    lib.enhancer_select[12][2] = 'Enables Flawless Mode.\nThe game saves automatically.\nOn Miss, you return to the last save point.'
 end
 
 lib.option = {
-    username = '用户名',
-    resolution = '分辨率',
-    display_mode = '显示模式',
-    fullscreen_mode = '全屏模式', 
-    windowed_mode = '窗口模式',
-    vsync = '垂直同步',
-    SFX = '音效音量',
-    BGM = '背景音乐音量',
-    autofire = '自动射击',
-    autoslow = '自动低速',
-    autododge = '双击闪避（未实装）',
-    opening_se = '进入关卡时音效',
-    old_version = '旧版',
-    new_version = '新版',
-    title_bgm = '标题画面背景音乐',
-    normal_version = '普通版',
-    full_version = '完全版',
-    sfwmode = '健全模式', 
-    supersafe = '开（超健全）',
-    key_binding = '键位设置',
-    reset = '重置为默认设置',
-    save_and_quit = '保存并退出',
-    return_to_option = '返回设置',
-    choose_key_binding = '选择需要更改的键位。',
-    input_new_key_binding = '按下新的键位。',
-    return_to_option_and_save = '返回设置。\n键位设置将在设置保存的同时变更。',
-    sfwmode_warning = '\n未满18岁或正在录像的玩家\n请务必选择健全模式为开。',
-    recommend = '（推荐）',
+    username = 'Username',
+    locale = 'Language',
+    resolution = 'Resolution',
+    display_mode = 'Display Mode',
+    fullscreen_mode = 'Fullscreen',
+    windowed_mode = 'Windowed',
+    vsync = 'Vertical Sync',
+    SFX = 'SFX Volume',
+    BGM = 'BGM Volume',
+    autofire = 'Auto-Fire',
+    autoslow = 'Auto-Slow',
+    autododge = 'Double-Tap Dodge',
+    opening_se = 'Stage Entry SE',
+    old_version = 'Old Version',
+    new_version = 'New Version',
+    title_bgm = 'Title Screen BGM',
+    normal_version = 'Normal Version',
+    full_version = 'Full Version',
+    sfwmode = 'Safe Mode',
+    supersafe = 'On (Super Safe)',
+    key_binding = 'Key Bindings',
+    reset = 'Reset to Defaults',
+    save_and_quit = 'Save and Quit',
+    return_to_option = 'Back to Options',
+    choose_key_binding = 'Select the key binding to change.',
+    input_new_key_binding = 'Press the new key.',
+    return_to_option_and_save = 'Back to Options.\nKey binding changes will apply when settings are saved.',
+    sfwmode_warning = '\nPlayers under 18 or recording should\nabsolutely set Safe Mode to On.',
+    recommend = '(Recommended)',
     text2 = {
-        '更改用户名。\n按Backspace键删除已输入字符，\n按Esc键保存更改。\n用户名与游戏存档绑定，\n更改用户名可以更换存档\n（需重启游戏）。',
-        '设置窗口显示模式下\n游戏窗口的大小。',
-        '设置游戏的显示模式。',
-        '启用垂直同步（VSync）\n可避免画面撕裂。',
-        '设置音效的音量。',
-        '设置背景音乐的音量。',
-        '设置是否启用自动射击。\n若启用，需按住射击键以停火。\n不建议与自动低速一起使用。',
-        '设置是否启用自动低速。\n若启用，在开火时\n将自动进入低速模式。\n不建议与自动射击一起使用。',
-        '设置是否启用双击闪避（实验性）。\n若启用，双击方向键即可闪避。\n目前本功能尚处于测试阶段，\n若发生报错请报告作者。',
-        '设置进入关卡时播放的音效。\n旧版为0.24a之前的音效，\n新版为0.24a之后的音效。',
-        '设置标题画面的背景音乐。\n普通版为原作游戏的版本，\n完全版在普通版的基础上\n增加了一段额外旋律。',
-        '设置是否显示性方面的描写。\n\n\n当然在这里你是没法关掉它的……',
-        '更改键盘或手柄的按键。',
-        '将所有设定还原至默认值。',
-        '保存设定并退出。\n若不想保存设定，\n请直接按取消键退出。',
+        'Change username.\nPress Backspace to delete characters,\nPress Esc to save changes.\nUsername is tied to game saves.\nChanging it can switch saves\n(requires restart).',
+        'Choose your display language.\nThe change takes effect immediately.',
+        'Set window size in Windowed mode.',
+        "Set the game's display mode.",
+        'Enable Vertical Sync (VSync)\nto prevent screen tearing.',
+        'Set sound effect volume.',
+        'Set background music volume.',
+        'Toggle auto-fire.\nIf enabled, hold Fire to stop shooting.\nNot recommended with Auto-Slow.',
+        'Toggle auto-slow.\nIf enabled, automatically enters slow mode\nwhen firing.\nNot recommended with Auto-Fire.',
+        'Toggle double-tap dodge (experimental).\nIf enabled, double-tap direction to dodge.\nThis feature is still in testing;\nreport any errors to the developer.',
+        'Set the sound effect played when entering a stage.\nOld Version is from before v0.24a,\nNew Version is from v0.24a onwards.',
+        'Set the title screen background music.\nNormal Version is from the original game.\nFull Version adds an extra melody to the Normal Version.',
+        "Toggle display of sexual content descriptions.\n\n\nOf course, you can't turn it off here...",
+        'Change keyboard or controller buttons.',
+        'Reset all settings to default.',
+        'Save settings and quit.\nTo quit without saving,\npress Cancel directly.',
     },
-    ---注意：大写英文字母部分不用翻译
-    text3 = { { 'UP', '上移' }, { 'DOWN', '下移' }, { 'LEFT', '左移' }, { 'RIGHT', '右移' }, { 'SLOW', '低速移动' },
-        { 'SHOOT', '射击/确认' }, { 'SPELL', '符卡/取消' }, { 'SPECIAL', '系统特殊功能' }, { 'REPFAST', '录像播放加速' },
-        { 'REPSLOW', '录像播放减速' }, { 'MENU', '暂停/返回' }, { 'SNAPSHOT', '截图' }, { 'RETRY', '快速重新开始' } }
+    text3 = { { 'UP', 'Move Up' }, { 'DOWN', 'Move Down' }, { 'LEFT', 'Move Left' }, { 'RIGHT', 'Move Right' }, { 'SLOW', 'Slow Move' },
+        { 'SHOOT', 'Shoot/Confirm' }, { 'SPELL', 'Spellcard/Cancel' }, { 'SPECIAL', 'Special System Function' }, { 'REPFAST', 'Replay Fast Forward' },
+        { 'REPSLOW', 'Replay Slow Down' }, { 'MENU', 'Pause/Back' }, { 'SNAPSHOT', 'Screenshot' }, { 'RETRY', 'Quick Restart' } }
 }
 
 lib.replay = {
-    warning = '该Replay游戏版本与当前版本相差较大，播放可能导致错误。是否继续播放？\n若要播放，请再次按下确认键。',
+    warning = "This Replay's game version differs significantly from the current version. Playback may cause errors. Continue playback?\nTo play, press Confirm again.",
 }
 
 lib.save_replay = {
-    warn1 = 'Replay尚未保存。是否退出？\n若要退出，请按下确认键。',
-    warn2 = '该位置已有Replay。是否覆盖？\n若要覆盖，请再次按下确认键。',
+    warn1 = 'Replay not yet saved. Exit?\nTo exit, press Confirm.',
+    warn2 = 'A Replay already exists in this slot. Overwrite?\nTo overwrite, press Confirm again.',
 }

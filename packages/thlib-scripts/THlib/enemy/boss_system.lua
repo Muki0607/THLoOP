@@ -1,5 +1,5 @@
 ---THAIC Arranged
-local l10n = aic.l10n[setting.locale]
+
 
 ---高精度计时器
 ---@class lstg.StopWatch

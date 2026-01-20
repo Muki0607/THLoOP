@@ -554,9 +554,8 @@ function lib.sp.sentence(self, img, pos, text, canskip, t, hscale, vscale, num, 
             if v == 'sound' then snd = param[k] end
             if v == 'volume' then vol = lib.StrToNum(param[k]) end
             if v == 'image' then img = param[k] end
-            if v == 'shader' and not lstg.tmpvar.TextEffect_RT_Created then
-                CreateRenderTarget('TextEffect_RenderTarget')
-                lstg.tmpvar.TextEffect_RT_Created = true
+            if v == 'shader' then
+                aic.ui.CreateRT('rt:TextEffect')
             end
             if lib.text_effect[v] and lib.text_effect[v][1] == 'on_sentence' and lib.text_effect[v][2] then
                 lib.text_effect[v][2](param[k])
@@ -644,9 +643,8 @@ function lib.sp.sentence_ex(self, img, pos, text, canskip, t, hscale, vscale, nu
     local l = sp.string(newtext):GetCharCount()
     if flag then
         for _, v in ipairs(flag) do
-            if v == 'shader' and not lstg.tmpvar.TextEffect_RT_Created then
-                CreateRenderTarget('TextEffect_RenderTarget')
-                lstg.tmpvar.TextEffect_RT_Created = true
+            if v == 'shader' then
+                aic.ui.CreateRT('rt:TextEffect')
             end
         end
     end
@@ -994,9 +992,8 @@ function lib.boss.sentence(self, img, pos, text, canskip, t, hscale, vscale, tpi
             if v == 'sound' then snd = param[k] end
             if v == 'volume' then vol = lib.StrToNum(param[k]) end
             if v == 'image' then img = param[k] end
-            if v == 'shader' and not lstg.tmpvar.TextEffect_RT_Created then
-                CreateRenderTarget('TextEffect_RenderTarget')
-                lstg.tmpvar.TextEffect_RT_Created = true
+            if v == 'shader' then
+                aic.ui.CreateRT('rt:TextEffect')
             end
             if lib.text_effect[v] and lib.text_effect[v][1] == 'on_sentence' and lib.text_effect[v][2] then
                 lib.text_effect[v][2](param[k])
@@ -1107,9 +1104,8 @@ function lib.boss.sentence_ex(self, img, pos, text, canskip, t, hscale, vscale, 
     local l = sp.string(newtext):GetCharCount()
     if flag then
         for _, v in ipairs(flag) do
-            if v == 'shader' and not lstg.tmpvar.TextEffect_RT_Created then
-                CreateRenderTarget('TextEffect_RenderTarget')
-                lstg.tmpvar.TextEffect_RT_Created = true
+            if v == 'shader' then
+                aic.ui.CreateRT('rt:TextEffect')
             end
         end
     end
@@ -1435,9 +1431,8 @@ function lib.middle.sentence(self, text, canskip, t, tpic, tx, ty, tn, snd, vol,
         for k, v in ipairs(flag) do
             if v == 'sound' then snd = param[k] end
             if v == 'volume' then vol = lib.StrToNum(param[k]) end
-            if v == 'shader' and not lstg.tmpvar.TextEffect_RT_Created then
-                CreateRenderTarget('TextEffect_RenderTarget')
-                lstg.tmpvar.TextEffect_RT_Created = true
+            if v == 'shader' then
+                aic.ui.CreateRT('rt:TextEffect')
             end
             if lib.text_effect[v] and lib.text_effect[v][1] == 'on_sentence' and lib.text_effect[v][2] then
                 lib.text_effect[v][2](param[k])
@@ -1513,9 +1508,8 @@ function lib.middle.sentence_ex(self, text, canskip, t, tpic, tx, ty, intv, snd,
     local l = sp.string(newtext):GetCharCount()
     if flag then
         for _, v in ipairs(flag) do
-            if v == 'shader' and not lstg.tmpvar.TextEffect_RT_Created then
-                CreateRenderTarget('TextEffect_RenderTarget')
-                lstg.tmpvar.TextEffect_RT_Created = true
+            if v == 'shader' then
+                aic.ui.CreateRT('rt:TextEffect')
             end
         end
     end
@@ -1833,9 +1827,8 @@ function lib.float.sentence(self, x, y, text, canskip, t, snd, vol, rawtext, ful
         for k, v in ipairs(flag) do
             if v == 'sound' then snd = param[k] end
             if v == 'volume' then vol = lib.StrToNum(param[k]) end
-            if v == 'shader' and not lstg.tmpvar.TextEffect_RT_Created then
-                CreateRenderTarget('TextEffect_RenderTarget')
-                lstg.tmpvar.TextEffect_RT_Created = true
+            if v == 'shader' then
+                aic.ui.CreateRT('rt:TextEffect')
             end
             if lib.text_effect[v] and lib.text_effect[v][1] == 'on_sentence' and lib.text_effect[v][2] then
                 lib.text_effect[v][2](param[k])
@@ -1888,9 +1881,8 @@ function lib.float.sentence_ex(self, x, y, text, canskip, t, intv, snd, vol)
     local l = sp.string(newtext):GetCharCount()
     if flag then
         for _, v in ipairs(flag) do
-            if v == 'shader' and not lstg.tmpvar.TextEffect_RT_Created then
-                CreateRenderTarget('TextEffect_RenderTarget')
-                lstg.tmpvar.TextEffect_RT_Created = true
+            if v == 'shader' then
+                aic.ui.CreateRT('rt:TextEffect')
             end
         end
     end
@@ -2096,9 +2088,9 @@ function lib.TTFDrawer:render(font, x1, x2, y1, y2, cw, ch, dx, dy, scale, color
             if lib.text_effect[v] and lib.text_effect[v][1] == 'before_shader' and lib.text_effect[v][2] then
                 lib.text_effect[v][2](param[k])
             end
-            if v == 'shader' and lstg.tmpvar.TextEffect_RT_Created then
-                PushRenderTarget('TextEffect_RenderTarget')
-                RenderClear(Color(0, 0, 0, 0))
+            if v == 'shader' and CheckRenderTarget('rt:TextEffect') then
+                PushRenderTarget('rt:TextEffect')
+                RenderClearViewMode(Color(0, 0, 0, 0))
             end
         end
     end
@@ -2146,8 +2138,8 @@ function lib.TTFDrawer:render(font, x1, x2, y1, y2, cw, ch, dx, dy, scale, color
         ----------------------------------------
         --[[for k, v in ipairs(flag) do
             if v == 'shader' then
-                PushRenderTarget('TextEffect_RenderTarget')
-                RenderClear(Color(0, 0, 0, 0))
+                PushRenderTarget('rt:TextEffect')
+                RenderClearViewMode(Color(0, 0, 0, 0))
             end
         end]]
         ----------------------------------------
@@ -2222,7 +2214,7 @@ function lib.TTFDrawer:render(font, x1, x2, y1, y2, cw, ch, dx, dy, scale, color
                 --[[
                 if v == 'shader' and i >= st[k] and (i >= e[k] or i == #s) then
                     PopRenderTarget()
-                    lib.PostEffect('TextEffect_RenderTarget', param[k])
+                    lib.PostEffect('rt:TextEffect', param[k])
                 end]]
                 if i == st[k] then
                     if lib.text_effect[v] and lib.text_effect[v][1] == 'after_render' and lib.text_effect[v][2] then
@@ -2239,9 +2231,9 @@ function lib.TTFDrawer:render(font, x1, x2, y1, y2, cw, ch, dx, dy, scale, color
     ----------------------------------------
     if flag then
         for k, v in ipairs(flag) do
-            if v == 'shader' and lstg.tmpvar.TextEffect_RT_Created then
+            if v == 'shader' and CheckRenderTarget('rt:TextEffect') then
                 PopRenderTarget()
-                lib.PostEffect('TextEffect_RenderTarget', param[k])
+                lib.PostEffect('rt:TextEffect', param[k])
             end
             if lib.text_effect[v] and lib.text_effect[v][1] == 'after_shader' and lib.text_effect[v][2] then
                 lib.text_effect[v][2](param[k])
@@ -2571,9 +2563,12 @@ function lib.PosTrans(x, y, from, to)
         if from == "world" then
             return WorldToUI(x, y)
         else -- from == "uv"
-            return
+            return (x - screen.dx) / screen.scale,
+                screen.height - (y - screen.dy) / screen.scale
+            --[[
                 x / screen.hScale,
                 screen.height - y / screen.vScale
+            --]]
         end
     end
     ---由 ui 系转换
@@ -2584,9 +2579,12 @@ function lib.PosTrans(x, y, from, to)
                 w.l + (w.r - w.l) * (x - w.scrl) / (w.r - w.scrl),
                 w.b + (w.t - w.b) * (y - w.scrb) / (w.t - w.scrb)
         else -- to == "uv"
-            return
+            return screen.dx + screen.scale * x,
+                screen.dy + screen.scale * (screen.height - y)
+            --[[
                 x * screen.hScale,
                 (screen.height - y) * screen.vScale
+            --]]
         end
     end
     ---其他情况

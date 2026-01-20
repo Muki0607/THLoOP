@@ -1,6 +1,6 @@
 local lib = aic.menu
 
-local l10n = aic.l10n[setting.locale]
+
 
 ---音乐相关的函数，因为经常暴毙所以套一层TryExcept
 
@@ -249,6 +249,7 @@ function lib.music_room:render()
         end
     end
     local alpha = min(self.alpha, self.text_alpha)
+    local dx, dy, note_dx, warn_dx = -80, -170, 40, 100
     if self.textpos == 27 then
         if not self.warn2 then
             local text = self.random_text
@@ -259,24 +260,25 @@ function lib.music_room:render()
                 end
             end
             DrawText("main_font_zh_cn", '            ' .. text1[self.textpos] .. '\n' .. self.text2[self.textpos] .. text,
-                x - 50, y - 180, 1, color(COLOR_WHITE, alpha), color(COLOR_BLACK, alpha))
+                x + dx, y + dy, 1, color(COLOR_WHITE, alpha), color(COLOR_BLACK, alpha))
         else
+            DrawText("main_font_en_us", '    ♪ ', x + dx + note_dx, y + dy, 1, color(COLOR_WHITE, alpha), color(COLOR_BLACK, alpha))
             DrawText("main_font_zh_cn", '            ' .. '\n' .. self.text4,
-                x + 50, y - 180, 1, color(COLOR_DEEP_PURPLE, alpha), color(COLOR_BLACK, alpha))
+                x + dx + warn_dx, y + dy, 1, color(COLOR_DEEP_PURPLE, alpha), color(COLOR_BLACK, alpha))
         end
     else
         if self.CheckRecord(self.textpos) or not self.warn1 then
-            DrawText("main_font_en_us", '    ♪ ', x - 50, y - 180, 1, color(COLOR_WHITE, alpha), color(COLOR_BLACK, alpha))
+            DrawText("main_font_en_us", '    ♪ ', x + dx + note_dx, y + dy, 1, color(COLOR_WHITE, alpha), color(COLOR_BLACK, alpha))
             if self.full_flag then
                 DrawText("main_font_zh_cn", '            ' .. text1[self.textpos] .. '(full ver.)\n' .. self.text2[self.textpos],
-                    x - 50, y - 180, 1, color(COLOR_WHITE, alpha), color(COLOR_BLACK, alpha))
+                    x + dx, y + dy, 1, color(COLOR_WHITE, alpha), color(COLOR_BLACK, alpha))
             else
                 DrawText("main_font_zh_cn", '            ' .. text1[self.textpos] .. '\n' .. self.text2[self.textpos],
-                    x - 50, y - 180, 1, color(COLOR_WHITE, alpha), color(COLOR_BLACK, alpha))
+                    x + dx, y + dy, 1, color(COLOR_WHITE, alpha), color(COLOR_BLACK, alpha))
             end
         else
             DrawText("main_font_zh_cn", '            ' .. '\n' .. self.text3,
-                x + 50, y - 180, 1, color(COLOR_RED, alpha), color(COLOR_BLACK, alpha))
+                x + dx + warn_dx, y + dy, 1, color(COLOR_RED, alpha), color(COLOR_BLACK, alpha))
         end
     end
     if self.debug then

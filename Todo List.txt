@@ -1,4 +1,6 @@
 完成梦摇篮本地化
+优化行走图，将行走图系统统一改为DNHWalkImageSystem
+尝试解析RenderTargetClass
 添加爱丽丝线
 添加诺艾儿自机
 添加道具收集范围显示

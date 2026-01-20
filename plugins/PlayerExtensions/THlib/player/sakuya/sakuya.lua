@@ -60,7 +60,6 @@ function sakuya_player:init(slot)
     }
     self.default_dmglist = { 0.2, 0.2, 0.2, 0.2 }
     self.dmglist = { 0.2, 0.2, 0.2, 0.2 }
-    self.spellname = aic.l10n[setting.locale].player_scname.sakuya
     self.deathtime = 15
     self.default_deathtime = self.deathtime
 end

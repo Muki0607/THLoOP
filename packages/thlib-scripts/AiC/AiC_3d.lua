@@ -80,7 +80,7 @@ function lib.Dist(x1, y1, z1, x2, y2, z2)
     elseif type(x1) == 'number' and type(y1) == 'number' and type(z1) == 'number' and type(x2) == 'number' and type(y2) == 'number' and type(z2) == 'number' then
         return hypot3D(x1 - x2, y1 - y2, z1 - z2)
     else
-        error('invalid arguement.')
+        error('invalid argument.')
     end
 end
 
@@ -110,7 +110,7 @@ function lib.Angle(x1, y1, z1, x2, y2, z2)
         ph = aic.math.AngleFormat(ph, 1)
         return th, ph
     else
-        error('invalid arguement.')
+        error('invalid argument.')
     end
 end
 
@@ -136,7 +136,7 @@ function lib.Angle2(x1, y1, z1, x2, y2, z2)
     elseif type(x1) == 'number' and type(y1) == 'number' and type(z1) == 'number' and type(x2) == 'number' and type(y2) == 'number' and type(z2) == 'number' then
         return aic.math.AngleFormat(acos((x1 * x2 + y1 * y2 + z1 * z2) / hypot3D(x1, y1, z1) - hypot3D(x2, y2, z2)), 1)
     else
-        error('invalid arguement.')
+        error('invalid argument.')
     end
 end
 
@@ -172,10 +172,9 @@ end
 ---@return boolean @指定对象是否在指定的长方体区域内
 function lib.BoxCheck(unit, x1, x2, y1, y2, z1, z2)
     if unit.x and unit.y and unit.z and type(x1) == 'number' and type(y1) == 'number' and type(z1) == 'number' and type(x2) == 'number' and type(y2) == 'number' and type(z2) == 'number' then
-        local IsIn = aic.math.IsIn
         return IsIn(unit.x, x1, x2) and IsIn(unit.y, y1, y2) and IsIn(unit.z, z1, z2)
     else
-        error('invalid arguement.')
+        error('invalid argument.')
     end
 end
 
@@ -240,10 +239,10 @@ end
 
 function lib.Render2D(func, th, ...)
     if not CheckRes('tex', 'rt:Render2D') then
-        CreateRenderTarget('rt:Render2D')
+        aic.ui.CreateRT('rt:Render2D')
     end
     PushRenderTarget('rt:Render2D')
-    RenderClear(Color(0, 0, 0, 0))
+    RenderClearViewMode(Color(0, 0, 0, 0))
     func(...)
     PopRenderTarget()
     local w, h = GetTextureSize('rt:Render2D')
@@ -262,10 +261,10 @@ end
 
 function lib.Render3D(func, ph, ...)
     if not CheckRes('tex', 'rt:Render3D') then
-        CreateRenderTarget('rt:Render3D')
+        aic.ui.CreateRT('rt:Render3D')
     end
     PushRenderTarget('rt:Render3D')
-    RenderClear(Color(0, 0, 0, 0))
+    RenderClearViewMode(Color(0, 0, 0, 0))
     func(...)
     PopRenderTarget()
     local w, h = GetTextureSize('rt:Render3D')

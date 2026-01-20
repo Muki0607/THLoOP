@@ -35,6 +35,59 @@ function lib.color(color, alpha)
     return Color(alpha, r, g, b)
 end
 
+---HSV转RGB，from sjdygc
+---@param h number
+---@param s number
+---@param v number
+function lib.HSVToRGB(h, s, v)
+    -- 确保h在0-360范围内
+    h = h % 360
+    s = min(100, max(0, s)) / 100
+    v = min(100, max(0, v)) / 100
+    
+    local c = v * s
+    local x = c * (1 - abs((h / 60) % 2 - 1))
+    local m = v - c
+    
+    local r1, g1, b1
+
+    if h < 60 then
+        r1, g1, b1 = c, x, 0
+    elseif h < 120 then
+        r1, g1, b1 = x, c, 0
+    elseif h < 180 then
+        r1, g1, b1 = 0, c, x
+    elseif h < 240 then
+        r1, g1, b1 = 0, x, c
+    elseif h < 300 then
+        r1, g1, b1 = x, 0, c
+    else
+        r1, g1, b1 = c, 0, x
+    end
+    
+    local r = int((r1 + m) * 255)
+    local g = int((g1 + m) * 255)
+    local b = int((b1 + m) * 255)
+    
+    return r, g, b
+end
+
+lib.RenderTargetList = {}
+
+--- 创建渲染目标并记录，重复创建时自动中止 
+---@param rtname string
+---@param width number
+---@param height number
+---@overload fun(rtname:string)
+---@overload fun(rtname:string, width:number, height:number)
+function lib.CreateRT(rtname, width, height, depth_buffer)
+    for _, v in ipairs(lib.RenderTargetList) do
+        if v == rtname then return end
+    end
+    table.insert(lib.RenderTargetList, rtname)
+    CreateRenderTarget(rtname, width, height, depth_buffer)
+end
+
 function lib.RenderRT(rtname, x, y, rot, hscale, vscale)
     x = x or screen.width / 2
     y = y or screen.height / 2
@@ -136,7 +189,7 @@ end
 ---@param co1 lstg.Color @文字颜色
 ---@param co2 lstg.Color @描边颜色
 ---@vararg align @对齐方式
-function lib.DrawText_ex(font, text, x, y, s, co1, co2, ...)
+function lib.DrawTextEX(font, text, x, y, s, co1, co2, ...)
     s = s or 1
     co1 = co1 or Color(255, 255, 255, 255)
     local alpha = co1:ARGB()
@@ -159,6 +212,70 @@ function lib.DrawText_ex(font, text, x, y, s, co1, co2, ...)
     ttfdrawer:render(font,
         x, x, y, y, 12 * s, 32 * s, 0, 0,
         s, co1, fmt)  
+end
+
+---设置DrawTextWithShader所需调用shader的参数列表和混合模式
+---@param paramlist table 参数列表
+---@param blend string 混合模式
+function lib.SetPostEffectParam(rtname1, shadername1, paramlist1, blend1, rtname2, shadername2, paramlist2, blend2)
+    lib.shader_paramlist1 = paramlist1
+    lib.shader_rtname1 = rtname1
+    lib.shader_name1 = shadername1
+    lib.shader_blend1 = blend1 or ''
+    lib.shader_paramlist2 = paramlist2
+    lib.shader_rtname2 = rtname2
+    lib.shader_name2 = shadername2
+    lib.shader_blend2 = blend2 or ''
+end
+
+---使用通用文字渲染并使用指定shader
+---
+---'paragraph'等效于同时取'left'、'top'和'wordbreak'
+---
+---'centerpoint' 等效于同时取'center'、'vcenter'和'noclip'
+---@param font string @字体
+---@param text string @渲染文字
+---@param x number @x坐标
+---@param y number @y坐标
+---@param s number @缩放比例
+---@param co1 lstg.Color @文字颜色
+---@param co2 lstg.Color @描边颜色
+---@vararg align @对齐方式
+function lib.DrawTextWithShader(font, text, x, y, s, co1, co2, ...)
+    lib.CreateRT(lib.shader_rtname1)
+    if (lib.shader_rtname2) then lib.CreateRT(lib.shader_rtname2) end
+    --PushRenderTarget(rtname)
+    --RenderClearViewMode(Color(0, 0, 0, 0))
+    font = font or "main_font_zh_cn"
+    text = tostring(text)
+    s = s or 1
+    co1 = co1 or Color(255, 255, 255, 255)
+    local alpha = co1:ARGB()
+    co2 = co2 or Color(alpha, 0, 0, 0)
+    local _x, _y
+    if CheckRes('fnt', font) then
+        SetFontState(font, '', co2)
+        for i = 1, 8 do
+            _x = x + sqrt(2) * cos(i * 45)
+            _y = y + sqrt(2) * sin(i * 45)
+            RenderText(font, text, _x, _y, s, ...)
+        end
+        SetFontState(font, '', co1)
+        RenderText(font, text, x, y, s, ...)
+    else
+        for i = 1, 8 do
+            _x = x + sqrt(2) * cos(i * 45)
+            _y = y + sqrt(2) * sin(i * 45)
+            RenderTTF2(font, text, _x, _x, _y, _y, s, co2, ...)
+        end
+        RenderTTF2(font, text, x, x, y, y, s, co1, ...)
+    end
+    --PopRenderTarget()
+end
+
+function DrawGradientText(rtname, font, text, x, y, s, co, alpha)
+    lib.DrawTextToRT(rtname, font, text, x, y, s, Color(alpha, 255, 255, 255))
+    local len = aic.string()
 end
 
 --为什么lua不能像py那样指定参数呢（恼

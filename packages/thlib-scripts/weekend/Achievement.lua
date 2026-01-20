@@ -2,7 +2,7 @@
 
 achi = { list = {}, checklist = {} }
 
-local l10n = aic.l10n[setting.locale]
+
 
 for i = 1, 16 do
     LoadImageFromFile('achi_eff_' .. i, "weekend/achi/" .. i .. ".png")

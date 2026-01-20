@@ -168,7 +168,7 @@ lib.music_room = {
             　是时候将它们如数奉还了。
         ]],
         [[
-            原曲：An-fillnote - 森のヌシ
+            原曲：An-fillnote - Battle Nusi
             出处：ひなゆあ/橋野みずは - 《AliceInCradle》
             
             　圣光爆发的主题曲。
@@ -179,8 +179,8 @@ lib.music_room = {
             　晕厥概率：412%
         ]],
         [[
-            原曲：森のヌシ - 东方风Remix
-            出处：BV1f8411P7fG
+            原曲：Battle Nusi - 东方风Remix
+            出处：https://www.bilibili.com/video/BV1f8411P7fG/
             
             　诺艾儿·柯涅尔的最终阶段主题曲。
             

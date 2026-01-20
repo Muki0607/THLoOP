@@ -37,7 +37,7 @@
 aic.menu = {}
 local lib = aic.menu
 
-local l10n = aic.l10n[setting.locale]
+
 
 ---仿TH18菜单（其实差别很大）
 ---本菜单库纯手工制作，没有先定义菜单类，工程量极大
@@ -478,8 +478,12 @@ end
 
 function lib.submenu_bg:render()
     SetViewMode('ui')
-    SetImageState('Muki_AiC_menu_bg', '', Color(self.alpha, 255, 255, 255))
-    RenderRect('Muki_AiC_menu_bg', 0, screen.width, 0, screen.height)
+    local bg = 'Muki_AiC_menu_bg'
+    if lstg.tmpvar.current_menu.num == 5 then --Music Room特殊背景
+        bg = 'Muki_AiC_menu_bg_music_room'
+    end
+    SetImageState(bg, '', Color(self.alpha, 255, 255, 255))
+    RenderRect(bg, 0, screen.width, 0, screen.height)
     SetViewMode('world')
 end
 
@@ -524,5 +528,6 @@ for _, t in ipairs(subtitle) do
 end
 --背景
 LoadImageFromFile('Muki_AiC_menu_bg', 'THlib/UI/menu/bg/Muki_AiC_menu_bg.png')
+LoadImageFromFile('Muki_AiC_menu_bg_music_room', 'THlib/UI/menu/bg/Muki_AiC_menu_bg_music_room.png')
 LoadImageFromFile('Muki_AiC_menu_bg_Noel', 'THlib/UI/menu/bg/Muki_AiC_menu_bg_Noel.png')
 LoadImageFromFile('Muki_AiC_menu_bg_logo', 'THlib/UI/menu/bg/Muki_AiC_menu_bg_logo.png')

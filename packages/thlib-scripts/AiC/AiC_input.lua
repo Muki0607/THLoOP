@@ -449,6 +449,7 @@ function lib.MouseIsDoublePressed(index)
 end
 
 ---获取最后手柄状态，斜上斜下将被视为上下
+---这个名字好怪哦……
 ---@return number @手柄按键常量，将根据当前接入手柄的类型发生变化
 function lib.GetLastJoy()
     local M, joykey
@@ -748,7 +749,6 @@ if JOY then
         shoot = JOY.X,
         spell = JOY.A,
         special = JOY.Y,
-        skill = JOY.B,
     }
     default_setting.joysticksys = {
         repfast = JOY.LeftThumb,
@@ -759,6 +759,7 @@ if JOY then
     }
 end
 
+--补上默认值，不然没手柄的玩家就炸了
 setting.joysticks = setting.joysticks or default_setting.joysticks
 setting.joysticksys = setting.joysticksys or default_setting.joysticksys
 setting.joyblindarea = setting.joyblindarea or 0.2

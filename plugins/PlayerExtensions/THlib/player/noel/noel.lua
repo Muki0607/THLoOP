@@ -60,8 +60,7 @@ function noel_player:init(slot)
     }
     self.default_dmglist = { 0.3, 0.3, 0.3, 0.3 }
     self.dmglist = { 0.3, 0.3, 0.3, 0.3 }
-    self.spellname = aic.l10n[setting.locale].player_scname.noel
-    self.deathtime = 30 --长到令人睡着再醒来的决死时间
+    self.deathtime = 60 --长到令人睡着再醒来的决死时间
     self.default_deathtime = self.deathtime
     self._img = 'noel_player1' --真正渲染用的行走图
     self.cd = 8 --近战攻击cd

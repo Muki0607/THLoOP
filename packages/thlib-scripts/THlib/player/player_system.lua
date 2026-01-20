@@ -4,12 +4,11 @@ local player_lib = player_lib
 ---@return player.system
 player_lib.system = plus.Class()
 
-local l10n = aic.l10n[setting.locale]
+
 
 local defaultKeys = {
     "up", "down", "left", "right",
-    "slow", "shoot", "spell", "special",
-    "skill"
+    "slow", "shoot", "spell", "special"
 }
 player_lib.defaultKeys = defaultKeys
 
@@ -763,19 +762,20 @@ function system:spell()
     if after < before then
         lstg.var.exmp_int = lstg.var.exmp_int - 1
     end
+    local spellname = l10n.ui.player_scname[p.name]
     if p.class.spell and not (not _debug.pmode and CheckEnhancer(12)) then
         p.class.spell(p)
         if p.spellname then
             if p.death > 90 and p.have_death_spell then
-                aic.ui.NewSpellname(nil, p.spellname[2], nil, nil, nil, true, 240)
+                aic.ui.NewSpellname(nil, spellname[2], nil, nil, nil, true, 240)
             elseif p.lastspell then
-                aic.ui.NewSpellname(nil, p.spellname[3], nil, nil, nil, true, 240)
+                aic.ui.NewSpellname(nil, spellname[3], nil, nil, nil, true, 240)
             else
                 if p.spellname[p.slow + 1] then
                     if p.have_death_spell then
-                        aic.ui.NewSpellname(nil, p.spellname[1], nil, nil, nil, true, 240)
+                        aic.ui.NewSpellname(nil, spellname[1], nil, nil, nil, true, 240)
                     else
-                        aic.ui.NewSpellname(nil, p.spellname[p.slow + 1], nil, nil, nil, true, 240)
+                        aic.ui.NewSpellname(nil, spellname[p.slow + 1], nil, nil, nil, true, 240)
                     end
                 end
             end

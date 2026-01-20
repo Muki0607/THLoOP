@@ -1,6 +1,6 @@
 local lib = aic.menu
 
-local l10n = aic.l10n[setting.locale]
+
 
 ---玩家数据
 ---符卡数据部分因为需要分难度所以暂且搁置
