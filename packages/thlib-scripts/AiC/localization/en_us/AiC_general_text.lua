@@ -18,72 +18,85 @@ The code in `<>` is text effect. To change text effect, see `AiC_text_effect.lua
 
 local lib = aic.l10n.en_us.general
 
-lib.title = "东方梦摇篮 ~ Lodestar of Oriental Paradise"
+lib.title = "Touhou Lodestar of Paradise"
 
 lib.terms = {
-    yes = "是",
-    no = "否",
-    move = "移动",
-    key = "键",
-    ending = "结局",
-    unknown = "？？？？",
-    on = "开",
-    off = "关",
-    nonspell = "通常攻击",
+    yes = "Yes",
+    no = "No",
+    move = "Move",
+    key = "Key",
+    ending = "Ending",
+    unknown = "????",
+    on = "On",
+    off = "Off",
+    nonspell = "Normal Attack",
 }
 
 lib.punctions = {
-    question_mark = "？",
-    exclamation_mark = "！",
+    question_mark = "?",
+    exclamation_mark = "!",
 }
 
 lib.character_names = {
-    reimu = "博丽 灵梦",
-    marisa = "雾雨 魔理沙",
-    sakuya = "十六夜 咲夜",
-    muki = "小林 无记",
-    nenyuki = "千幻 念雪",
+    reimu = "Hakurei Reimu",
+    marisa = "Kirisame Marisa",
+    sakuya = "Izayoi Sakuya",
+    muki = "Kobayashi Muki",
+    nenyuki = "Sengen nenyuki",
+    noel = "Noel Cornehl",
+    laevigata = "Laevigata Cornehl",
+    ixia = "Ixia Polystachya",
+    primula = "Primula",
+    Alma = "Alma Opfebaum",
+    mepha = "Mepha Gridyard",
+}
+
+lib.other_iterm = {
+    ---贝尔米特国立大学
+    ---魔物
+    ---第四槐安通道
+    ---梦貘
 }
 
 lib.difficulty = {
-    easy = "简单",
-    normal = "普通",
-    hard = "噩梦",
-    lunatic = "地狱",
-    extra = "额外",
+    easy = "Easy",
+    normal = "Normal",
+    hard = "Hard",
+    lunatic = "Lunatic",
+    extra = "Extra",
 }
 
 lib.rep_info = {
-    username = "用户名",
-    is_finished = "是否通关",
-    time = "时间",
-    score = "总分",
-    version = "游戏版本",
-    player = "自机",
-    difficulty = "难度",
-    enhancer_select = "携带插件",
-    unknown_player = "未知自机",
-    unknown_version = "未知版本",
-    unknown_difficulty = "未知难度"
+    username = "Username",
+    is_finished = "Completed",
+    time = "Time",
+    score = "Total Score",
+    version = "Game Version",
+    player = "Player Character",
+    difficulty = "Difficulty",
+    enhancer_select = "Equipped Enhancers",
+    unknown_player = "Unknown Player Character",
+    unknown_version = "Unknown Version",
+    unknown_difficulty = "Unknown Difficulty"
 }
 
-lib.exception_title = "程序异常警告"
+lib.exception_title = "Program Exception Warning"
 
 lib.exception = {
-    title = "游戏出现异常",
-    restype = { lua = "脚本", model = "模型", pack = "压缩包" },
-    load_failed = { "加载游戏资源 ", " 时发现文件 ",
-        " 丢失。\n请检查该文件是否被移动或删除。\n若无法找到文件，请重新下载游戏。\n若文件存在且重启游戏后仍然出现此提示框，请报告作者。",
-        "时出现未知错误。\n若重启游戏后仍然出现此提示框，请报告作者。"
+    title = "Game Exception",
+    restype = { lua = "script", model = "model", pack = "package" },
+    load_failed = { "Loading game resources ", " failed to find file ",
+        ".\nPlease check if the file has been moved or deleted.\nIf the file cannot be found, please re-download the game.\nIf the file exists and this message still appears after restarting the game, please report to the author.",
+        " encountered an unknown error.\nIf this message still appears after restarting the game, please report to the author."
     },
     permission_denied = {
-        "检测到游戏存档文件被其他进程占用。\n请结束该进程后点击确定。\n若本提示框持续出现，请重启游戏。",
-        "读取游戏存档文件时出现未知错误。\n请尝试重启游戏。\n若重启游戏后仍然出现本提示框，请报告作者。"
+        "Detected that the game save file is occupied by another process.\nPlease terminate the process and click OK.\nIf this prompt persists, please restart the game.",
+        "An unknown error occurred while reading the game save file.\nPlease try restarting the game.\nIf this prompt still appears after restarting the game, please report this issue to the developer."
     },
-    framefunc_error = "游戏运行时出现帧逻辑错误。\n请将游戏日志发送给作者。",
-    rendering_error = "游戏运行时出现渲染逻辑错误。\n请将游戏日志发送给作者。",
-    lang_load_failed = { "加载语言 ", " 时发现文件 ",
-        " 丢失或出错。\n请检查该文件是否被移动、删除或修改。\n若无法找到文件，请重新下载游戏。\n若文件存在且重启游戏后仍然出现此提示框，请报告作者。",
+    framefunc_error = "A frame logic error occurred during game runtime.\nPlease send the game log to the developer.",
+    rendering_error = "A rendering logic error occurred during game runtime.\nPlease send the game log to the developer.",
+    lang_load_failed = { "An error occurred while loading language ", ".\nFile ",
+        " is missing or corrupted.\nPlease check if the file has been moved, deleted or modified.\nIf the file cannot be found, please redownload the game.\nIf the file exists and this prompt still appears after restarting the game, please report this issue to the developer.",
     },
 
 }
