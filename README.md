@@ -89,4 +89,4 @@ Contact information:
 ## Major Contributors
 
 * 苍木羽Muki (developer of THLoOP)
-* Somebody (English localization Manager of THLoOP)
+* 某人 (English localization Manager of THLoOP)
