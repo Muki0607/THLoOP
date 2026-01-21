@@ -25,7 +25,7 @@ Include 'THlib/UI/menu.lua'
 Include 'THlib/editor.lua'
 Include 'THlib/UI/UI.lua'
 Include 'sp/sp.lua'--OLC神的sp加强库
----THAIC Added
+---THLoOP Added
 Include 'THlib/music/music.lua' --单独存放bgm 
 if _debug.new_title then
     Include 'THlib/UI/newmenu/menu.lua' --lstg新版title（使用菜单栈制作，仍处于调试状态）

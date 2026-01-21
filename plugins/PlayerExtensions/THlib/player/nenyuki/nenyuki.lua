@@ -1,4 +1,4 @@
----THAIC Added
+---THLoOP Added
 ---千幻 念雪 Chimabo Nenyuki v1.11aic by Muki
 ---自设自机
 ---改自魔理沙机体

@@ -1,5 +1,5 @@
 ---=====================================
----THAIC DirectInput Extention v1.00a
+---THLoOP DirectInput Extention v1.00a
 ---东方梦摇篮DirectInput拓展 v1.00a
 ---=====================================
 

@@ -8,9 +8,9 @@ LuaSTG Sub 引擎的 Lua API、实现细节、迁移教程等内容的文档。
 
 此外，这些文档将在 vscode 的 lua (sumneko) 扩展和 IDEA 的 emmylua 拓展中提供代码提示。
 
-# THAIC Added
+# THLoOP Added
 
-THAIC add the Chinese version of the documentation of standard Lua API(translated from emmylua extension documentation), ffi and hints of metamethod to the doc folder.
+THLoOP add the Chinese version of the documentation of standard Lua API(translated from emmylua extension documentation), ffi and hints of metamethod to the doc folder.
 
 Also, documentation include Lua5.1 function `setfenv`, `getfenv` and `table.maxn`.
 

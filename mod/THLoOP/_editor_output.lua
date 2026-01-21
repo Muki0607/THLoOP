@@ -11068,15 +11068,13 @@ _editor_class["Muki_AiC_Wave11_laser_bullet"].init=function(self,_x,_y,n,r,v,a,o
     end)
 end
 stage.group.New('menu',{},"Normal",{lifeleft=5,power=400,faith=50000,bomb=3},true,2)
-stage.group.AddStage('Normal','AliceInCradle@Normal',{lifeleft=7,power=400,faith=50000,bomb=3},true)
-stage.group.DefStageFunc('AliceInCradle@Normal','init',function(self)
+stage.group.AddStage('Normal','THLoOP@Normal',{lifeleft=7,power=400,faith=50000,bomb=3},true)
+stage.group.DefStageFunc('THLoOP@Normal','init',function(self)
     _init_item(self)
     difficulty=self.group.difficulty
     New(mask_fader,'open')
     if jstg then jstg.CreatePlayers() else New(_G[lstg.var.player_name]) end
     lasttask=task.New(self,function()
-        last=New(_editor_class["Muki_AiC_test1"],0,0,_)
-        last=New(_editor_class["Muki_AiC_test2"],0,0,_)
         New(magic_forest_fast_background)
         LoadMusicRecord("aic_bgm9")
         _play_music("aic_bgm9")

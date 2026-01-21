@@ -2,7 +2,7 @@
 ---空气墙支持 Code by ETC Arranged by Muki
 ---===========================
 
----THAIC Arranged
+---THLoOP Arranged
 --============================
 --Muki-2024/7/15-v1.1aic
 --更新：1、将整个库整合入aic.act中

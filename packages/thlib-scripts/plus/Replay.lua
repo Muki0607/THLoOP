@@ -1,4 +1,4 @@
----THAIC Changed
+---THLoOP Changed
 local KEY_BIT = { 128, 64, 32, 16, 8, 4, 2, 1 }
 local KEY_NAME = { "up", "down", "left", "right", "slow", "shoot", "spell", "special" }
 
@@ -197,7 +197,7 @@ function ReplayManager:init(replayDirectory)
     self._filefmt = "slot(%d+).rep"
     self._filefmt2 = "slot%d.rep"
     self._slots = nil
-    ---THAIC Changed
+    ---THLoOP Changed
     self._slotmax = 48
 
     -- 确保录像目录存在
@@ -404,7 +404,7 @@ function ReplayManager:Refresh()
             if id then
                 id = tonumber(id)
                 assert(self._slots[id] == nil)
-                ---THAIC Changed
+                ---THLoOP Changed
                 if not (id < 0 or id > self._slotmax) then
                     plus.TryCatch {
                         try = function()
@@ -429,7 +429,7 @@ end
 --! @brief 获取录像信息
 --! @param slot 录像槽
 function ReplayManager:GetRecord(slot)
-    ---THAIC Changed
+    ---THLoOP Changed
     assert(slot >= 0 and slot <= self._slotmax, "invalid argument.")
     return self._slots[slot]
 end

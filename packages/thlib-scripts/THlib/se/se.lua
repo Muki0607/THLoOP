@@ -26,7 +26,7 @@ for _, v in pairs(sounds) do
     LoadSound(v, 'THlib/se/se_' .. v .. '.wav')
 end
 
----THAIC Added
+---THLoOP Added
 local aic_sounds = {
     'exmp', 'heal', 'enhancer_equip', 'enhancer_unequip',
     'opening', 'opening_new', 'sphit_use', 'sphit_explode',

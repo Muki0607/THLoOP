@@ -1,4 +1,4 @@
----THAIC Arranged
+---THLoOP Arranged
 
 
 ---高精度计时器
@@ -81,7 +81,7 @@ function CardsSystem:init(system, cards, is_final)
         if b.cards[i].is_combat then
             b.last_card = i
         end
-        ---THAIC Changed
+        ---THLoOP Changed
         if b.cards[i].is_sc and not string.match(b.cards[i].name, l10n.general.nonspell) then
             b.sc_left = b.sc_left + 1
         end
@@ -380,7 +380,7 @@ function system:init(b, name, cards, bg, diff)
     if cards then
         self:doCards(cards)
     end
-    ---THAIC Added
+    ---THLoOP Added
     lstg.tmpvar.hit_count = 0 --玩家miss数
     _sc_left_type = {}
     for i = 1, b.sc_left do
@@ -1003,7 +1003,7 @@ function system:popSpellResult()
     end
     b.spell_damage = 0
     lstg.tmpvar.hit_count = 0
-    ---THAIC Added
+    ---THLoOP Added
     if b.is_sc and b.sc_name and not string.match(b.sc_name, l10n.general.nonspell) then
         table.remove(_sc_left_type, 1)
     end
@@ -1086,7 +1086,7 @@ function system:popResult(continue)
         item.DropItem(b.x, b.y, b.dropitem)
         b.dropitem = nil
     end
-    ---THAIC Added
+    ---THLoOP Added
     if b.is_sc and b.sc_name and not string.match(b.sc_name, l10n.general.nonspell) then
         b.sc_left = max(0, b.sc_left - 1)
     end

@@ -1,11 +1,11 @@
 ---=====================================
----THAIC Localization Dialog
+---THLoOP Localization Dialog
 ---東方夢搖籃本土化 對話
 ---=====================================
 
 --[=[
 For translaters:
-This is the UI text file of THAIC.
+This is the UI text file of THLoOP.
 It includes all text in UI and menus (not images).
 Only the contents in `""` and `[[]]` need to be translated. Change other code can lead to error.
 The code in `<>` is text effect. To change text effect, see `AiC_text_effect.lua`.
@@ -324,7 +324,7 @@ lib.music_room_text = {
     ]],
     --[=[
         This is chararacter source of comment of 22.EYE OF LAPLACE.
-        THAIC will randomly choose characters in it to generate music comment.
+        THLoOP will randomly choose characters in it to generate music comment.
         You can add or delete characters in it as you like.
         這是EYE OF LAPLACE的評論的字元來源。
         夢搖籃會隨機抽取其中的字元生成音樂評論。

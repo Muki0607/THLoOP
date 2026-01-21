@@ -1,4 +1,7 @@
 {
+	"enhancer_select": {
+		
+	},
 	"player_data": {
 		"reimu_player": {
 			"played_time": 0,
@@ -298,7 +301,7 @@
 					]
 				]
 			],
-			"played_num": 1
+			"played_num": 0
 		},
 		"marisa_player": {
 			"played_time": 0,
@@ -1498,49 +1501,17 @@
 					]
 				]
 			],
-			"played_num": 1
+			"played_num": 0
 		}
 	},
-	"enhancer_select": [
-		6,
-		3
-	],
-	"difficulty_select": 2,
-	"hiscore": {
-		"AliceInCradle@Normal@reimu_player": 0,
-		"AliceInCradle@Normal@nenyuki_player": 0
-	},
-	"music_record": {
-		"aic_bgm15": true,
-		"aic_bgm20": true,
-		"aic_bgm0": true,
-		"aic_bgm2": true,
-		"aic_bgm18": true,
-		"aic_bgm3": true,
-		"aic_bgm21": true,
-		"aic_bgm4": true,
-		"aic_bgm22": true,
-		"aic_bgm23": true,
-		"aic_bgm6": true,
-		"aic_bgm7": true,
-		"aic_bgm16_full": true,
-		"aic_bgm26": true,
-		"aic_bgm1": true,
-		"aic_bgm27": true,
-		"aic_bgm10": true,
-		"aic_bgm9": true,
-		"aic_bgm11": true,
-		"aic_bgm8": true,
-		"aic_bgm12": true,
-		"aic_bgm16": true,
-		"aic_bgm13": true,
-		"aic_bgm17": true,
-		"aic_bgm14": true,
-		"aic_bgm19": true
-	},
 	"enhancer_slot": 4,
-	"ending": {
+	"music_record": {
+		"aic_bgm1": true,
+		"aic_bgm9": true
+	},
+	"player_select": 1,
+	"hiscore": {
 		
 	},
-	"player_select": 5
+	"difficulty_select": 1
 }

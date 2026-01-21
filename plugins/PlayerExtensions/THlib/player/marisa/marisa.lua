@@ -1,4 +1,4 @@
----THAIC Arranged
+---THLoOP Arranged
 marisa_player = Class(player_class)
 --火力特化型机体（雾雨魔理沙）
 --Arranged by Muki

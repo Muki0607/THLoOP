@@ -1,6 +1,6 @@
 ---=====================================
 ---东方梦摇篮 debug功能控制
----THAIC Debug Function Control
+---THLoOP Debug Function Control
 ---=====================================
 
 ---以下功能为本游戏的debug功能，开启后不保证游戏稳定运行

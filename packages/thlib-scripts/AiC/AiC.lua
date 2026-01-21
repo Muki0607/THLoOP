@@ -1,9 +1,9 @@
 ---=====================================
----THAIC Extra Function Library v1.11b
+---THLoOP Extra Function Library v1.11b
 ---东方梦摇篮 额外函数库 v1.11b
 ---=====================================
 
----注:原data中改动处将会标记上'THAIC Arranged''THAIC Changed'或'THAIC Added'来标记AIC改动或新增代码
+---注:原data中改动处将会标记上'THLoOP Arranged''THLoOP Changed'或'THLoOP Added'来标记AIC改动或新增代码
 ---当然有些地方标Arranged是因为已经不记得改过哪里了
 ---@alias aic_change_sign 'Arranged = 整体改动'| 'Changed = 局部改动'| 'Added = 新增'
 
@@ -27,7 +27,7 @@
 ---v1.11b
 ---添加DirectInput扩展aic.input.dinput、本地化aic.l10n、rpg支持库aic.rpg
 
---THAIC待完成事项
+--THLoOP待完成事项
 --完成剩余弹幕
 --实装Practice、Spellcard Practice
 --尝试使用RenderTarget制作图层系统

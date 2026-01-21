@@ -1,4 +1,4 @@
-﻿---THAIC Arranged
+﻿---THLoOP Arranged
 Include "THlib/UI/uiconfig.lua"
 Include "THlib/UI/font.lua"
 Include "THlib/UI/title.lua"

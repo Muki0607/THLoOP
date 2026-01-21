@@ -1,4 +1,4 @@
----THAIC Arranged
+---THLoOP Arranged
 ---翻译来自https://wiki.luatos.com/luaGuide/luaReference.html，译者云风
 
 -- Copyright (c) 2018. tangzx(love.tangzx@qq.com)

@@ -135,8 +135,8 @@ local Ldebug = require("lib.Ldebug")
 function GameInit()
     --加载mod包
     if setting.mod ~= 'launcher' then
-        ---THAIC Added
-        setting.mod = setting.mod or "Muki_AliceInCradle"
+        ---THLoOP Added
+        setting.mod = setting.mod or "THLoOP"
         Include 'root.lua'
         lstg.plugin.DispatchEvent("afterMod")
     else

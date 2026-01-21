@@ -68,15 +68,15 @@ function ResetScreen2() -- TODO: 删了这个不再使用的方法
     ResetScreen(true)
 end
 
----THAIC Changed
-local RAW_DEFAULT_WORLD = {--THAIC的默认world参数，只读
+---THLoOP Changed
+local RAW_DEFAULT_WORLD = {--THLoOP的默认world参数，只读
     l = -192, r = 192, b = -224, t = 224,
     boundl = -224, boundr = 224, boundb = -256, boundt = 256,
     scrl = 32 + 29, scrr = 416 + 29, scrb = 16, scrt = 464,
     pl = -192, pr = 192, pb = -224, pt = 224,
     world = 15,
 }
-local DEFAULT_WORLD = {--THAIC的默认world参数，可更改
+local DEFAULT_WORLD = {--THLoOP的默认world参数，可更改
     l = -192, r = 192, b = -224, t = 224,
     boundl = -224, boundr = 224, boundb = -256, boundt = 256,
     scrl = 32 + 29, scrr = 416 + 29, scrb = 16, scrt = 464,

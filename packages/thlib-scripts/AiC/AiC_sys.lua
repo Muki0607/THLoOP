@@ -1,5 +1,5 @@
 ---=====================================
----THAIC System v1.01b
+---THLoOP System v1.01b
 ---东方梦摇篮系统 v1.01b
 ---=====================================
 
@@ -78,7 +78,7 @@ function lib.DropPower(p, x, y)
 end
 
 ---设置world系参数
----@param type string|'THAIC'|'FULLSCREEN'|'LSTG' @world系类型
+---@param type string|'THLoOP'|'FULLSCREEN'|'LSTG' @world系类型
 function lib.SetWorld(type)
     local w = {--原版LuaSTG默认world参数
         l = -192, r = 192, b = -224, t = 224,
@@ -86,7 +86,7 @@ function lib.SetWorld(type)
         scrl = 32, scrr = 416, scrb = 16, scrt = 464,
         pl = -192, pr = 192, pb = -224, pt = 224,
         world = 15}
-    if type == 'THAIC' then
+    if type == 'THLoOP' then
         FullScreen_Flag = false
         ResetWorld()
     elseif type == 'FULLSCREEN' then
@@ -135,7 +135,7 @@ function lib.SetFullScreen(fullscreen, s)
         player.grazer.vscale = s
     else
         Player_scale = 1
-        lib.SetWorld('THAIC')
+        lib.SetWorld('THLoOP')
         CloseUI = false
         player.bound = true
         player.grazer.bound = true

@@ -1,5 +1,5 @@
 ---=====================================
----THAIC Custom Dialog v1.20aic by Muki
+---THLoOP Custom Dialog v1.20aic by Muki
 ---东方梦摇篮 自定义对话库 v1.20aic by Muki
 ---=====================================
 

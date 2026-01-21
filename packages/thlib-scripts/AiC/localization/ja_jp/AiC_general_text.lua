@@ -1,11 +1,11 @@
 ---=====================================
----THAIC Localization General
+---THLoOP Localization General
 ---东方梦摇篮本土化 通用
 ---=====================================
 
 --[=[
 For translaters:
-This is the general terms text file of THAIC.
+This is the general terms text file of THLoOP.
 It includes character names, game terms, etc.
 Only the contents in `""` and `[[]]` need to be translated. Change other code can lead to error.
 The code in `<>` is text effect. To change text effect, see `AiC_text_effect.lua`.
@@ -18,7 +18,7 @@ The code in `<>` is text effect. To change text effect, see `AiC_text_effect.lua
 
 local lib = aic.l10n.ja_jp.general
 
-lib.title = "东方梦摇篮 ~ Alice In Cradle"
+lib.title = "东方梦摇篮 ~ Lodestar of Oriental Paradise"
 
 lib.terms = {
     yes = "是",

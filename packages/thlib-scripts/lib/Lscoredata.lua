@@ -1,4 +1,4 @@
----THAIC Arranged
+---THLoOP Arranged
 ---从源头解决问题，而不是在各种调用的地方解决
 ---=====================================
 ---luastg scoredata
@@ -90,7 +90,7 @@ local function get_safe_username()
 end
 
 local function get_file_name()
-    local path = lstg.LocalUserData.GetDatabaseDirectory() .. "/" .. (setting.mod or "Muki_AliceInCradle")
+    local path = lstg.LocalUserData.GetDatabaseDirectory() .. "/" .. (setting.mod or "THLoOP")
     lstg.FileManager.CreateDirectory(path)
     return path .. "/" .. get_safe_username() .. ".json"
 end

@@ -1,4 +1,4 @@
----THAIC Arranged
+---THLoOP Arranged
 local opening
 stage_init = stage.New('init', true, true)
 function stage_init:init()

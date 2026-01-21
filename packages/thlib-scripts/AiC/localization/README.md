@@ -1,11 +1,11 @@
 # Localization
 # 本地化
-This is localization folder of THAIC.
-Following is the introduction of how to add a new language for THAIC.
+This is localization folder of THLoOP.
+Following is the introduction of how to add a new language for THLoOP.
 这是东方梦摇篮的本地化文件夹。
 以下是关于如何为梦摇篮添加一个新语言的介绍。
 
-# Steps to Add a New Language for THAIC
+# Steps to Add a New Language for THLoOP
 # 为东方梦摇篮添加一个新语言的步骤
 
 ## Step 1

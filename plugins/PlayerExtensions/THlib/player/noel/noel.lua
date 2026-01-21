@@ -1,4 +1,4 @@
----THAIC Added
+---THLoOP Added
 noel_player = Class(player_class)
 --特殊型机体（诺艾儿·柯涅尔）LSC简化版
 --和其他几个机体不同，尽量做了在梦摇篮外使用的适配

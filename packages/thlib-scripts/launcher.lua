@@ -1396,7 +1396,7 @@ end
 --------------------------------------------------------------------------------
 
 --- 启动器场景
----THAIC Changed
+---THLoOP Changed
 local stage_launcher = stage.New('launcher_scene', false, true)
 function stage_launcher:init()
     lstg.SetSplash(true)

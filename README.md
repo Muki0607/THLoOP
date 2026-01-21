@@ -1,4 +1,4 @@
-# 东方梦摇篮（THAIC）
+# 东方梦摇篮（THLoOP）
 
 ## 简介
 
@@ -7,7 +7,7 @@
 
 ## 下载
 
-你可以从 [Releases 页面](https://github.com/Muki0607/THAIC/releases) 下载，一般显示在右侧或者底部（手机版页面）。
+你可以从 [Releases 页面](https://github.com/Muki0607/THLoOP/releases) 下载，一般显示在右侧或者底部（手机版页面）。
 
 ## 配置需求
 
@@ -41,7 +41,7 @@
 
 * 苍木羽Muki（东方梦摇篮 开发者）
 
-# ThoHou AliceInCradle(THAIC)
+# ThoHou AliceInCradle(THLoOP)
 
 ## Introduce
 
@@ -50,11 +50,11 @@ It is a Danmaku STG (shooting game) just like games of Thohou Project.
 
 ## Download
 
-You can download from [Releases Page](https://github.com/Muki0607/THAIC/releases). Usually displayed on the right or bottom (mobile GitHub page).
+You can download from [Releases Page](https://github.com/Muki0607/THLoOP/releases). Usually displayed on the right or bottom (mobile GitHub page).
 
 ## Requirement
 
-As THAIC is developed based on LuaSTG aex+, it has the same requirement.
+As THLoOP is developed based on LuaSTG aex+, it has the same requirement.
 (As you can see, this README is copied from LuaSTG, too)
 
 * Operating System: Windows 7 SP1 with platform update (KB2670838) or above
@@ -71,18 +71,18 @@ This project is still in progress, and is planned to continue to add new content
 
 ### Maintainer Status
 
-There is only one maintainer ot THAIC at present, and he has few time due to academic reason.
-If you also want to participate in the development of THAIC, feel free to reach out to me.
+There is only one maintainer ot THLoOP at present, and he has few time due to academic reason.
+If you also want to participate in the development of THLoOP, feel free to reach out to me.
 
 * 苍木羽Muki
 
 Contact information:
 
 * QQ: 3088475120
-* THAIC communiation group: 724149199
+* THLoOP communiation group: 724149199
 * E-mail: 3088475120@qq.com
 
 
 ## Major Contributors
 
-* 苍木羽Muki（developer of THAIC）
+* 苍木羽Muki（developer of THLoOP）

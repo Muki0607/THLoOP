@@ -355,7 +355,7 @@ lib.music_room = {
     ]],
     --[=[
         This is chararacter source of comment of 22.EYE OF LAPLACE.
-        THAIC will randomly choose characters in it to generate music comment.
+        THLoOP will randomly choose characters in it to generate music comment.
         You can add or delete characters in it as you like.
         这是EYE OF LAPLACE的评论的字符来源。
         梦摇篮会随机抽取其中的字符生成音乐评论。

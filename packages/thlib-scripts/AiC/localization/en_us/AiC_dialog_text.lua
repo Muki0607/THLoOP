@@ -1,11 +1,11 @@
 ---=====================================
----THAIC Localization Dialog
+---THLoOP Localization Dialog
 ---东方梦摇篮本土化 对话
 ---=====================================
 
 --[[
 For translaters:
-This is the dialog file of THAIC.
+This is the dialog file of THLoOP.
 Only the contents in `text` need to be translated. Change other code can lead to error.
 The code in `<>` is text effect. To change text effect, see `AiC_text_effect.lua`.
 给翻译者：
@@ -251,6 +251,9 @@ lib.dialog6 = {
     }
 }
 
+---这里的名字会用于计算文字效果范围，请一并翻译
+---The name here will be used to calulate the range of text effect, please translate it
+local name = '诺艾儿·柯涅尔'
 ---最终阶段前对话
 ---Dialog before last phase
 lib.dialog7 = {
@@ -297,7 +300,7 @@ lib.dialog7 = {
         '<Color {255,255,0,255}>事情变得有趣起来了呢</Color>',
         '诶？\n身上的伤……突然不疼了……',
         '虽然不知道您是谁，\n但我十分感谢……',
-        '我<scale 1.25></scale7><color 0xFFFF0000></color7><Uppertext {学园的才女,0,5}>诺艾儿·柯涅尔</Uppertext>，\n</wait>发誓将战斗至最后一刻！',
+        '我<scale 1.25></scale ' .. #name .. '><color 0xFFFF0000></color ' .. #name .. '><Uppertext {学园的才女,0,5}>' .. name .. '</Uppertext>，\n发誓将战斗至最后一刻！',
         '<Color {255,255,150,0}>哎呀，这样可就不公平了</Color>',
         '<Color {255,255,150,0}>屏幕那边那个，\n你就用我的力量吧</Color>',
         ---秘仪之力获取动画
@@ -320,6 +323,7 @@ lib['dialog7.5'] = {
     img = "image:Muki_AiC_Noel_face_final",
     text = { "沉眠于摇篮吧，境界外的存在！" }, --因为未知的原因text必须放在表里
 }
+
 
 ---LSC对话
 ---Dialog of Last Spellcard
@@ -346,7 +350,9 @@ lib.dialog8 = {
         '在<color 0xFFFF0000>你</color>找上我之前，',
         '又有多少个<color 0xFFFF0000>天真无知的少女</color>因为你饱受折磨？',
         '是时候进行最后的对决了。',
-        '<scale 1.5></scale 13><color 0xFFFF0000>「逆转现实与幻想的境界」！</color>',
+
+        ---请不要翻译这一句
+        '<scale 1.5></scale 18><color 0xFFFF0000>「Reality Reverse」！</color>',
     },
 }
 
@@ -1119,7 +1125,7 @@ lib.ending_name = { '只要你在身边', '来自另一侧的忠告', '再无回
 ---staff
 lib.staff = {
     { '东方xAliceInCradle 二次同人创作游戏', 'Thohou x AliceInCradle Fanmade Game' },
-    { '东方梦摇篮', 'Thohou Alice In Cradle' },
+    { '东方梦摇篮', 'Thohou Lodestar of Oriental Paradise' },
     { '2025年八月', 'August, 2025' },
     { '主程序', 'Program', '苍木羽Muki', '喜报：程序异常警告.png' },
     { '部分音乐', 'Music', '灵空天仪', '……' },

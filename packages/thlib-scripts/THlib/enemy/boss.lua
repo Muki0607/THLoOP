@@ -33,7 +33,7 @@ function boss:frame()
         end
     end
     --]]
-    ---THAIC Added
+    ---THLoOP Added
     if not IsValid(self) then return end
     --受击闪烁
     if self.dmgt then

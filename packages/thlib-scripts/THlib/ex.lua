@@ -442,7 +442,7 @@ end
 ---@param a number
 ---@return number
 function ex.GetMusicMeter(a)
-    ---THAIC Changed
+    ---THLoOP Changed
     ---估计是真没人用，没人发现这里有个ex漏写了
     --return a * ex.meterclock + meterstart
     return a * ex.meterclock + ex.meterstart

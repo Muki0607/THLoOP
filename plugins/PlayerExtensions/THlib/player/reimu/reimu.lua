@@ -1,4 +1,4 @@
----THAIC Arranged
+---THLoOP Arranged
 reimu_player = Class(player_class)
 --诱导特化型机体（博丽灵梦）
 --Arranged by Muki

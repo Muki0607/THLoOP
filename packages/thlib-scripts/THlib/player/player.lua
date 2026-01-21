@@ -169,7 +169,7 @@ function grazer:frame()
 end
 
 function grazer:render()
-    ---THAIC Added
+    ---THLoOP Added
     if player.name == 'Muki' or player.name == 'Nenyuki' then return end
     local s = Player_scale or 1
     object.render(self)

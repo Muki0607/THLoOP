@@ -1,4 +1,4 @@
-﻿---THAIC Arranged
+﻿---THLoOP Arranged
 menu = {}
 
 function menu:FlyIn(dir)
@@ -348,7 +348,7 @@ function replay_saver:init(stages, finish, exitCallback)
     self.state = 0
     self.state1Selected = 1
     self.state1Text = FetchReplaySlots()
-    ---THAIC Added
+    ---THLoOP Added
     ---为了让原菜单勉强兼容我们在这里只显示前16个的回放
     self.state1Text = aic.table.Slice(self.state1Text, 1, 16)
     self.state2CursorX = 0
@@ -562,7 +562,7 @@ end
 
 function replay_loader:Refresh()
     self.state1Text = FetchReplaySlots()
-    ---THAIC Added
+    ---THLoOP Added
     ---为了让原菜单勉强兼容我们在这里只显示前16个的回放
     self.state1Text = aic.table.Slice(self.state1Text, 1, 16)
 end

@@ -1,4 +1,4 @@
----THAIC Arranged
+---THLoOP Arranged
 LoadTexture('item', 'THlib/item/item.png')
 LoadImageGroup('item', 'item', 0, 0, 32, 32, 2, 5, 8, 8)
 LoadImageGroup('item_up', 'item', 64, 0, 32, 32, 2, 5)

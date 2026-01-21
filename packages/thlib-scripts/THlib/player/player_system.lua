@@ -1,4 +1,4 @@
---THAIC Arranged
+--THLoOP Arranged
 local player_lib = player_lib
 ---@class player.system
 ---@return player.system

@@ -1,4 +1,4 @@
----THAIC Arranged
+---THLoOP Arranged
 KEY = { NULL = 0x00 }
 
 KEY.LBUTTON = 0x01

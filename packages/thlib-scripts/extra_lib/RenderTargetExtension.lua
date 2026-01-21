@@ -1,4 +1,4 @@
----THAIC Arranged
+---THLoOP Arranged
 -- 用于简化 rendertarget 的渲染
 -- 请不要在未经修改情况下直接使用 Patch 节点导入该文件
 -- 发现异常可在交流群反馈

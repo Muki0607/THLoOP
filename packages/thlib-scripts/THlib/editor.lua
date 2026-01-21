@@ -384,7 +384,7 @@ end
 --编辑器bullet
 --！潜在的问题：多玩家适配
 
----THAIC Changed
+---THLoOP Changed
 _straight = Class(bullet)
 function _straight:init(imgclass, index, x, y, v, angle, aim, omiga, stay, destroyable, time, _495, accel, accangle, maxv, through, bound)
     self.x = x
@@ -593,7 +593,7 @@ end
 ----------------------------------------
 --声音
 
----THAIC Changed
+---THLoOP Changed
 ---改进过后的编辑器playmusic，附带bgm名
 ---@param name string @bgm名称
 ---@param ptime number @播放起始时间（秒）
@@ -633,7 +633,7 @@ end
 --游戏系统相关
 
 function _drop_item(itemclass, num, x, y)
-    ---THAIC Added
+    ---THLoOP Added
     if CheckEnhancer(7) then
         num = int(num * 1.25)
     end

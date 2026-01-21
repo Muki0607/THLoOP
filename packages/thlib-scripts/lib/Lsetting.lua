@@ -1,4 +1,4 @@
----THAIC Arranged
+---THLoOP Arranged
 default_setting = {
     username = 'User',
     locale = "zh_cn",

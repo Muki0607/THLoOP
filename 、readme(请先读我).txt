@@ -1,5 +1,5 @@
 ◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈
-○东方梦摇篮　～ Alice In Cradle. 
+○东方梦摇篮　～ Lodestar of Oriental Paradise. 
 
 　Readme
 
@@ -15,7 +15,7 @@
 
 
 　　非常感谢各位游玩
-　　「东方梦摇篮　～ Alice In Cradle」。
+　　「东方梦摇篮　～ Lodestar of Oriental Paradise」。
 
 　　这是一部在某个有些虚幻的世界中，一群来自另一个世界的角色
 　　与您展开的无比激烈的弹幕射击游戏。
@@ -28,7 +28,7 @@
 
 　从压缩包中完整拷贝文件即可。
 
-　要打开游戏，请双击THAIC.exe。
+　要打开游戏，请双击THLoOP.exe。
 
 
 ■３．常见问题
@@ -46,9 +46,9 @@
 
 　data中的AiC自定义库也可以随意使用或修改，但使用时请标明出处。
 
-　顺便一提，config.json中的application_instance_id是将"LuaSTG aex+ THAIC"转化为ASCII码，然后将前4个、中间6个、后7个分别连成一个数字，再将这3个数字分别转十六进制，然后连起来得到的（完全没有任何用的冷知识增加了）。
+　顺便一提，config.json中的application_instance_id是将"LuaSTG aex+ THLoOP"转化为ASCII码，然后将前4个、中间6个、后7个分别连成一个数字，再将这3个数字分别转十六进制，然后连起来得到的（完全没有任何用的冷知识增加了）。
 
-　如果遇到其他问题或者游戏报错，请将游戏日志（位于C:\Users\用户名\AppData\Roaming\东方时幻旅制作组\THAIC\engine.log）发给作者（联系方式见下）。
+　如果遇到其他问题或者游戏报错，请将游戏日志（位于C:\Users\用户名\AppData\Roaming\东方时幻旅制作组\THLoOP\engine.log）发给作者（联系方式见下）。
 
 
 ■４．卸载方式
@@ -133,8 +133,8 @@
 　3.增加了无敌时间提醒圈
 　0.12b
 　1.修复了一些Bug
-　2.增加了config.json，将日志文件的存储位置改至C:\Users\用户名\AppData\Roaming\东方时幻旅制作组\THAIC\
-　3.窗口标题更改为“东方梦摇篮　～ Alice In Cradle”
+　2.增加了config.json，将日志文件的存储位置改至C:\Users\用户名\AppData\Roaming\东方时幻旅制作组\THLoOP\
+　3.窗口标题更改为“东方梦摇篮　～ Lodestar of Oriental Paradise”
 　0.13a
 　1.修复了一些Bug
 　2.增加了对手柄输入的支持

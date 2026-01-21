@@ -84,7 +84,7 @@ end
 
 setting.last_mod = setting.mod
 if not start_game then
-	setting.mod = "Muki_AliceInCradle"--'launcher'
+	setting.mod = "THLoOP"--'launcher'
 	--setting.resx = 480
 	--setting.resy = 640
 	--setting.windowed = true

@@ -903,7 +903,7 @@ function infobar:frame()
         self.t = self.t - 1
     end
 end
----THAIC Changed
+---THLoOP Changed
 function infobar:render()
     local _ui = self.ui
     local b = self.system.boss

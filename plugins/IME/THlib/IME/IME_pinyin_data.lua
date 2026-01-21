@@ -1,5 +1,5 @@
 ---=================================================
----THAIC Chinese Pinyin Input Method Pinyin Data v1.00a by Muki
+---THLoOP Chinese Pinyin Input Method Pinyin Data v1.00a by Muki
 ---东方梦摇篮 汉语拼音输入法拼音数据 v1.00a by Muki
 ---=================================================
 ---来源：pypinyin 0.14.0

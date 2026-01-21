@@ -1,4 +1,4 @@
----THAIC Arranged
+---THLoOP Arranged
 if _debug.new_title then
     stage_init = stage.New('init', true, true)
     function stage_init:init()

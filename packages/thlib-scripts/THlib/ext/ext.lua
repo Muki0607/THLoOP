@@ -1,4 +1,4 @@
----THAIC Arranged
+---THLoOP Arranged
 ---=====================================
 ---stagegroup|replay|pausemenu system
 ---extra game loop

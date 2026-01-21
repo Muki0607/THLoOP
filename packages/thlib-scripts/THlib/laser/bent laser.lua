@@ -6,7 +6,7 @@
 ---res
 
 LoadTexture('laser_bent2', 'THlib/laser/laser5.png')
----THAIC Added
+---THLoOP Added
 LoadTexture('laser_bent3', 'THlib/laser/laser6.png')
 
 ----------------------------------------
@@ -157,7 +157,7 @@ laser_bent_renderFunc = {
             Render(self.img4, self.prex, self.prey, -3 * self.timer + 180, (8 + self.timer % 3) * 0.125 * self.node / 8)
         end
     end,
-    ---THAIC Added
+    ---THLoOP Added
     ['th19'] = function(self)
         self.data:Render('laser_bent3', '', Color(self._a * self.alpha, self._r, self._g, self._b), 0, 0, 256, 32)
         if self.timer < self._l * 4 and self.node then
@@ -175,7 +175,7 @@ laser_bent_renderFuncDeath = {
     [4] = function(self)
         self.data:Render('laser3', self._blend, Color(self._a * (1 - self.timer / 30), self._r, self._g, self._b), 0, self.index * 16 - 12, 256, 8)
     end,
-    ---THAIC Added
+    ---THLoOP Added
     ['th19'] = function(self)
         self.data:Render('laser_bent3', self._blend, Color(self._a * (1 - self.timer / 30), self._r, self._g, self._b), 0, 0, 256, 8)
     end,

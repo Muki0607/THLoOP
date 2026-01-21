@@ -1,5 +1,5 @@
 ---=====================================
----THAIC Pointdevice Mode v1.00a
+---THLoOP Pointdevice Mode v1.00a
 ---东方梦摇篮 完美无缺模式 v1.00a
 ---=====================================
 
@@ -51,7 +51,7 @@ if false then
             end
         end
         --]]
-        ---THAIC Added
+        ---THLoOP Added
         if not IsValid(self) then return end
         --受击闪烁
         if self.dmgt then

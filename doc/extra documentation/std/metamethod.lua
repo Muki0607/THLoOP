@@ -1,4 +1,4 @@
----THAIC Added
+---THLoOP Added
 ---Standard Lua Metamethod Hints by Muki
 
 ---本文档适用于Lua5.1（当前LuaSTG的版本），但同时也包含后续版本的元方法
