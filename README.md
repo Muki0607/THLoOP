@@ -3,6 +3,7 @@
 ## 简介
 
 这是一个基于[LuaSTG aex+ v0.8.21-beta](https://github.com/Legacy-LuaSTG-Engine/LuaSTG-Sub)开发的东方Project与AliceInCradle的二次创作同人游戏。
+它的全名是东方梦摇篮 ~ Lodestar of Oriental Paradise。
 就像东方Project的游戏一样，它也是一个弹幕STG（射击游戏）。 
 
 ## 下载
@@ -28,24 +29,26 @@
 ### 维护者状态
 
 梦摇篮的维护者目前只有一个，而且由于学业原因没有太多时间。
-如果你也想参与到梦摇篮的开发中，欢迎与我联系。
+如果你也想参与到梦摇篮的开发中，欢迎与他联系。
 
 * 苍木羽Muki
 
 联系方式：
 * 个人QQ：3088475120
-* 梦摇篮交流群： 724149199
+* 梦摇篮交流群（QQ）： 724149199
 * 邮箱： 3088475120@qq.com
 
 ## 主要贡献者
 
 * 苍木羽Muki（东方梦摇篮 开发者）
+* 某人（东方梦摇篮 英文本土化负责人）
 
 # ThoHou AliceInCradle(THLoOP)
 
 ## Introduce
 
 This is a fan-made game of Thohou Project and AliceInCradle, developed based on [LuaSTG aex+ v0.8.21-beta](https://github.com/Legacy-LuaSTG-Engine/LuaSTG-Sub).
+Its full name is Thohou Lodestar of Oriental Paradise.
 It is a Danmaku STG (shooting game) just like games of Thohou Project. 
 
 ## Download
@@ -72,17 +75,18 @@ This project is still in progress, and is planned to continue to add new content
 ### Maintainer Status
 
 There is only one maintainer ot THLoOP at present, and he has few time due to academic reason.
-If you also want to participate in the development of THLoOP, feel free to reach out to me.
+If you also want to participate in the development of THLoOP, feel free to reach out to him.
 
 * 苍木羽Muki
 
 Contact information:
 
 * QQ: 3088475120
-* THLoOP communiation group: 724149199
+* THLoOP communiation group(QQ): 724149199
 * E-mail: 3088475120@qq.com
 
 
 ## Major Contributors
 
-* 苍木羽Muki（developer of THLoOP）
+* 苍木羽Muki (developer of THLoOP)
+* Somebody (English localization Manager of THLoOP)
