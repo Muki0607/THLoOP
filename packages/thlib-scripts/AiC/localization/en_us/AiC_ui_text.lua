@@ -62,8 +62,7 @@ lib.music_room_text = {
 
             Though its origin is unknown,
             this melody is deeply ingrained in the heart of every LuaSTGer.
-            Let us continue to paint this wondrous world of fantasy
-            with the brush of Danmaku.
+            Let's continue to paint this wondrous world of fantasy with the brush of Danmaku.
         ]],
         [[
             Original: An-fillnote - Title
@@ -183,8 +182,8 @@ lib.music_room_text = {
             Noel Cornehl's Final Phase Theme.
 
             An intensely Gensokyo-flavored track.
-            Fight the final battle using the power of Gensokyo's borders
-            and hidden backing forces.
+            Fight the final battle using the fantasy power of border
+            and hidden power of backdoor.
             The true art of Danmaku lies in this ephemeral, dreamlike beauty.
             Isn't Gensokyo itself a cradle of fantasy?
         ]],
@@ -194,7 +193,7 @@ lib.music_room_text = {
             Noel Cornehl's Last Spellcard Theme.
 
             To Noel, the world she lives in is undoubtedly reality;
-            To us, her world is but a fantasy within a cradle.
+            To us, her world is nothing but a fantasy within a cradle.
             But do we truly have the right to define what is real?
             The answer to this, I believe, is already clear in your hearts.
             *The in-game version is abridged. Hold the Slow key for the full version.
@@ -210,7 +209,7 @@ lib.music_room_text = {
             "So, please hold your head high with pride, young lady."
         ]],
         [[
-            Original: An-fillnote - Witch's General Store
+            Original: An-fillnote - Witch's Shop
             Origin: Hinayua/Hashino Mizuha - 《AliceInCradle》
 
             Ending B Theme.
