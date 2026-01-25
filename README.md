@@ -4,7 +4,7 @@
 
 这是一个基于[LuaSTG aex+ v0.8.21-beta](https://github.com/Legacy-LuaSTG-Engine/LuaSTG-Sub)开发的东方Project与AliceInCradle的二次创作同人游戏。
 它的全名是东方梦摇篮 ~ Lodestar of Oriental Paradise。
-就像东方Project的游戏一样，它也是一个弹幕STG（射击游戏）。 
+就像东方Project的游戏一样，它也是一个弹幕射击游戏。 
 
 ## 下载
 
