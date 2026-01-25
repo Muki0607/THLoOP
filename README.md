@@ -49,7 +49,7 @@
 
 This is a fan-made game of Thohou Project and AliceInCradle, developed based on [LuaSTG aex+ v0.8.21-beta](https://github.com/Legacy-LuaSTG-Engine/LuaSTG-Sub).
 Its full name is Thohou Lodestar of Oriental Paradise.
-It is a Danmaku STG (shooting game) just like games of Thohou Project. 
+It is a Danmaku STG (Bullet Hell) just like games of Thohou Project. 
 
 ## Download
 
