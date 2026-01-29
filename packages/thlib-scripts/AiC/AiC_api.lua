@@ -57,6 +57,8 @@ makekeytable = aic.table.MakeKeyTable
 
 color = aic.ui.color
 DrawText = aic.ui.DrawText
+DrawGradientText = aic.ui.DrawGradientText
+DrawTextWithShader = aic.ui.DrawTextWithShader
 AddSPPoint = aic.ui.AddSPPoint
 AddSPPoint2 = aic.ui.AddSPPoint2
 CheckSPPoint = aic.ui.CheckSPPoint
@@ -73,20 +75,9 @@ appr_equal = aic.math.appr_equal
 PosTrans = aic.math.PosTrans
 IsIn = aic.math.IsIn
 
---东方梦摇篮Python扩展库
-
-BadArgument = "bad argument"
-InvalidArgument = "invalid argument"
-ArgumentError = ".+ argument"
-InvalidObj = "invalid.+object"
-CompileError = "falied to compile"
-StackOverflow = "stack overflow"
-NilValueError = "nil value"
-LoadFailed = "load .+ failed"
-PermissionDenied = "Permission denied"
-AnyException = ".*"
-TryExcept = aic.py.TryExcept
-raise = aic.py.Raise
-pass = aic.py.Pass
-range = aic.py.Range
+--东方梦摇篮
+Exception = aic.exception.Exception
+TryExcept = aic.exception.TryExcept
+raise = aic.exception.Raise
+pass = aic.exception.Pass
 

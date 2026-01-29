@@ -1,5 +1,5 @@
 ---THLoOP Added
----千幻 念雪 Chimabo Nenyuki v1.11aic by Muki
+---千幻 念雪 Sengen Nenyuki v1.11aic by Muki
 ---自设自机
 ---改自魔理沙机体
 ---广范围/自动追踪型
@@ -775,4 +775,4 @@ function nenyuki_findtarget(self, group)
     end
 end
     
-AddPlayerToPlayerList('Chimabo Nenyuki', 'nenyuki_player', 'Nenyuki')
+AddPlayerToPlayerList('Sengen Nenyuki', 'nenyuki_player', 'Nenyuki')

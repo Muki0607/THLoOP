@@ -1,3 +1,4 @@
+---THLoOP Arranged
 local classCreater
 classCreater = function(instance, class, ...)
     local ctor = rawget(class, "init")
@@ -12,8 +13,9 @@ classCreater = function(instance, class, ...)
     end
 end
 
---! @brief 声明一个类
---! @param base 基类
+---声明一个类
+---@class plus.Class
+---@param base? plus.Class 基类
 function plus.Class(base)
     local class = { _mbc = {}, super = base }
 
@@ -43,13 +45,16 @@ function plus.Class(base)
     return class
 end
 
---! @brief 模拟TryCatch块
---! @param t 条件上下文
---!
---! 执行一个try..catch..finally块
---! 当try语句中出现错误时，将把错误信息发送到catch语句块，否则返回try函数结果
---! 当catch语句块被执行时，若发生错误将重新抛出，否则返回catch函数结果
---! finally块总是会保证在try或者catch后被执行
+---模拟TryCatch块
+---
+---执行一个try..catch..finally块
+---
+---当try语句中出现错误时，将把错误信息发送到catch语句块，否则返回try函数结果
+---
+---当catch语句块被执行时，若发生错误将重新抛出，否则返回catch函数结果
+---
+---finally块总是会保证在try或者catch后被执行
+---@param t table 条件上下文
 function plus.TryCatch(t)
     assert(t.try ~= nil, "invalid argument.")
 
@@ -125,10 +130,10 @@ local BIT_NUMBERS = {
     1
 }
 
---! @brief 对两个二进制数进行按位与
---! @param a 第一个参数，十进制表示
---! @param b 第二个参数，十进制表示
---! @return 返回布尔值，真则这两个二进制数按位与为真
+---对两个二进制数进行按位与
+---@param a number 第一个参数，十进制表示
+---@param b number 第二个参数，十进制表示
+---@return boolean 返回布尔值，真则这两个二进制数按位与为真
 function plus.BAND(a, b)
     assert(a >= 0 and a < 4294967296 and b >= 0 and b < 4294967296)
 

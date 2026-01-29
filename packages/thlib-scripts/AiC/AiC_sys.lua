@@ -230,7 +230,7 @@ function lib.SafeSave(func)
             end,
             [""] = function()
                 if not _debug.exception_handler_disabled then
-                    Log(4, aic.py.last_exception)
+                    Log(4, aic.exception.last_exception)
                     lstg.MsgBoxError(l10n.exception.permission_denied[2], l10n.exception.title, true)
                 else
                     raise()

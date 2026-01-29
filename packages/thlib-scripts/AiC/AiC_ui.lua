@@ -76,16 +76,12 @@ lib.RenderTargetList = {}
 
 --- 创建渲染目标并记录，重复创建时自动中止 
 ---@param rtname string
----@param width number
----@param height number
----@overload fun(rtname:string)
----@overload fun(rtname:string, width:number, height:number)
-function lib.CreateRT(rtname, width, height, depth_buffer)
+function lib.CreateRT(rtname)
     for _, v in ipairs(lib.RenderTargetList) do
         if v == rtname then return end
     end
     table.insert(lib.RenderTargetList, rtname)
-    CreateRenderTarget(rtname, width, height, depth_buffer)
+    CreateRenderTarget(rtname)
 end
 
 function lib.RenderRT(rtname, x, y, rot, hscale, vscale)
@@ -214,113 +210,385 @@ function lib.DrawTextEX(font, text, x, y, s, co1, co2, ...)
         s, co1, fmt)  
 end
 
----设置DrawTextWithShader所需调用shader的参数列表和混合模式
----@param paramlist table 参数列表
----@param blend string 混合模式
-function lib.SetPostEffectParam(rtname1, shadername1, paramlist1, blend1, rtname2, shadername2, paramlist2, blend2)
-    lib.shader_paramlist1 = paramlist1
-    lib.shader_rtname1 = rtname1
-    lib.shader_name1 = shadername1
-    lib.shader_blend1 = blend1 or ''
-    lib.shader_paramlist2 = paramlist2
-    lib.shader_rtname2 = rtname2
-    lib.shader_name2 = shadername2
-    lib.shader_blend2 = blend2 or ''
-end
-
----使用通用文字渲染并使用指定shader
----
----'paragraph'等效于同时取'left'、'top'和'wordbreak'
----
----'centerpoint' 等效于同时取'center'、'vcenter'和'noclip'
+---通用文字渲染，不带描边
 ---@param font string @字体
 ---@param text string @渲染文字
 ---@param x number @x坐标
 ---@param y number @y坐标
 ---@param s number @缩放比例
----@param co1 lstg.Color @文字颜色
----@param co2 lstg.Color @描边颜色
+---@param co lstg.Color @文字颜色
 ---@vararg align @对齐方式
-function lib.DrawTextWithShader(font, text, x, y, s, co1, co2, ...)
-    lib.CreateRT(lib.shader_rtname1)
-    if (lib.shader_rtname2) then lib.CreateRT(lib.shader_rtname2) end
-    --PushRenderTarget(rtname)
-    --RenderClearViewMode(Color(0, 0, 0, 0))
+function lib.DrawTextWithoutStroke(font, text, x, y, s, co, ...)
     font = font or "main_font_zh_cn"
     text = tostring(text)
     s = s or 1
-    co1 = co1 or Color(255, 255, 255, 255)
-    local alpha = co1:ARGB()
-    co2 = co2 or Color(alpha, 0, 0, 0)
+    co = co or Color(255, 255, 255, 255)
     local _x, _y
     if CheckRes('fnt', font) then
-        SetFontState(font, '', co2)
+        RenderText(font, text, x, y, s, ...)
+    else
+        RenderTTF2(font, text, x, x, y, y, s, co, ...)
+    end
+end
+
+---单独渲染描边
+---@param font string @字体
+---@param text string @渲染文字
+---@param x number @x坐标
+---@param y number @y坐标
+---@param s number @缩放比例
+---@param co lstg.Color @描边颜色
+---@vararg align @对齐方式
+function lib.DrawStroke(font, text, x, y, s, co, ...)
+    font = font or "main_font_zh_cn"
+    text = tostring(text)
+    s = s or 1
+    co = co or Color(255, 0, 0, 0)
+    local _x, _y
+    if CheckRes('fnt', font) then
+        SetFontState(font, '', co)
         for i = 1, 8 do
             _x = x + sqrt(2) * cos(i * 45)
             _y = y + sqrt(2) * sin(i * 45)
             RenderText(font, text, _x, _y, s, ...)
         end
-        SetFontState(font, '', co1)
-        RenderText(font, text, x, y, s, ...)
     else
         for i = 1, 8 do
             _x = x + sqrt(2) * cos(i * 45)
             _y = y + sqrt(2) * sin(i * 45)
-            RenderTTF2(font, text, _x, _x, _y, _y, s, co2, ...)
+            RenderTTF2(font, text, _x, _x, _y, _y, s, co, ...)
         end
-        RenderTTF2(font, text, x, x, y, y, s, co1, ...)
     end
-    --PopRenderTarget()
 end
 
-function DrawGradientText(rtname, font, text, x, y, s, co, alpha)
-    lib.DrawTextToRT(rtname, font, text, x, y, s, Color(alpha, 255, 255, 255))
-    local len = aic.string()
+---渐变色文字渲染用到的RenderTarget
+lib.CreateRT('rt:gradient_text')
+
+---渐变色文字渲染（默认带描边，只能在UI系下使用，对齐方式固定为centerpoint）
+---@param font string @字体
+---@param text string @渲染文字
+---@param x number @x坐标（屏幕坐标）
+---@param y number @y坐标（屏幕坐标）
+---@param s number @缩放比例
+---@param colors table<lstg.Color, lstg.Color, lstg.Color, lstg.Color> @四个顶点的颜色
+---@param charWidth number @单个ASCII字符宽度
+---@param charHeight number @单个字符高度
+---@param lineSpacing number @行间距
+---@param nostroke boolean @是否不带描边
+function lib.DrawGradientText(font, text, x, y, s, colors, charWidth, charHeight, lineSpacing, nostroke)
+    charWidth = charWidth or 10
+    charHeight = charHeight or 18
+    lineSpacing = lineSpacing or 4
+    
+    --计算实际尺寸（考虑缩放）
+    local actualCharWidth = charWidth * s
+    local actualCharHeight = charHeight * s
+    local actualLineSpacing = lineSpacing * s
+    
+    --拆分文本为行
+    local lines = {}
+    for line in text:gmatch("[^\n]+") do
+        table.insert(lines, line)
+    end
+    
+    --如果没有有效行，插入空行
+    if #lines == 0 then
+        table.insert(lines, "")
+    end
+    
+    --计算最大行宽度
+    local maxLineLength = 0
+    for _, line in ipairs(lines) do
+        local lineLen = aic.string.GetLength(line)
+        if lineLen > maxLineLength then
+            maxLineLength = lineLen
+        end
+    end
+    
+    --计算文本总宽度和高度（像素）
+    local textWidth = maxLineLength * actualCharWidth
+    local textHeight = #lines * actualCharHeight + (#lines - 1) * actualLineSpacing
+    
+    --清空RenderTarget
+    PushRenderTarget('rt:gradient_text')
+    RenderClear(Color(0, 0, 0, 0))
+    
+    --计算RenderTarget中心位置
+    local rtCenterX = screen.width / 2
+    local rtCenterY = screen.height / 2
+    
+    lib.DrawTextWithoutStroke(font, text, rtCenterX, rtCenterY, s, 
+        Color(255, 255, 255, 255), 
+        "centerpoint")
+
+    PopRenderTarget()
+    
+    --计算文本在屏幕上的实际渲染位置
+    --由于是centerpoint对齐，(x,y)是文本中心点
+    local x1, y1 = x - textWidth / 2, y + textHeight / 2
+    local x2, y2 = x + textWidth / 2, y + textHeight / 2
+    local x3, y3 = x + textWidth / 2, y - textHeight / 2
+    local x4, y4 = x - textWidth / 2, y - textHeight / 2
+
+    --准备顶点颜色
+    local color1 = colors[1] or Color(255, 255, 255, 255)
+    local color2 = colors[2] or Color(255, 255, 255, 255)
+    local color3 = colors[3] or Color(255, 255, 255, 255)
+    local color4 = colors[4] or Color(255, 255, 255, 255)
+
+    --计算顶点
+    local v1 = { x1, y1, 0.5, rtCenterX - textWidth / 2, rtCenterY + textHeight / 2, color1 }
+    local v2 = { x2, y2, 0.5, rtCenterX + textWidth / 2, rtCenterY + textHeight / 2, color2 }
+    local v3 = { x3, y3, 0.5, rtCenterX + textWidth / 2, rtCenterY - textHeight / 2, color3 }
+    local v4 = { x4, y4, 0.5, rtCenterX - textWidth / 2, rtCenterY - textHeight / 2, color4 }
+    --上面算出来的是全是ui系坐标，要转一遍坐标系
+    v1[4], v1[5] = aic.math.PosTrans(v1[4], v1[5], 'ui', 'uv')
+    v2[4], v2[5] = aic.math.PosTrans(v2[4], v2[5], 'ui', 'uv')
+    v3[4], v3[5] = aic.math.PosTrans(v3[4], v3[5], 'ui', 'uv')
+    v4[4], v4[5] = aic.math.PosTrans(v4[4], v4[5], 'ui', 'uv')
+
+    if not nostroke then
+        lib.DrawStroke(font, text, x, y, s, 
+            Color(255, 0, 0, 0), 
+            "centerpoint")
+    end
+    --使用RenderTexture渲染渐变色文本
+    RenderTexture('rt:gradient_text', '', v1, v2, v3, v4)
 end
 
---为什么lua不能像py那样指定参数呢（恼
----渲染描边
----非常谔谔的写法，应当在SetImageState/SetFontState前调用
----@param func function @渲染函数
----@param co lstg.Color @描边颜色
----@vararg any @剩余参数
-function lib.RenderStroke(func, co, ...)
-    co = co or color(COLOR_BLACK)
-    local arg = { ... }
-    local xpos = { [Render] = { 2 }, [RenderRect] = { 2, 3 }, [Render4V] = { 2, 5, 8, 11 },
-        [RenderText] = { 3 }, [RenderTTF] = { 3, 4 }, [RenderTTF2] = { 3, 4 } }
-    local ypos = { [Render] = { 3 }, [RenderRect] = { 4, 5 }, [Render4V] = { 3, 6, 9, 12 },
-        [RenderText] = { 4 }, [RenderTTF] = { 5, 6 }, [RenderTTF2] = { 5, 6 } }
-    local setstate = {
-        [Render] = function()
-            SetImageState(arg[1], '', co)
-        end,
-        [RenderRect] = function()
-            SetImageState(arg[1], '', co)
-        end,
-        [Render4V] = function()
-            SetImageState(arg[1], '', co)
-        end,
-        [RenderText] = function()
-            SetFontState(arg[1], '', co)
-        end,
-        [RenderTTF] = function()
-            arg[7] = co
-        end,
-        [RenderTTF2] = function()
-            arg[7] = co
-        end
-    }
-    setstate[func]()
-    for i = 0, 8 do
-        for j = 1, #xpos[func] do
-            arg[xpos[func][j]] = arg[xpos[func][j]] + sqrt(2) * cos(i * 45)
-        end
-        for j = 1, #ypos[func] do
-            arg[ypos[func][j]] = arg[ypos[func][j]] + sqrt(2) * sin(i * 45)
-        end
-        func(unpack(arg))
+---渐变色文字描边渲染用到的RenderTarget
+lib.CreateRT('rt:gradient_stroke')
+
+---渐变色文字描边渲染（只能在UI系下使用，对齐方式固定为centerpoint）
+---@param font string @字体
+---@param text string @渲染文字
+---@param x number @x坐标（屏幕坐标）
+---@param y number @y坐标（屏幕坐标）
+---@param s number @缩放比例
+---@param colors table<lstg.Color, lstg.Color, lstg.Color, lstg.Color> @四个顶点的颜色
+---@param charWidth number @单个ASCII字符宽度
+---@param charHeight number @单个字符高度
+---@param lineSpacing number @行间距
+function lib.DrawGradientStroke(font, text, x, y, s, colors, charWidth, charHeight, lineSpacing)
+    charWidth = charWidth or 10
+    charHeight = charHeight or 18
+    lineSpacing = lineSpacing or 4
+    
+    --计算实际尺寸（考虑缩放）
+    local actualCharWidth = charWidth * s
+    local actualCharHeight = charHeight * s
+    local actualLineSpacing = lineSpacing * s
+    
+    --拆分文本为行
+    local lines = {}
+    for line in text:gmatch("[^\n]+") do
+        table.insert(lines, line)
     end
+    
+    --如果没有有效行，插入空行
+    if #lines == 0 then
+        table.insert(lines, "")
+    end
+    
+    --计算最大行宽度
+    local maxLineLength = 0
+    for _, line in ipairs(lines) do
+        local lineLen = aic.string.GetLength(line)
+        if lineLen > maxLineLength then
+            maxLineLength = lineLen
+        end
+    end
+    
+    --计算文本总宽度和高度（像素）
+    local textWidth = maxLineLength * actualCharWidth
+    local textHeight = #lines * actualCharHeight + (#lines - 1) * actualLineSpacing
+    
+    --清空RenderTarget
+    PushRenderTarget('rt:gradient_stroke')
+    RenderClear(Color(0, 0, 0, 0))
+    
+    --计算在RenderTarget中心位置
+    local rtCenterX = screen.width / 2
+    local rtCenterY = screen.height / 2
+    
+    lib.DrawStroke(font, text, rtCenterX, rtCenterY, s, 
+        Color(255, 255, 255, 255), 
+        "centerpoint")
+    
+    PopRenderTarget()
+    
+    --计算文本在屏幕上的实际渲染位置
+    --由于是centerpoint对齐，(x,y)是文本中心点
+    local x1, y1 = x - textWidth / 2, y + textHeight / 2
+    local x2, y2 = x + textWidth / 2, y + textHeight / 2
+    local x3, y3 = x + textWidth / 2, y - textHeight / 2
+    local x4, y4 = x - textWidth / 2, y - textHeight / 2
+
+    --准备顶点颜色
+    local color1 = colors[1] or Color(255, 255, 255, 255)
+    local color2 = colors[2] or Color(255, 255, 255, 255)
+    local color3 = colors[3] or Color(255, 255, 255, 255)
+    local color4 = colors[4] or Color(255, 255, 255, 255)
+
+    --计算顶点
+    local v1 = { x1, y1, 0.5, rtCenterX - textWidth / 2, rtCenterY + textHeight / 2, color1 }
+    local v2 = { x2, y2, 0.5, rtCenterX + textWidth / 2, rtCenterY + textHeight / 2, color2 }
+    local v3 = { x3, y3, 0.5, rtCenterX + textWidth / 2, rtCenterY - textHeight / 2, color3 }
+    local v4 = { x4, y4, 0.5, rtCenterX - textWidth / 2, rtCenterY - textHeight / 2, color4 }
+    --上面算出来的是全是ui系坐标，要转一遍坐标系
+    v1[4], v1[5] = aic.math.PosTrans(v1[4], v1[5], 'ui', 'uv')
+    v2[4], v2[5] = aic.math.PosTrans(v2[4], v2[5], 'ui', 'uv')
+    v3[4], v3[5] = aic.math.PosTrans(v3[4], v3[5], 'ui', 'uv')
+    v4[4], v4[5] = aic.math.PosTrans(v4[4], v4[5], 'ui', 'uv')
+
+    RenderTexture('rt:gradient_text', '', v1, v2, v3, v4)
+end
+
+---设置DrawTextWithShader所需调用shader的参数列表和混合模式
+---@param shadername1 string @为文本调用shader的名称
+---@param paramlist1 table @为文本调用shader的参数列表
+---@param blend1 string @为文本调用shader的混合模式
+---@param shadername2 string @为描边调用shader的名称
+---@param paramlist2 table @为描边调用shader的参数列表
+---@param blend2 string @为描边调用shader的混合模式
+---@overload fun(shadername:string, paramlist:table, blend:string)
+function lib.SetPostEffectParam(shadername1, paramlist1, blend1, shadername2, paramlist2, blend2)
+    lib.shader_name1 = shadername1
+    lib.shader_paramlist1 = paramlist1
+    lib.shader_blend1 = blend1 or ''
+    lib.shader_name2 = shadername2
+    lib.shader_paramlist2 = paramlist2
+    lib.shader_blend2 = blend2 or ''
+end
+
+---shader文字渲染和描边渲染用到的RenderTarget
+lib.CreateRT('rt:shader_text1')
+lib.CreateRT('rt:shader_stroke1')
+lib.CreateRT('rt:shader_text2')
+lib.CreateRT('rt:shader_stroke2')
+
+---使用shader的文字渲染（默认带描边，只能在UI系下使用，对齐方式固定为centerpoint）
+---@param font string @字体
+---@param text string @渲染文字
+---@param x number @x坐标（屏幕坐标）
+---@param y number @y坐标（屏幕坐标）
+---@param s number @缩放比例
+---@param co lstg.Color @四个顶点的颜色
+---@param charWidth number @单个ASCII字符宽度
+---@param charHeight number @单个字符高度
+---@param lineSpacing number @行间距
+---@param nostroke boolean @是否不带描边
+function lib.DrawTextWithShader(font, text, x, y, s, co, charWidth, charHeight, lineSpacing, nostroke)
+    charWidth = charWidth or 10
+    charHeight = charHeight or 18
+    lineSpacing = lineSpacing or 4
+    
+    --计算实际尺寸（考虑缩放）
+    local actualCharWidth = charWidth * s
+    local actualCharHeight = charHeight * s
+    local actualLineSpacing = lineSpacing * s
+    
+    --拆分文本为行
+    local lines = {}
+    for line in text:gmatch("[^\n]+") do
+        table.insert(lines, line)
+    end
+    
+    --如果没有有效行，插入空行
+    if #lines == 0 then
+        table.insert(lines, "")
+    end
+    
+    --计算最大行宽度
+    local maxLineLength = 0
+    for _, line in ipairs(lines) do
+        local lineLen = aic.string.GetLength(line)
+        if lineLen > maxLineLength then
+            maxLineLength = lineLen
+        end
+    end
+    
+    --计算文本总宽度和高度
+    local textWidth = maxLineLength * actualCharWidth
+    local textHeight = #lines * actualCharHeight + (#lines - 1) * actualLineSpacing
+
+    --RenderTarget中心位置
+    local rtCenterX = screen.width / 2
+    local rtCenterY = screen.height / 2
+
+    --渲染描边
+    if not nostroke then
+        if (lib.shader_name2) then
+            PushRenderTarget('rt:shader_stroke1')
+            RenderClear(Color(0, 0, 0, 0))
+            lib.DrawStroke(font, text, rtCenterX, rtCenterY, s, 
+                Color(255, 0, 0, 0), 
+                "centerpoint")
+            PopRenderTarget()
+        else
+            lib.DrawStroke(font, text, x, y, s, 
+                Color(255, 0, 0, 0), 
+                "centerpoint")
+        end
+    end
+
+    --渲染文本
+    PushRenderTarget('rt:shader_text1')
+    RenderClear(Color(0, 0, 0, 0))
+    lib.DrawTextWithoutStroke(font, text, rtCenterX, rtCenterY, s, 
+        Color(255, 255, 255, 255), 
+        "centerpoint")
+    PopRenderTarget()
+
+    --将使用shader渲染的描边和文本再次捕获
+    if not nostroke then
+        if (lib.shader_name2) then
+            PushRenderTarget('rt:shader_stroke2')
+            RenderClear(Color(0, 0, 0, 0))
+            PostEffect(
+                lib.shader_name2,
+                'rt:shader_stroke1',
+                6,
+                lib.shader_blend2,
+                lib.shader_paramlist2
+            )
+            PopRenderTarget()
+        end
+    end
+
+    PushRenderTarget('rt:shader_text2')
+    RenderClear(Color(0, 0, 0, 0))
+    PostEffect(
+        lib.shader_name1,
+        'rt:shader_text1',
+        6,
+        lib.shader_blend1,
+        lib.shader_paramlist1
+    )
+    PopRenderTarget()
+    
+    --计算文本在屏幕上的实际渲染位置
+    --由于是centerpoint对齐，(x,y)是文本渲染区域的中心点
+    local x1, y1 = x - textWidth / 2, y + textHeight / 2
+    local x2, y2 = x + textWidth / 2, y + textHeight / 2
+    local x3, y3 = x + textWidth / 2, y - textHeight / 2
+    local x4, y4 = x - textWidth / 2, y - textHeight / 2
+
+    --计算顶点
+    local v1 = { x1, y1, 0.5, rtCenterX - textWidth / 2, rtCenterY + textHeight / 2, co }
+    local v2 = { x2, y2, 0.5, rtCenterX + textWidth / 2, rtCenterY + textHeight / 2, co }
+    local v3 = { x3, y3, 0.5, rtCenterX + textWidth / 2, rtCenterY - textHeight / 2, co }
+    local v4 = { x4, y4, 0.5, rtCenterX - textWidth / 2, rtCenterY - textHeight / 2, co }
+    --上面算出来的是全是ui系坐标，要转一遍坐标系
+    v1[4], v1[5] = aic.math.PosTrans(v1[4], v1[5], 'ui', 'uv')
+    v2[4], v2[5] = aic.math.PosTrans(v2[4], v2[5], 'ui', 'uv')
+    v3[4], v3[5] = aic.math.PosTrans(v3[4], v3[5], 'ui', 'uv')
+    v4[4], v4[5] = aic.math.PosTrans(v4[4], v4[5], 'ui', 'uv')
+
+    if not nostroke then
+        RenderTexture('rt:shader_stroke2', '', v1, v2, v3, v4)
+    end
+    RenderTexture('rt:shader_text2', '', v1, v2, v3, v4)
 end
 
 ---渲染椭圆环

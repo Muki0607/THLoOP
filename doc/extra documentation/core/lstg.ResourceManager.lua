@@ -11,7 +11,7 @@
 --------------------------------------------------------------------------------
 --- 纹理和渲染目标
 
---- 设置纹理混合前透明度状态，state为true时纹理将变为白底
+--- 设置纹理预乘alpha，state为true时纹理将变为白底
 ---@param texture_name string
 ---@param state boolean
 function lstg.SetTexturePreMulAlphaState(texture_name, state)

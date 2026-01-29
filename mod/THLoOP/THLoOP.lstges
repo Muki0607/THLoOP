@@ -3,7 +3,7 @@
 1,{"$type":".EditorVersion, LuaSTGEditorSharp","Attributes":[{"attrCap":"Editor version","attrInput":"0.0.7.7","EditWindow":""}],"AttributeCount":1}
 1,{"$type":".General.Comment, LuaSTGEditorSharp","Attributes":[{"attrCap":"Comment","attrInput":"这里是梦摇篮的工程","EditWindow":""},{"attrCap":"Comment on child","attrInput":"true","EditWindow":"bool"}],"AttributeCount":2}
 1,{"$type":".General.Comment, LuaSTGEditorSharp","Attributes":[{"attrCap":"Comment","attrInput":"使用了一些aic库中的代码，请自行查询data","EditWindow":""},{"attrCap":"Comment on child","attrInput":"true","EditWindow":"bool"}],"AttributeCount":2}
-1,{"$type":".General.Folder, LuaSTGEditorSharp","Attributes":[{"attrCap":"Name","attrInput":"Resources","EditWindow":""}],"AttributeCount":1,"IsExpanded":false,"IsSelected":true}
+1,{"$type":".General.Folder, LuaSTGEditorSharp","Attributes":[{"attrCap":"Name","attrInput":"Resources","EditWindow":""}],"AttributeCount":1,"IsExpanded":false}
 2,{"$type":".General.Folder, LuaSTGEditorSharp","Attributes":[{"attrCap":"Name","attrInput":"img","EditWindow":""}],"AttributeCount":1,"IsExpanded":false}
 3,{"$type":".General.Folder, LuaSTGEditorSharp","Attributes":[{"attrCap":"Name","attrInput":"face","EditWindow":""}],"AttributeCount":1,"IsExpanded":false}
 4,{"$type":".General.Folder, LuaSTGEditorSharp","Attributes":[{"attrCap":"Name","attrInput":"Alice","EditWindow":""}],"AttributeCount":1,"IsExpanded":false}
@@ -7009,6 +7009,7 @@
 3,{"$type":".Stage.Stage, ","Attributes":[{"attrCap":"Name","attrInput":"THLoOP","EditWindow":""},{"attrCap":"Start life (practice)","attrInput":"7","EditWindow":""},{"attrCap":"Start power (practice)","attrInput":"400","EditWindow":""},{"attrCap":"Start faith (practice)","attrInput":"50000","EditWindow":""},{"attrCap":"Start bomb (practice)","attrInput":"3","EditWindow":""},{"attrCap":"Allow practice","attrInput":"true","EditWindow":"bool"}],"AttributeCount":6}
 4,{"$type":".Task.TaskNode, ","Attributes":[]}
 5,{"$type":".General.Folder, LuaSTGEditorSharp","Attributes":[{"attrCap":"Name","attrInput":"Initialize","EditWindow":""}],"AttributeCount":1}
+6,{"$type":".General.Code, LuaSTGEditorSharp","Attributes":[{"attrCap":"Code","attrInput":"Terminal = New(aic.debug.Terminal, nil, nil, true)","EditWindow":"code"}],"AttributeCount":1,"IsSelected":true}
 6,{"$type":".Object.CreateObject, ","Attributes":[{"attrCap":"Name","attrInput":"\"Muki_AiC_test1\"","EditWindow":"objectDef"},{"attrCap":"Position","attrInput":"0,0","EditWindow":"position"},{"attrCap":"Parameters","attrInput":"","EditWindow":"objectParam"}],"AttributeCount":3,"IsBanned":true}
 6,{"$type":".Object.CreateObject, ","Attributes":[{"attrCap":"Name","attrInput":"\"Muki_AiC_test2\"","EditWindow":"objectDef"},{"attrCap":"Position","attrInput":"0,0","EditWindow":"position"},{"attrCap":"Parameters","attrInput":"","EditWindow":"objectParam"}],"AttributeCount":3,"IsBanned":true}
 6,{"$type":".Stage.StageBG, ","Attributes":[{"attrCap":"Background","attrInput":"magic_forest_fast_background","EditWindow":"BG"}],"AttributeCount":1}

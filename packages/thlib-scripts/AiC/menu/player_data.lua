@@ -202,24 +202,19 @@ function lib.player_data:render()
         local d = 25
         local player = { l10n.general.character_names.reimu, l10n.general.character_names.marisa, l10n.general.character_names.sakuya, l10n.general.character_names.muki, l10n.general.character_names.nenyuki }
         local player_co = { { 255, 136, 170 }, { 221, 221, 85 }, { 85, 204, 255 }, { 76, 231, 235 }, { 165, 164, 249 } }
-        --咲字渲不出来
-        if self.posX == 3 and (setting.locale == 'zh_cn' or setting.locale == 'zh_tc') then
-            DrawText('sc_name', "咲", x + 20, y + 198, 1.3,
-                Color(self.alpha, unpack(player_co[self.posX])), nil, 'center')
-        end
         DrawText('main_font_zh_cn', player[self.posX], x, y + 195, 1.25,
             Color(self.alpha, unpack(player_co[self.posX])), nil, 'center')
-        DrawText('main_font_zh_cn', '<', x - d * 2.25 - d / 5 * sin(3 * self.timer),
+        DrawText('main_font_zh_cn', '<', x - d * 3.25 - d / 5 * sin(3 * self.timer),
             y + 195, 1.25, color(COLOR_WHITE, self.alpha), nil, 'left')
-        DrawText('main_font_zh_cn', '>', x + d * 2.25 + d / 5 * sin(3 * self.timer),
+        DrawText('main_font_zh_cn', '>', x + d * 3.25 + d / 5 * sin(3 * self.timer),
             y + 195, 1.25, color(COLOR_WHITE, self.alpha), nil, 'right')
         
         local diff = { "EASY", "NORMAL", "HARD", "LUNATIC", "EXTRA" }
         DrawText('main_font_zh_cn', diff[self.posY], x, y + 160, 1.25,
             color(COLOR_WHITE, self.alpha), nil, 'center')
-        DrawText('main_font_zh_cn', '︿', x - 7, y + 150 + d / 2.5 + d / 7 * sin(3 * self.timer),
+        DrawText('main_font_zh_cn', '︿', x - 7, y + 150 + d / 2.25 + d / 7 * sin(3 * self.timer),
             1, color(COLOR_WHITE, self.alpha), nil, 'bottom')
-        DrawText('main_font_zh_cn', '﹀', x - 7, y + 150 - d / 2.5 - d / 7 * sin(3 * self.timer),
+        DrawText('main_font_zh_cn', '﹀', x - 7, y + 150 - d / 2.25 - d / 7 * sin(3 * self.timer),
             1, color(COLOR_WHITE, self.alpha), nil, 'top')
         
         for k, v in ipairs({ l10n.ui.player_data.total_play_times, l10n.ui.player_data.play_time, l10n.ui.player_data.finish_times }) do

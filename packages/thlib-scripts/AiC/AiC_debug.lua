@@ -1,16 +1,15 @@
 ---=====================================
 ---THLoOP Debug v1.00a
----东方梦摇篮Debug v1.00a
+---东方梦摇篮Debug v1.01a
 ---=====================================
 
 ---版本更新记录
 ---v1.00a
 ---初始版本
 
----@class aic.res @东方梦摇篮Debug
+---@class aic.debug @东方梦摇篮Debug
 aic.debug = {}
 local lib = aic.debug
-
 
 --有一种暴力的美（
 ---解析环境或表或特定变量的所有信息
@@ -29,7 +28,6 @@ local lib = aic.debug
 function lib.GetAllInfo(env, unpack, maxlevel, Cfilter, classfilter, string, number, boolean, other, tablename, level)
     --递归调用层级
     level = level or 0
-    --Print(level)
     --最大递归层数（其实基本上递归到5层就是极限了）
     maxlevel = maxlevel or 10
     --防止栈溢出
@@ -44,10 +42,9 @@ function lib.GetAllInfo(env, unpack, maxlevel, Cfilter, classfilter, string, num
     if other == nil then other = true end
     --要获取的表或环境
     env = env or getfenv()
-    --解包环境时不能解包表
-    if env == getfenv() or env == _G then unpack = false end
     --解析单个变量时将其临时包装为表
-    if type(env) ~= 'table' then env = { env }
+    if type(env) ~= 'table' then
+        env = { env }
     end
     --存储函数信息的表
     local func = {}
@@ -146,10 +143,11 @@ function lib.GetAllInfo(env, unpack, maxlevel, Cfilter, classfilter, string, num
     return allinfo
 end
 
----尚未制作完成的命令行窗口
-lib.Shell = Class(object)
+---命令行窗口（未完成，多行逻辑存在问题）
 
-function lib.Shell:init(x, y)
+lib.Terminal = Class(object)
+
+function lib.Terminal:init(x, y, print_to_log)
     self.group = GROUP_GHOST
     self.layer = LAYER_TOP + _infinite
     self.bound = false
@@ -162,18 +160,96 @@ function lib.Shell:init(x, y)
     self.y = y or screen.height * 7 / 8
     self.a = 200
     self.b = 800
-    self.wait = 30
-    self.t = 8
+    self.wait = 20
+    self.t = 30
     self.lastchar = ''
-    self.indent = 0
-    self.tmpinput = ''
+    -- 修改: 使用一个栈来管理嵌套的代码块
+    self.block_stack = {}
+    self.tmpinput_code = ''
+    self.tmpinput_for_history = {}
+    self.print_to_log = print_to_log
+
+    -- 获取新块类型
+    function self.getNewBlockType(line)
+        line = line:gsub("^%s+", "") -- Remove leading whitespace
+        if line:match("^if%s+") then return "if" end
+        if line:match("^while%s+") then return "while" end
+        if line:match("^for%s+") then return "for" end
+        if line:match("^repeat $ ") then return "repeat" end
+        if line:match("^function%s+") then return "function" end
+        if line:match("^do $ ") then return "do" end
+        return nil
+    end
+
+    -- 弹出匹配的块
+    function self.popMatchingBlock(end_line)
+        if #self.block_stack == 0 then
+            -- 如果堆栈为空却遇到结束符，这是一个语法错误
+            return "unexpected_end"
+        end
+        local top_block = self.block_stack[#self.block_stack]
+
+        -- 检查是否是标准的 'end' 结束符
+        if end_line:match("^%s*end%s*") then -- 放宽对行尾的要求，允许注释
+            if top_block == "if" or top_block == "while" or top_block == "for"
+                or top_block == "function" or top_block == "do" then
+                table.remove(self.block_stack) -- 弹出匹配的块
+                return top_block
+            elseif top_block == "repeat" then
+                -- 'repeat' 的结束符是 'until', 不是 'end'
+                return "mismatched_end"
+            end
+            -- 检查 'until' 结束符
+        elseif end_line:match("^%s*until%s+") then
+            if top_block == "repeat" then
+                table.remove(self.block_stack)  -- 弹出 repeat 块
+                return top_block
+            else
+                -- 'until' 只能结束 'repeat'
+                return "mismatched_until"
+            end
+            -- 检查 'else' 或 'elseif' - 它们不是结束符，而是 if 块的一部分
+        elseif end_line:match("^%s*else%s* $ ") or end_line:match("^%s*elseif%s+") then
+            if top_block == "if" then
+                -- 'else'/'elseif' 属于当前 'if' 块，不弹出，返回特殊标记
+                return "part_of_if"
+            else
+                -- 'else'/'elseif' 不能出现在非 'if' 块内
+                return "unexpected_else_or_elseif"
+            end
+        end
+        -- 如果到这里还没匹配，说明遇到了不匹配的 'end' (例如 while 内遇到 for 的 end)
+        return "mismatched_end"
+    end
+
+    -- 获取缩进字符串
+    function self.getIndentString(level)
+        return string.rep('    ', level)
+    end
+
+    -- 清空当前输入行
+    function self.clearCurrentInput()
+        self.cursor = 0
+        self.input = {}
+    end
+
+    -- 记录输入历史
+    function self.recordHistory(input_str)
+        local indent_prefix = self.getIndentString(#self.block_stack)
+        if #self.block_stack == 0 then
+            indent_prefix = ">>> " .. indent_prefix
+        end
+        table.insert(self.hist1, indent_prefix .. input_str)
+    end
 end
 
-function lib.Shell:frame()
+function lib.Terminal:frame()
     self.wait = max(self.wait - 1, -self.t)
     if self.wait < 1 then
         if self.state == 'normal' then
-            player.lock = true
+            if IsValid(player) then
+                player.lock = true
+            end
             if aic.input.KeyIsPressed(KEY.ENTER) then
                 self.wait = self.t
                 self.state = 'input'
@@ -183,13 +259,17 @@ function lib.Shell:frame()
                 self.state = 'hide'
             end
         elseif self.state == 'hide' then
-            player.lock = false
+            if IsValid(player) then
+                player.lock = false
+            end
             if aic.input.KeyIsPressed(KEY.ENTER) then
                 self.wait = self.t
                 self.state = 'normal'
             end
         elseif self.state == 'input' then
-            player.lock = true
+            if IsValid(player) then
+                player.lock = true
+            end
             if aic.input.KeyIsDown(KEY.ALT) then
                 self.wait = self.t
                 self.state = 'normal'
@@ -198,7 +278,7 @@ function lib.Shell:frame()
             local lastchar = aic.input.GetLastChar()
             if lastchar ~= '' and lastchar ~= self.lastchar then --防止重复输入
                 self.wait = self.t / 2
-                table.insert(self.input, lastchar)
+                table.insert(self.input, self.cursor + 1, lastchar)
                 self.cursor = self.cursor + lastchar:len()
                 self.lastchar = lastchar
             end
@@ -228,63 +308,135 @@ function lib.Shell:frame()
             end
             if aic.input.KeyIsDown(KEY.ENTER) then
                 self.wait = self.t
-                local indent = string.rep('    ', self.indent)
-                local err
-                local ret = {
-                    TryExcept(function()
-                            err = false
-                            local input = table.concat(self.input)
-                            if input ~= '' then
-                                if string.find(input, 'end') then
-                                    if self.indent > 0 then
-                                        self.indent = self.indent - 1
-                                        input = self.tmpinput .. 'end'
-                                        if self.indent > 1 then
-                                            self.tmpinput = self.tmpinput .. indent .. 'end'
+                ---@type string
+                local current_line_str = table.concat(self.input)
+
+                aic.exception.TryExcept(
+                    function()
+                        -- 核心执行逻辑放在这里
+                        if current_line_str ~= '' then
+                            local new_block_type = self.getNewBlockType(current_line_str)
+                            if new_block_type then
+                                table.insert(self.block_stack, new_block_type)
+                                -- 记录多行块的开始行到临时历史
+                                table.insert(self.tmpinput_for_history,
+                                    self.getIndentString(#self.block_stack - 1) .. current_line_str)
+                                self.tmpinput_code = self.tmpinput_code ..
+                                    self.getIndentString(#self.block_stack - 1) .. current_line_str .. "\n"
+                                self.clearCurrentInput()
+                                return nil -- No direct result for starting a block
+                            else
+                                if current_line_str:match("^%s*end%s* $") or
+                                    current_line_str:match("^%s*else%s* $") or
+                                    current_line_str:match("^%s*elseif%s+") or
+                                    current_line_str:match("^%s*until%s+") then
+                                    if #self.block_stack > 0 then
+                                        local popped_type = self.popMatchingBlock(current_line_str)
+                                        if popped_type then
+                                            -- 记录结束行到临时历史
+                                            table.insert(self.tmpinput_for_history,
+                                                self.getIndentString(#self.block_stack) .. current_line_str)
+                                            self.tmpinput_code = self.tmpinput_code ..
+                                                self.getIndentString(#self.block_stack) .. current_line_str .. "\n"
+                                            if #self.block_stack == 0 then
+                                                -- 整个多行块结束，准备执行
+                                                local full_code_to_execute = self.tmpinput_code
+                                                -- 将临时历史记录移动到正式历史
+                                                for _, hist_line in ipairs(self.tmpinput_for_history) do
+                                                    table.insert(self.hist1, ">>> " .. hist_line)
+                                                end
+                                                -- 清空临时存储
+                                                self.tmpinput_for_history = {}
+                                                self.tmpinput_code = ""
+
+                                                self.clearCurrentInput()
+                                                -- 返回执行结果
+                                                return aic.func.execute(full_code_to_execute)
+                                            end
+                                            self.clearCurrentInput()
+                                            return nil
                                         else
-                                            self.tmpinput = ''
-                                            return tostring(aic.func.execute(input))
+                                            -- 抛出语法错误，由 Except 捕获
+                                            raise(SyntaxError("SyntaxError: unexpected '" ..
+                                                current_line_str:match("%w+") .. "'"))
                                         end
                                     else
-                                        table.insert(self.hist2, "Unexpected end!")
+                                        raise(SyntaxError("SyntaxError: unexpected '" ..
+                                            current_line_str:match("%w+") .. "'"))
                                     end
-                                elseif string.find(input, 'if') or string.find(input, 'else') or string.find(input, 'do') or string.find(input, 'function') then --多行代码起始
-                                    self.tmpinput = self.tmpinput .. indent .. input
-                                    self.indent = self.indent + 1
-                                elseif self.indent > 0 then
-                                    self.tmpinput = self.tmpinput .. indent .. input
-                                elseif string.find(input, '%b()') or string.find(input, 'local ') or (string.find(input, '=') and not string.find(input, '%p=')) then --通常的单行代码
-                                    return tostring(aic.func.execute(input))
-                                else --表达式求值
-                                    return tostring(aic.func.eval(input))
+                                else
+                                    if #self.block_stack > 0 then
+                                        -- 记录中间行到临时历史和代码
+                                        table.insert(self.tmpinput_for_history,
+                                            self.getIndentString(#self.block_stack) .. current_line_str)
+                                        self.tmpinput_code = self.tmpinput_code ..
+                                            self.getIndentString(#self.block_stack) .. current_line_str .. "\n"
+                                        self.clearCurrentInput()
+                                        return nil
+                                    else
+                                        if current_line_str:find('%b()') or current_line_str:find('^%s*local%s+') or
+                                            (current_line_str:find('%s=%s') and not current_line_str:find('[%w_]=')
+                                                and not current_line_str:find('==')) then
+                                            self.recordHistory(current_line_str)
+                                            local execution_result = aic.func.execute(current_line_str)
+                                            -- 如果 execute 返回 nil (常见于 print 等无返回值函数)，则不显示结果
+                                            -- 否则，显示其返回值
+                                            if execution_result ~= nil then
+                                                if type(execution_result) == "table" and getmetatable(execution_result) == nil then
+                                                    table.insert(self.hist2, aic.table.ToString(execution_result))
+                                                    if self.print_to_log then
+                                                        Print("[Terminal] " .. aic.table.ToString(execution_result))
+                                                    end
+                                                else
+                                                    table.insert(self.hist2, tostring(execution_result))
+                                                    if self.print_to_log then
+                                                        Print("[Terminal] " .. tostring(execution_result))
+                                                    end
+                                                end
+                                            end
+                                            self.clearCurrentInput()
+                                            return nil
+                                        else
+                                            self.recordHistory(current_line_str)
+                                            -- 对于求值表达式，使用 eval 并返回其结果以供后续处理
+                                            local evaluation_result = aic.func.eval(current_line_str)
+                                            table.insert(self.hist2, tostring(evaluation_result))
+                                            if self.print_to_log then
+                                                Print("[Terminal] " .. tostring(evaluation_result))
+                                            end
+                                            self.clearCurrentInput()
+                                            return evaluation_result
+                                        end
+                                    end
                                 end
-                            else
-                                return ''
                             end
-                        end,
-                        {[''] = function()
-                            err = true
-                            return "\n========== cmd traceback ==========\n" .. debug.traceback()
-                        end})
-                }
-                if err then
-                    --table.insert(self.hist2, "Exception occured!")
-                else
-                    if #ret == 1 then
-                        table.insert(self.hist2, tostring(unpack(ret)))
-                    elseif #ret > 1 then
-                        table.insert(self.hist2, aic.table.ToString(ret))
-                    end
-                end
-                local input = table.concat(self.input)
-                if string.find(input, 'end') then
-                    input = string.sub(indent, 5, -1) .. input
-                else
-                    input = indent .. input
-                end
-                table.insert(self.hist1, input)
-                self.cursor = 0
-                self.input = {}
+                        else
+                            if #self.block_stack > 0 then
+                                -- 记录空行到临时历史和代码
+                                table.insert(self.tmpinput_for_history, "")
+                                self.tmpinput_code = self.tmpinput_code .. "\n"
+                            end
+                            self.clearCurrentInput()
+                        end
+                    end,
+                    -- Except: 定义错误处理方式
+                    {
+                        [""] = function(error_message)
+                            -- 将运行时错误或其他错误信息添加到历史记录
+                            table.insert(self.hist2, "\n---------- Terminal ----------\n" .. error_message)
+                            Log(3, "\n---------- Terminal ----------\n" .. error_message)
+                            -- 清空当前输入行
+                            self.clearCurrentInput()
+                            -- 清空临时多行块历史（因为输入无效）
+                            self.tmpinput_for_history = {}
+                            self.tmpinput_code = ""
+                            -- Block stack might be in an inconsistent state after a syntax error, reset it.
+                            self.block_stack = {}
+                            -- 返回 nil，表示处理完成
+                            return nil
+                        end
+                    }
+                )
             end
             if KeyIsDown('left') then
                 self.wait = self.t
@@ -297,33 +449,40 @@ function lib.Shell:frame()
     end
 end
 
-function lib.Shell:render()
+function lib.Terminal:render()
     SetViewMode('ui')
     local x, y = self.x + 2, self.y - 2
     if self.state ~= "hide" then
         SetImageState('white', '', color(COLOR_BLACK, 175))
         RenderRect('white', self.x, self.x + self.a * 2, self.y, self.y - self.b)
     end
-    DrawText('consola', "AiC_Debug_Shell " .. "state:" .. self.state, x, y + 30, 0.8, nil, nil, 'left')
-    DrawText('consola', "Input History", x, y + 15, 0.8, nil, nil, 'left')
-    DrawText('consola', "Result History", x + self.a, y + 15, 0.8, nil, nil, 'left')
+    DrawText('consola', "AiC_Debug_Terminal " .. "state:" .. self.state, x, y + 30, 0.8, nil, nil, 'left')
     if self.state ~= "hide" then
-        --输入历史
+        DrawText('consola', "Input History", x, y + 15, 0.8, nil, nil, 'left')
+        DrawText('consola', "Result History", x + self.a, y + 15, 0.8, nil, nil, 'left')
+        -- 输入历史
         local cur = self.cursor
-        local input = table.concat(self.input)
-        local input_left, input_right = string.rep('    ', self.indent) .. string.sub(input, 1, cur), string.sub(input, cur + 1, -1)
-        if self.indent == 0 then input_left = '>>> ' .. input_left end
-        if string.find(input, 'end') then input_left = string.sub(input_left, 5, -1) end
-        local cursor
-        if self.timer % 60 < 30 then
-            cursor = '|'
-        else
-            cursor = ' '
+        local input_str = table.concat(self.input)
+        local indent_level = #self.block_stack
+        local prompt_prefix = ""
+        if indent_level == 0 then
+            prompt_prefix = ">>> "
         end
-        input = input_left .. cursor .. input_right
-        DrawText('consola', table.concat(self.hist1)
-            .. input, x, y, 0.5, nil, nil, 'left')
-        --结果历史
+        local input_left = prompt_prefix .. self.getIndentString(indent_level) .. string.sub(input_str, 1, cur)
+        local input_right = string.sub(input_str, cur + 1, -1)
+
+        local cursor_char
+        if self.timer % 60 < 30 then
+            cursor_char = '|'
+        else
+            cursor_char = ' '
+        end
+        local final_input_display = input_left .. cursor_char .. input_right
+        local history_display = table.concat(self.hist1, "\n")
+
+        DrawText('consola', history_display .. "\n" .. final_input_display, x, y, 0.5, nil, nil, 'left')
+
+        -- 结果历史
         DrawText('consola', table.concat(self.hist2, '\n'), x + self.a, y, 0.5, nil, nil, 'left')
     end
     SetViewMode('world')

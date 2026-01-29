@@ -263,7 +263,13 @@ local defaultFrameEvent = {
                 if lstg.var.enhancer_overload then percent = percent * 2 end
                 dmg = dmg * percent
                 if not CheckDiff(3) then
-                    dmg = dmg * (1 - max(0.25, lstg.tmpvar.hit_count * (3 - scoredata.difficulty_select) * 0.25))
+                    local maxp
+                    if IsValid(_boss) then
+                        maxp = 0.75
+                    else
+                        maxp = 0.5
+                    end
+                    dmg = dmg * (1 - min(maxp, lstg.tmpvar.hit_count * (3 - scoredata.difficulty_select) * 0.15))
                 end
                 dmg = int(dmg)
 
@@ -317,7 +323,7 @@ local defaultFrameEvent = {
             self.supporty = -236
             self.hide = false
             New(bullet_deleter, self.x, self.y)
-            if not lstg.tmpvar.hit_count then lstg.tmpvar.hit_count = 0 end
+            lstg.tmpvar.hit_count = lstg.tmpvar.hit_count or 0
             lstg.tmpvar.hit_count = lstg.tmpvar.hit_count + 1
         end
     end },

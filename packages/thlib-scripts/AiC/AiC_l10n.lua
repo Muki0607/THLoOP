@@ -10,6 +10,7 @@
 ---@class aic.l10n @东方梦摇篮本土化
 aic.l10n = {}
 local lib = aic.l10n
+l10n = {}
 
 ---localization，简写为l10n（l和n之间有10个字母）。
 ---直译为"本土化"（不建议译为"本地化"，因为本地这个词往往对应的是远程/在线），
@@ -38,7 +39,7 @@ function lib.LoadAllLang()
             if _debug.l10n_tryexcept_disabled then
                 DoFile("AiC/localization/" .. lang .. "/" .. file)
             else
-                aic.py.TryExcept(function()
+                aic.exception.TryExcept(function()
                         DoFile("AiC/localization/" .. lang .. "/" .. file)
                     end,
                     {

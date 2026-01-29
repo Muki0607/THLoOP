@@ -23,12 +23,14 @@ function scoredata_mt_newindex(t, k, v)
     if type(v) == "table" then
         make_scoredata_table(v)
     end
-    safeSave(function() getmetatable(t).data[k] = v end)
+    --safeSave(function() getmetatable(t).data[k] = v end)
+    getmetatable(t).data[k] = v
     SaveScoreData()
 end
 
 function scoredata_mt_index(t, k)
-    return safeSave(function() return getmetatable(t).data[k] end)
+    --return safeSave(function() return getmetatable(t).data[k] end)
+    return getmetatable(t).data[k]
 end
 
 function scoredata_mt_ipairs(t)
@@ -96,15 +98,23 @@ local function get_file_name()
 end
 
 function SaveScoreData()
+    --[[
     safeSave(function()
         local score_data_file = assert(io.open(get_file_name(), "w"))
         local s = Serialize(scoredata)
         score_data_file:write(string.format_json(s))
         score_data_file:close()
     end)
+    --]]
+
+    local score_data_file = assert(io.open(get_file_name(), "w"))
+    local s = Serialize(scoredata)
+    score_data_file:write(string.format_json(s))
+    score_data_file:close()
 end
 
 function InitScoreData()
+    --[[
     safeSave(function()
         local file = get_file_name()
         if lstg.FileManager.FileExist(file) then
@@ -122,4 +132,21 @@ function InitScoreData()
         end
         make_scoredata_table(scoredata)
     end)
+    --]]
+
+    local file = get_file_name()
+    if lstg.FileManager.FileExist(file) then
+        local scoredata_file = assert(io.open(file, "r"))
+        scoredata = DeSerialize(scoredata_file:read("*a"))
+        scoredata_file:close()
+        scoredata_file = nil
+    else
+        if scoredata == nil then
+            scoredata = {}
+        end
+        if type(scoredata) ~= "table" then
+            error("scoredata must be a Lua table.")
+        end
+    end
+    make_scoredata_table(scoredata)
 end

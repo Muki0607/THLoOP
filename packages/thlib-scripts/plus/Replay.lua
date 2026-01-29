@@ -1,9 +1,9 @@
----THLoOP Changed
+---THLoOP Arranged
 local KEY_BIT = { 128, 64, 32, 16, 8, 4, 2, 1 }
 local KEY_NAME = { "up", "down", "left", "right", "slow", "shoot", "spell", "special" }
 
---! @brief 将按键状态转换为二进制数值
---! @return 返回二进制按键数值
+---将按键状态转换为二进制数值
+---@return number 返回二进制按键数值
 local function KeyState2Byte(state)
     local ret = 0
     for i, k in ipairs(KEY_NAME) do
@@ -14,7 +14,7 @@ local function KeyState2Byte(state)
     return ret
 end
 
---! @brief 将二进制数值转换为按键状态
+---将二进制数值转换为按键状态
 local function Byte2KeyState(state, b)
     for i, k in ipairs(KEY_NAME) do
         if b >= KEY_BIT[i] then
@@ -32,13 +32,10 @@ end
 local ReplayFrameReader = plus.Class()
 plus.ReplayFrameReader = ReplayFrameReader
 
---! @brief 构造ReplayFrameReader
---! @param path 文件路径
---! @param offset 录像数据偏移
---! @param count 录像帧数量
----@param path string
----@param offset number
----@param count number
+---构造ReplayFrameReader
+---@param path string 文件路径
+---@param offset number 录像数据偏移
+---@param count number 录像帧数量
 function ReplayFrameReader:init(path, offset, count)
     self._fs = plus.FileStream(path, "rb")
 
@@ -49,8 +46,8 @@ function ReplayFrameReader:init(path, offset, count)
     self._count = count  -- 帧数量
 end
 
---! @brief 下一帧
---! @return 若达到结尾则返回False，否则返回True
+---下一帧
+---@return boolean 若达到结尾则返回False，否则返回True
 function ReplayFrameReader:Next(state)
     if self._read >= self._count then
         return false
@@ -77,13 +74,13 @@ function ReplayFrameReader:Read(byte_array, count)
     end
 end
 
---! @brief 重置
+---重置
 function ReplayFrameReader:Reset()
     self._read = 0
     self._fs:Seek(self._offset)
 end
 
---! @brief 关闭文件流
+---关闭文件流
 function ReplayFrameReader:Close()
     self._fs:Close()
 end
@@ -189,9 +186,8 @@ local _ = {
 local ReplayManager = plus.Class()
 plus.ReplayManager = ReplayManager
 
---! @brief 构造ReplayManager
---! @param replayDirectory 录像文件夹
----@param replayDirectory string
+---构造ReplayManager
+---@param replayDirectory string 录像文件夹
 function ReplayManager:init(replayDirectory)
     self._repdir = replayDirectory
     self._filefmt = "slot(%d+).rep"
@@ -207,7 +203,7 @@ function ReplayManager:init(replayDirectory)
     self:Refresh()
 end
 
---! @brief [静态函数]读取录像数据
+---[静态函数]读取录像数据
 --!
 --! 返回的录像数据信息以下述格式表述：
 --!  {
@@ -289,7 +285,7 @@ function ReplayManager.ReadReplayInfo(path)
     return ret
 end
 
---! @brief [静态函数]写入录像数据
+---[静态函数]写入录像数据
 --!
 --! 输入的录像信息需要满足下述表述：
 --!  {
@@ -382,17 +378,17 @@ function ReplayManager.SaveReplayInfo(path, data)
     }
 end
 
---! @brief 获取录像目录
+---获取录像目录
 function ReplayManager:GetReplayDirectory()
     return self._repdir
 end
 
---! @brief 构造录像文件名称
+---构造录像文件名称
 function ReplayManager:MakeReplayFilename(slot)
     return self._repdir .. "\\" .. string.format(self._filefmt2, slot)
 end
 
---! @brief 刷新
+---刷新
 function ReplayManager:Refresh()
     self._slots = {}
     local files = lstg.FileManager.EnumFiles(self._repdir)
@@ -421,13 +417,13 @@ function ReplayManager:Refresh()
     end
 end
 
---! @brief 获取录像数量
+---获取录像数量
 function ReplayManager:GetSlotCount()
     return self._slotmax
 end
 
---! @brief 获取录像信息
---! @param slot 录像槽
+---获取录像信息
+---@param slot number 录像槽
 function ReplayManager:GetRecord(slot)
     ---THLoOP Changed
     assert(slot >= 0 and slot <= self._slotmax, "invalid argument.")
@@ -436,6 +432,7 @@ end
 
 -------------------------------------------------- api (IDEA emmylua | vscode sumneko lua)
 
+---@diagnostic disable-next-line:unnecessary-if
 if false then
     --- 用于代码提示，可以删，但是没必要
 

@@ -3,7 +3,6 @@ Include "THlib/UI/uiconfig.lua"
 Include "THlib/UI/font.lua"
 Include "THlib/UI/title.lua"
 Include "THlib/UI/sc_pr.lua"
-Include "THlib/UI/newmenu/title.lua"
 
 ui = {}
 
@@ -379,7 +378,7 @@ local lstg_ui = lstg.lstg_ui
 
 local res_list = {
     ["tex"] = {
-        "logo",
+        --"logo",
         "ui_bg",
         "ui_bg2",
         "menu_bg",
@@ -387,7 +386,7 @@ local res_list = {
         integer = 1,
     },
     ["img"] = {
-        "logo",
+        --"logo",
         "ui_bg",
         "ui_bg2",
         "menu_bg",
@@ -395,6 +394,13 @@ local res_list = {
         integer = 2,
     },
 }
+
+for _, lang in ipairs(aic.l10n.lang_list) do
+    table.insert(res_list.tex, "logo" .. lang)
+    table.insert(res_list.img, "logo" .. lang)
+end
+
+
 function lstg_ui:reloadUI()
     for type, list in pairs(res_list) do
         for _, res in pairs(list) do
@@ -406,13 +412,17 @@ function lstg_ui:reloadUI()
     local pool = GetResourceStatus() or "global"
     SetResourceStatus("global")
     if self.type == 1 then
-        LoadImageFromFile("logo", "THlib/UI/logo.png")
-        SetImageCenter("logo", 0, 64)
+        for _, lang in ipairs(aic.l10n.lang_list) do
+            LoadImageFromFile("logo_" .. lang, "THlib/UI/logo_" .. lang .. ".png")
+            SetImageCenter("logo_" .. lang, 0, 64)
+        end
         LoadImageFromFile("ui_bg", "THlib/UI/ui_bg.png")
         LoadImageFromFile("menu_bg", "THlib/UI/menu_bg.png")
     elseif self.type == 2 then
-        LoadImageFromFile("logo", "THlib/UI/logo.png")
-        SetImageCenter("logo", 0, 64)
+        for _, lang in ipairs(aic.l10n.lang_list) do
+            LoadImageFromFile("logo_" .. lang, "THlib/UI/logo_" .. lang .. ".png")
+            SetImageCenter("logo_" .. lang, 0, 64)
+        end
         LoadImageFromFile("ui_bg", "THlib/UI/ui_bg.png")
         LoadImageFromFile("ui_bg2", "THlib/UI/ui_bg_2.png")
         LoadImageFromFile("menu_bg", "THlib/UI/menu_bg.png")
@@ -457,7 +467,8 @@ function lstg_ui:drawFrame1()
     if CheckRes("img", "image:LOGO_img") then
         Render("image:LOGO_img", -16 + w.scrr - 48 + logodx, 165, 0, 0.7 * self.s, 0.7 * self.s)
     else
-        Render("logo", -16 + w.scrr - 48 + logodx, 165 - 45, 0, 0.7 * self.s, 0.7 * self.s)
+        SetImageState("logo_" .. setting.locale, "", Color(255, 255, 255, 255))
+        Render("logo_" .. setting.locale, -16 + w.scrr - 48 + logodx, 165 - 45, 0, 0.7 * self.s, 0.7 * self.s)
     end
     SetFontState("menu", "", Color(0xFFFFFFFF))
     RenderText("menu",

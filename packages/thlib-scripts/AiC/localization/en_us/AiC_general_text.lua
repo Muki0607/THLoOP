@@ -38,11 +38,11 @@ lib.punctions = {
 }
 
 lib.character_names = {
-    reimu = "博丽 灵梦",
-    marisa = "雾雨 魔理沙",
-    sakuya = "十六夜 咲夜",
-    muki = "小林 无记",
-    nenyuki = "千幻 念雪",
+    reimu = "Hakurei Reimu",
+    marisa = "Kirisame Marisa",
+    sakuya = "Izayoi Sakuya",
+    muki = "Kobayashi Muki",
+    nenyuki = "Sengen Nenyuki",
 }
 
 lib.difficulty = {

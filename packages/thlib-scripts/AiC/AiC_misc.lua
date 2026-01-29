@@ -465,7 +465,7 @@ end
 
 function lib.dodge_player:render()
     PushRenderTarget('rt:aic_player_dodge')
-    RenderClearViewMode(Color(0, 0, 0, 0))
+    RenderClear(Color(0, 0, 0, 0))
     --手动渲染子机和判定点
     local p = lstg.var.player_name
     local s = Player_scale or 1
@@ -748,8 +748,10 @@ end
 LoadFX('fx:glitch', 'THlib/shader/glitch.hlsl')
 --油漆桶shader
 LoadFX('fx:coloring', 'THlib/shader/coloring.hlsl')
---黑洞shader
-LoadFX('fx:black_hole', 'THlib/shader/black_hole.hlsl')
+--内发光shader
+LoadFX('fx:inner_glow', 'THlib/shader/inner_glow.hlsl')
+--外发光shader
+LoadFX('fx:outer_glow', 'THlib/shader/outer_glow.hlsl')
 
 --符卡名相关
 LoadImageFromFile("Muki_AiC_spell_history", "THlib/UI/Muki_AiC_spell_history.png")

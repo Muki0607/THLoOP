@@ -8,6 +8,7 @@ lib.title = Class(object)
 ---@param pos number @初始选择位置
 ---@param l number @菜单长度
 function lib.title:init(pos, l)
+    Terminal = New(aic.debug.Terminal, nil, nil, true)
     --写入当前版本号
     lstg.var.aic_version = aic.version
     --初始化PlayerData
@@ -36,6 +37,18 @@ function lib.title:init(pos, l)
     self.wait = 30
     self.alpha = 0
     self.scale = 0.45
+    self.text =
+    {
+        "Game Start",
+        "Practice",
+        "Spell Practice",
+        "Replay",
+        "Library",
+        "Music Room",
+        "Option",
+        "Manual",
+        "Quit"
+    }
     self.jump =
     {
         { lib.difficulty_select },
@@ -53,11 +66,11 @@ function lib.title:init(pos, l)
         { lib.option },
         { lib.manual },
         quit = function()
-            lib.Fly(self)
             task.New(self, function()
                 task.Wait(self.t)
                 stage.QuitGame()
             end)
+            lib.Fly(self)
         end
     }
     self.l = l or #self.jump + 1
@@ -81,7 +94,7 @@ function lib.title:init(pos, l)
     end
     self.invalid_menu = { 2, 3 }
     self.parrot = {}
-    local dx = { 0, -98, -130, -85, -85, -120 }
+    local dx = { 0, -88, -120, -85, -85, -120 }
     for _, i in ipairs(self.invalid_menu) do
         table.insert(self.parrot,
             New(aic.misc.party_parrot, self.x + dx[i] + 10, self.y + (5 - i) * 30, 0.07, 25, 5, true, true))
@@ -205,23 +218,28 @@ end
 function lib.title:render()
     SetViewMode('ui')
     SetImageState('Muki_AiC_menu_bg_Noel', '', Color(self.alpha, 255, 255, 255))
-    SetImageState('Muki_AiC_menu_bg_logo', '', Color(self.alpha, 255, 255, 255))
+    SetImageState('logo_' .. setting.locale, '', Color(self.alpha, 255, 255, 255))
     Render('Muki_AiC_menu_bg_Noel', self.x - screen.width * 0.25, self.y + screen.height * 0.25 - 30, 0, 0.5)
-    Render('Muki_AiC_menu_bg_logo', self.x - screen.width * 0.2, self.y + screen.height * 0.25 + 15, 0, 0.4)
+    Render('logo_' .. setting.locale, self.x - screen.width * 0.3, self.y + screen.height * 0.5 + 40, 0, 0.75)
+    --local colors = { Color(255, 255, 0, 0), Color(255, 255, 0, 0),
+    --    Color(255, 0, 255, 255), Color(255, 0, 255, 255) }
     local d, x, y = 30, self.x, self.y
     for i = 1, self.l do
+        local co
         if i == self.pos then
-            SetImageState('Muki_AiC_menu_title' .. i, '', Color(self.alpha, 32, 208, 255))
+            co = Color(self.alpha, 32, 208, 255)
         else
-            SetImageState('Muki_AiC_menu_title' .. i, '', Color(self.alpha, 255, 255, 255))
+            co = Color(self.alpha, 255, 255, 255)
         end
-        Render('Muki_AiC_menu_title' .. i, x, y + (5 - i) * d, 0, self.scale)
+        --Render('Muki_AiC_menu_title' .. i, x, y + (5 - i) * d, 0, self.scale)
+        DrawText('main_font_en_us', self.text[i], x, y + (5 - i) * d, 1.5,
+            Color(self.alpha, 85, 76, 74), co, 'centerpoint')
     end
     DrawText('main_font_zh_cn', "v" .. aic.version, 5, 15, 0.75,
         color(COLOR_WHITE, self.alpha), nil, "left")
     SetViewMode('world')
 end
-
+                                    
 function lib.title:del()
     PreserveObject(self)
     for _, p in ipairs(self.parrot) do

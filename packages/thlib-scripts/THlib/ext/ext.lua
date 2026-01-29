@@ -126,7 +126,7 @@ function ChangeGameTitle()
             },
             " | "
         )
-    if _debug.full_title then
+    if _debug.full_window_title then
         SetTitle(game .. " | " .. ext)
     else
         SetTitle(game)
@@ -418,7 +418,7 @@ function FrameFunc()
             [""] = function()
                 if not _debug.exception_handler_disabled and ext.error_level <= 5 then
                     ext.error_level = ext.error_level + 1
-                    lstg.Log(4, aic.py.last_exception)
+                    lstg.Log(4, aic.exception.last_exception)
                     lstg.MsgBoxError(l10n.exception.framefunc_error, l10n.exception.title, true)
                     stage.QuitGame()
                 else
@@ -439,7 +439,7 @@ function RenderFunc()
             [""] = function()
                 if not _debug.exception_handler_disabled and ext.error_level <= 5 then
                     ext.error_level = ext.error_level + 1
-                    lstg.Log(4, aic.py.last_exception)
+                    lstg.Log(4, aic.exception.last_exception)
                     lstg.MsgBoxError(l10n.exception.rendering_error, l10n.exception.title, true)
                     stage.QuitGame()
                 else

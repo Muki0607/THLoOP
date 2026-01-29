@@ -335,7 +335,7 @@ end
 --------------------------------------------------------------------------------
 --- 屏幕后处理
 
---- 从文件编译并加载 Direct3D 11 Pixel Shader HSLS 文件
+--- 从文件编译并加载 Direct3D 11 Pixel Shader HLSL 文件
 ---@param fxname string
 ---@param filepath string
 function lstg.LoadFX(fxname, filepath)

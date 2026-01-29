@@ -37,17 +37,14 @@
 aic.menu = {}
 local lib = aic.menu
 
-
-
 ---仿TH18菜单（其实差别很大）
 ---本菜单库纯手工制作，没有先定义菜单类，工程量极大
 ---不过正因如此怎么加新东西都没问题
----此外因为个人码风原因所有菜单都是全局的（直接放在库里），方便调用
 -------------------------------------------------------------
 
 ---副标题名称
-local subtitle = { 'stage_select', 'spell_select', 'replay', 'library', 'music_room', 'option', 'manual',
-    'rank_select', 'player_select', 'enhancer_select', 'name_regist', 'save_replay', 'player_data' }
+local subtitle = { 'Stage Select', 'Spell Select', 'Replay', 'Library', 'Music Room', 'Option', 'Manual',
+    'Rank Select', 'Player Select', 'Enhancer Select', 'Name Regist', 'Save Replay', 'Player Data', 'Ending' }
 
 ---菜单名称
 local menu = { 'title', 'practice', 'spell_practice', 'replay', 'library', 'music_room', 'option', 'manual',
@@ -302,6 +299,30 @@ function lib:GetExtRepInfo()
     end
 end
 
+---绘制菜单背景
+function lib:DrawSubTitle(x, y)
+    local x = x or screen.width * 0.5
+    local y = y or screen.height * 0.9
+    local name = subtitle[self.num]
+    SetImageState('Muki_AiC_subtitle_bg', '', Color(self.alpha, 255, 255, 255))
+    Render('Muki_AiC_subtitle_bg', x, y, 0, 0.4)
+    aic.ui.SetPostEffectParam('fx:outer_glow', {
+        -- user_data_0: 发光颜色(R,G,B)和不透明度(A)
+        { 102 / 255.0, 252 / 255.0, 205 / 255.0, 0.75 },
+        
+        -- user_data_1: 发光参数
+        { 5.0, 0.8, 0.5, 0.0 }, -- 大小5像素，强度80%，扩展15%，光源=边缘
+        
+        -- user_data_2: 高级参数
+        { 0.0, 50.0, 0.0, 0.0 }, -- 阻塞0%，范围50%，无杂色，无抖动
+    }, '')
+    aic.ui.DrawTextWithShader('main_font_en_us', name, x, y + 15, 1.25,
+        Color(self.alpha, 255, 255, 255), nil, nil, nil, true)
+    aic.ui.DrawTextWithShader('main_font_zh_cn', l10n.ui.subtitle[self.num], x, y - 15, 1,
+        Color(self.alpha, 255, 255, 255), nil, nil, nil, true)
+end
+
+
 ---绘制键位提示
 ---@param keys table @键位表，按照{shoot, spell, special, slow, repfast}的顺序传入
 ---@param move table @移动键位表，传入时取代原移动键位表，并按表长度决定显示方式
@@ -348,14 +369,6 @@ function lib:DrawTips(keys, move)
         screen.width, 10, 0.5, Color(self.alpha, 255, 255, 255), nil, 'right')
 end 
 
----绘制菜单背景
-function lib:DrawSubTitle(x, y)
-    local x = x or screen.width * 0.5
-    local y = y or screen.height * 0.9
-    SetImageState('Muki_AiC_subtitle_' .. subtitle[self.num], '', Color(self.alpha, 255, 255, 255))
-    Render('Muki_AiC_subtitle_' .. subtitle[self.num], x, y, 0, 0.4)
-end
-
 ---初始化PlayerData
 ---@param player_name string @自机名称
 function lib.InitPlayerData(player_name)
@@ -393,15 +406,15 @@ function lib.SavePlayerData(score)
     for i = 1, 10 do --因为scoredata有元表所以不能直接用ipairs
         hscore[i] = scoredata.player_data[player].high_score[diff][i]
     end
-    local function compare(t1, t2)
+    local function comp(t1, t2)
         return t1[2] > t2[2]
     end
     --以本次得分是否高过高分榜最后一名决定是否更新
-    if hscore[10] and compare(score, hscore[10]) then
+    if hscore[10] and comp(score, hscore[10]) then
         hscore[10] = score
     end
     --以分数整理高分榜
-    table.sort(hscore, compare)
+    table.sort(hscore, comp)
     --不要问为什么，总之只有这样写才存得进去
     local temp = aic.table.Repeat({}, 10)
     for i = 1, 10 do
@@ -495,7 +508,7 @@ end
 ---资源
 
 --标题菜单
-for _, m in ipairs({ { 'title', 9 }, { 'difficulty_select', 4 }, { 'player_select', 8 }, { 'enhancer_select', 16 } }) do
+for _, m in ipairs({ { 'difficulty_select', 4 }, { 'player_select', 8 }, { 'enhancer_select', 16 } }) do
     for i = 1, m[2] do
         LoadImageFromFile('Muki_AiC_menu_' .. m[1] .. i,
             'THlib/UI/menu/' .. m[1] .. '/Muki_AiC_menu_' .. m[1] .. i .. '.png')
@@ -523,11 +536,8 @@ SetImageCenter('Muki_AiC_help_menu12', 148, 25)
 --replay菜单的普莉姆拉
 LoadImageFromFile('Muki_AiC_menu_replay_Primula', 'THlib/UI/menu/replay/Muki_AiC_Primula_face_smile.png')
 --副标题
-for _, t in ipairs(subtitle) do
-    LoadImageFromFile('Muki_AiC_subtitle_' .. t, 'THlib/UI/menu/subtitle/Muki_AiC_subtitle_' .. t .. '.png')
-end
+LoadImageFromFile('Muki_AiC_subtitle_bg', 'THlib/UI/menu/subtitle/Muki_AiC_subtitle_bg.png')
 --背景
 LoadImageFromFile('Muki_AiC_menu_bg', 'THlib/UI/menu/bg/Muki_AiC_menu_bg.png')
 LoadImageFromFile('Muki_AiC_menu_bg_music_room', 'THlib/UI/menu/bg/Muki_AiC_menu_bg_music_room.png')
 LoadImageFromFile('Muki_AiC_menu_bg_Noel', 'THlib/UI/menu/bg/Muki_AiC_menu_bg_Noel.png')
-LoadImageFromFile('Muki_AiC_menu_bg_logo', 'THlib/UI/menu/bg/Muki_AiC_menu_bg_logo.png')

@@ -67,7 +67,7 @@ lib.music_room_text = {
         ]],
         [[
             原曲：An-fillnote - Title
-            出处：ひなゆあ/橋野みずは - 《AliceInCradle》
+            出处：Hinayua/桥野みずは - 《AliceInCradle》
 
             　标题画面的主题曲。
 
@@ -75,13 +75,13 @@ lib.music_room_text = {
         ]],
         [[
             原曲：ginkiha - Extra stage
-            出处：くろば·U - 《Star Shooter!》
+            出处：Cloba·U - 《Star Shooter!》
 
             「数据删除」
         ]],
         [[
             原曲：ginkiha - Star Chaser! 
-            出处：くろば·U - 《Star Chaser!》
+            出处：Cloba·U - 《Star Chaser!》
             
             「数据删除」
         ]],
@@ -92,7 +92,7 @@ lib.music_room_text = {
         ]],
         [[
             原曲：ginkiha - 通常Boss
-            出处：くろば·U - 《Star Shooter!》
+            出处：Cloba·U - 《Star Shooter!》
             
             「数据删除」
         ]],
@@ -103,7 +103,7 @@ lib.music_room_text = {
             「数据删除」
         ]],
         [[
-            原曲：AliceSoft - 湿羽色的疾风
+            原曲：AliceSoft - 濡羽色GUSTYWIND
             出处：AliceSoft - 《多娜多娜 一起来干坏事吧》
             
             「数据删除」
@@ -125,7 +125,7 @@ lib.music_room_text = {
         ]],
         [[
             原曲：ginkiha - 编织者之森(Battle)
-            出处：ひなゆあ/橋野みずは - 《AliceInCradle》
+            出处：Hinayua/桥野みずは - 《AliceInCradle》
             
             　诺艾儿·柯涅尔的一阶段主题曲。
             
@@ -135,7 +135,7 @@ lib.music_room_text = {
         ]],
         [[
             原曲：ginkiha - 伊夏·波利斯塔切尔
-            出处：ひなゆあ/橋野みずは - 《AliceInCradle》
+            出处：Hinayua/桥野みずは - 《AliceInCradle》
             
             　伊夏·波利斯塔切尔的主题曲。
             
@@ -145,7 +145,7 @@ lib.music_room_text = {
         ]],
         [[
             原曲：Feryquitous - Ha-chan
-            出处：くろば·U - 《Star Shooter!》
+            出处：Cloba·U - 《Star Shooter!》
             
             　普莉姆拉的主题曲。
             
@@ -155,7 +155,7 @@ lib.music_room_text = {
         ]],
         [[
             原曲：Feryquitous - Unknown wisdom
-            出处：くろば·U - 《Star Liner!》
+            出处：Cloba·U - 《Star Liner!》
             
             　诺艾儿·柯涅尔的二阶段主题曲。
             
@@ -164,8 +164,8 @@ lib.music_room_text = {
             　是时候将它们如数奉还了。
         ]],
         [[
-            原曲：An-fillnote - Battle Nusi
-            出处：ひなゆあ/橋野みずは - 《AliceInCradle》
+            原曲：An-fillnote - 森之领主
+            出处：Hinayua/桥野みずは - 《AliceInCradle》
             
             　圣光爆发的主题曲。
             
@@ -175,7 +175,7 @@ lib.music_room_text = {
             　晕厥概率：412%
         ]],
         [[
-            原曲：Battle Nusi - 东方风Remix
+            原曲：森之领主 - 东方风Remix
             出处：https://www.bilibili.com/video/BV1f8411P7fG/
             
             　诺艾儿·柯涅尔的最终阶段主题曲。
@@ -198,7 +198,7 @@ lib.music_room_text = {
         ]],
         [[
             原曲：watson - 森之记忆
-            出处：ひなゆあ/橋野みずは - 《AliceInCradle》
+            出处：Hinayua/桥野みずは - 《AliceInCradle》
             
             　结局A的主题曲。
             
@@ -208,7 +208,7 @@ lib.music_room_text = {
         ]],
         [[
             原曲：An-fillnote - 魔女的杂货店
-            出处：ひなゆあ/橋野みずは - 《AliceInCradle》
+            出处：Hinayua/桥野みずは - 《AliceInCradle》
             
             　结局B的主题曲。
             
@@ -219,12 +219,12 @@ lib.music_room_text = {
         ]],
         [[
             原曲：ginkiha - Staff
-            出处：くろば·U - 《Star Chaser!》
+            出处：Cloba·U - 《Star Chaser!》
             
             　Staff画面的主题曲。
             
             　在那星空之上，才是故事真正开始的地方。
-            　未来的路还很长，请陪诺艾儿，爱丽丝和菲奥蕾特一起走下去吧。
+            　未来的路还很长，请陪诺艾儿和爱丽丝一起走下去吧。
             　愿能再相见。
         ]],
         [[
@@ -293,7 +293,7 @@ lib.music_room_text = {
         ]],
         [[
             原曲：An-fillnote - City of Grace
-            出处：ひなゆあ/桥野 水叶 - 《AliceInCradle》
+            出处：Hinayua/桥野 水叶 - 《AliceInCradle》
 
             　标题画面的主题曲（新）。
 
@@ -401,6 +401,23 @@ lib.new_skill_text = {
     并获得一个持续一段时间的护盾。
     护盾可以抵消一次miss并在生效时提供短暂无敌时间。
     ]]
+}
+
+lib.subtitle = {
+    '选择关卡',
+    '选择符卡',
+    '选择游戏回放',
+    '数据与文档',
+    '森林音乐室',
+    '设定变更',
+    '游戏方法',
+    '选择游戏难度',
+    '选择自机',
+    '选择插件',
+    '请输入名字',
+    '保存游戏回放', 
+    '展示战斗经历',
+    '选择结局'
 }
 
 lib.tips = {

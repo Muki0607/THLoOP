@@ -162,6 +162,7 @@ function lib.ending:render()
             x, x, y, y, 16, 32, 0, 0,
             self.text_scale, self.text_co, 4)
     else
+        lib.DrawSubTitle(self)
         lib.DrawTips(self, { l10n.ui.tips.select, l10n.ui.tips.back })
         local d, x, y, text1, text2 = 75, self.x, self.y - 25, self.text1, self.text2
         for i = 1, self.l do

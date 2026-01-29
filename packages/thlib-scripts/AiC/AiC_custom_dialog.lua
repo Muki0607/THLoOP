@@ -2090,7 +2090,7 @@ function lib.TTFDrawer:render(font, x1, x2, y1, y2, cw, ch, dx, dy, scale, color
             end
             if v == 'shader' and CheckRenderTarget('rt:TextEffect') then
                 PushRenderTarget('rt:TextEffect')
-                RenderClearViewMode(Color(0, 0, 0, 0))
+                RenderClear(Color(0, 0, 0, 0))
             end
         end
     end
@@ -2139,7 +2139,7 @@ function lib.TTFDrawer:render(font, x1, x2, y1, y2, cw, ch, dx, dy, scale, color
         --[[for k, v in ipairs(flag) do
             if v == 'shader' then
                 PushRenderTarget('rt:TextEffect')
-                RenderClearViewMode(Color(0, 0, 0, 0))
+                RenderClear(Color(0, 0, 0, 0))
             end
         end]]
         ----------------------------------------

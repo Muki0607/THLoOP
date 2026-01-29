@@ -11075,6 +11075,7 @@ stage.group.DefStageFunc('THLoOP@Normal','init',function(self)
     New(mask_fader,'open')
     if jstg then jstg.CreatePlayers() else New(_G[lstg.var.player_name]) end
     lasttask=task.New(self,function()
+        Terminal = New(aic.debug.Terminal, nil, nil, true)
         New(magic_forest_fast_background)
         LoadMusicRecord("aic_bgm9")
         _play_music("aic_bgm9")

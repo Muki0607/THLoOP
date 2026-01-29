@@ -1,0 +1,11 @@
+标题背景：https://www.pixiv.net/artworks/98549765
+副标题框：Star Chaser!
+魔杖文字体（获取魔法的演出中的背景文字/logo中最下方文字）：https://tieba.baidu.com/p/8148945104?cid=0&pid=146145730130#146145730130
+中文字体：问藏书房、方正清刻本悦宋简体、方正中倩简体、方正准圆简体、Aa方块黑
+四阶段BGM：https://www.bilibili.com/video/BV1f8411P7fG/
+LSC阶段BGM：The Amplifier - Feryquitous
+原作素材：东方凭依华、东方刚欲异闻、东方虹龙洞、Star Chaser!、Star Shooter!、Star Liner!、AliceInCradle
+部分音效：BV15i4y1d72c
+LSC符卡背景：东方实在相
+脚本编写：LuaSTG Editor Sharp 0.9.1
+游戏本体：LuaSTG aex+ v0.8.21-beta

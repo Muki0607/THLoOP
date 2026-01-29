@@ -55,7 +55,7 @@ function lib.option:init()
     self.reload = function()
         local o = l10n.ui.option
         self.text1 = {
-            { o.username, self.username, self.username },
+            { o.username, setting.username, setting.username },
             { o.locale --[[ aic.l10n.lang[zh_cn][2], aic.l10n.lang[zh_tc][2], aic.l10n.lang[en_us][2], aic.l10n.lang[ja_jp][2], ... ]] }, --实际为在下面读取l10n中已加载语言
             { o.resolution, 7, { 1, 3, 4, 5, 7 } },
             { o.display_mode, o.fullscreen_mode, o.windowed_mode },

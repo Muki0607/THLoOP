@@ -183,8 +183,8 @@ lib.music_room_text = {
             Noel Cornehl's Final Phase Theme.
 
             An intensely Gensokyo-flavored track.
-            Fight the final battle using the power of Gensokyo's borders
-            and hidden backing forces.
+            Fight the final battle using the fantasy power of border
+            and hidden power of backdoor.
             The true art of Danmaku lies in this ephemeral, dreamlike beauty.
             Isn't Gensokyo itself a cradle of fantasy?
         ]],
@@ -194,7 +194,7 @@ lib.music_room_text = {
             Noel Cornehl's Last Spellcard Theme.
 
             To Noel, the world she lives in is undoubtedly reality;
-            To us, her world is but a fantasy within a cradle.
+            To us, her world is nothing but a fantasy within a cradle.
             But do we truly have the right to define what is real?
             The answer to this, I believe, is already clear in your hearts.
             *The in-game version is abridged. Hold the Slow key for the full version.
@@ -210,7 +210,7 @@ lib.music_room_text = {
             "So, please hold your head high with pride, young lady."
         ]],
         [[
-            Original: An-fillnote - Witch's General Store
+            Original: An-fillnote - Witch's Shop
             Origin: Hinayua/Hashino Mizuha - 《AliceInCradle》
 
             Ending B Theme.
@@ -233,7 +233,7 @@ lib.music_room_text = {
             Original: Team Shanghai Alice - Player Score
             Origin: Team Shanghai Alice - 《Thohou Mountain of Faith》
 
-            Beaten and Bruised theme.
+            Severely Wounded theme.
 
             Where will you awaken this time?
             Be careful not to lose yourself too deeply in the dream.
@@ -405,6 +405,23 @@ lib.new_skill_text = {
     and grants a shield that lasts for a duration.
     The shield can negate one miss and provides brief invincibility while active.
     ]]
+}
+
+lib.subtitle = {
+    'Select a Stage',
+    'Select a Spell Card',
+    'Select a Replay',
+    'Data and Documentation',
+    'Forest Music Room',
+    'Change the Option',
+    'How to Play',
+    'Select a Rank',
+    'Select a Player',
+    'Select Your Enhancer',
+    'Enter a Score Name,okay?',
+    'Save Your Replay', 
+    'Check Your Battle History',
+    'Select a Ending'
 }
 
 lib.tips = {
