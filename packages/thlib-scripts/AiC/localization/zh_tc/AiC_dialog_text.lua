@@ -51,7 +51,7 @@ lib.dialog1 = {
     hscale = 0.5,
     vscale = 0.5,
     vol = 1,
-    name = '诺艾儿·柯涅尔',
+    name = '诺艾儿・柯涅尔',
     snd = "se:Muki_AiC_dialog_Noel",
     img = {
         "image:Muki_AiC_Noel_face_default",
@@ -76,11 +76,11 @@ lib.dialog2 = {
     vscale = 0.5,
     vol = 1,
     name = {
-        '伊夏·波利斯塔切尔',
-        '伊夏·波利斯塔切尔',
-        '诺艾儿·柯涅尔',
-        '诺艾儿·柯涅尔',
-        '伊夏·波利斯塔切尔',
+        '伊夏・波利斯塔切尔',
+        '伊夏・波利斯塔切尔',
+        '诺艾儿・柯涅尔',
+        '诺艾儿・柯涅尔',
+        '伊夏・波利斯塔切尔',
     },
     snd = {
         "se:Muki_AiC_dialog_Ixia",
@@ -98,7 +98,7 @@ lib.dialog2 = {
         "image:Muki_AiC_Ixia_face_default"
     },
     text = {
-        '<shake 3>诺艾儿·柯涅尔！</shake>总算找到你了！\n真是担心死……',
+        '<shake 3>诺艾儿・柯涅尔！</shake>总算找到你了！\n真是担心死……',
         '不，我才没有<Color {255,255,0,0}>很担心你</Color>！',
         '……谢谢你，伊夏同学。',
         '不过，\n你还没从那次<Color {255,255,0,0}></Color 3><uppertext 森林领主>大</uppertext>型魔物的袭击中恢复过来吧……',
@@ -120,11 +120,11 @@ lib.dialog3 = {
     name = {
         '普莉姆拉',
         '普莉姆拉',
-        '诺艾儿·柯涅尔',
+        '诺艾儿・柯涅尔',
         '普莉姆拉',
         '普莉姆拉',
-        '伊夏·波利斯塔切尔',
-        '诺艾儿·柯涅尔',
+        '伊夏・波利斯塔切尔',
+        '诺艾儿・柯涅尔',
     },
     snd = {
         "se:Muki_AiC_dialog_Primula",
@@ -167,9 +167,9 @@ lib.dialog4 = {
     vol = 1,
     name = {
         '普莉姆拉',
-        '伊夏·波利斯塔切尔',
+        '伊夏・波利斯塔切尔',
         '普莉姆拉',
-        '诺艾儿·柯涅尔',
+        '诺艾儿・柯涅尔',
         '普莉姆拉'
     },
     snd = {
@@ -214,7 +214,7 @@ lib.dialog5 = {
     hscale = 0.5,
     vscale = 0.5,
     vol = 1,
-    name = '诺艾儿·柯涅尔',
+    name = '诺艾儿・柯涅尔',
     snd = "se:Muki_AiC_dialog_Noel",
     img = {
         "image:Muki_AiC_Noel_face_embarassed",
@@ -237,7 +237,7 @@ lib.dialog6 = {
     hscale = 0.5,
     vscale = 0.5,
     vol = 1,
-    name = '诺艾儿·柯涅尔',
+    name = '诺艾儿・柯涅尔',
     snd = "se:Muki_AiC_dialog_Noel",
     img = {
         "image:Muki_AiC_Noel_face_lose",
@@ -253,7 +253,7 @@ lib.dialog6 = {
 
 ---这里的名字会用于计算文字效果范围，请一并翻译
 ---The name here will be used to calulate the range of text effect, please translate it
-local name = '诺艾儿·柯涅尔'
+local name = '诺艾儿・柯涅尔'
 ---最终阶段前对话
 ---Dialog before last phase
 lib.dialog7 = {
@@ -264,13 +264,13 @@ lib.dialog7 = {
     vscale = 0.5,
     vol = 1,
     name = {
-        '诺艾儿·柯涅尔',
+        '诺艾儿・柯涅尔',
         '？？？',
         '？？？',
         '？？？',
-        '诺艾儿·柯涅尔',
-        '诺艾儿·柯涅尔',
-        '诺艾儿·柯涅尔',
+        '诺艾儿・柯涅尔',
+        '诺艾儿・柯涅尔',
+        '诺艾儿・柯涅尔',
         '？？？？？？',
     },
     snd = {
@@ -318,7 +318,7 @@ lib['dialog7.5'] = {
     hscale = 0.3,
     vscale = 0.3,
     vol = 1,
-    name = '诺艾儿·柯涅尔',
+    name = '诺艾儿・柯涅尔',
     snd = "se:Muki_AiC_dialog_Noel",
     img = "image:Muki_AiC_Noel_face_final",
     text = { "沉眠于摇篮吧，境界外的存在！" }, --因为未知的原因text必须放在表里
@@ -334,7 +334,7 @@ lib.dialog8 = {
     hscale = 0.3,
     vscale = 0.3,
     vol = 1,
-    name = '诺艾儿·柯涅尔',
+    name = '诺艾儿・柯涅尔',
     snd = "se:Muki_AiC_dialog_Noel",
     img = "image:Muki_AiC_Noel_face_final",
     text = {
@@ -610,7 +610,7 @@ lib.dialog9 = {
     hscale = 0.5,
     vscale = 0.5,
     vol = 1,
-    name = '梅法·格里亚德',
+    name = '梅法・格里亚德',
     snd = {
         "se:Muki_AiC_dialog_Mepha",
         "se:Muki_AiC_dialog_Mepha",
@@ -631,7 +631,7 @@ lib.dialog9 = {
     },
     text = {
         '刚才不知怎的突然就来到这里了……\n不过看来是来对了呢。',
-        '诺艾儿·柯涅尔，\n贝尔米特国立大学所属，\nⅢ级士官候补生……\n我没记错吧？',
+        '诺艾儿・柯涅尔，\n贝尔米特国立大学所属，\nⅢ级士官候补生……\n我没记错吧？',
         '真是相当精彩的战斗……\n你已经做得足够好了。',
         '我向你保证，\n你和你的朋友一定能安全到家。',
         '……你是什么<color 0xFFFF0000>魔物</color>呢？\n抱歉，我看不出来。',

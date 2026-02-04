@@ -1,7 +1,5 @@
 local lib = aic.menu
 
-
-
 ------------------------------------------------------------
 
 ---自机选择菜单
@@ -22,7 +20,7 @@ function lib.player_select:init()
     self.wait = 30
     self.alpha = 0
     self.text_alpha = 0 --说明文字透明度
-    self.l = 5
+    self.l = 6
     self._alpha = {}    --各自机图标透明度
     for _ = 1, self.l do
         table.insert(self._alpha, 55)
@@ -33,6 +31,15 @@ function lib.player_select:init()
         table.insert(self.scale, 0.6)
     end
     self.scale[self.pos] = self.scale[self.pos] * 1.25
+    self.text_co = --各自机文字渐变色
+    {
+        { { 255, 0, 0 }, { 255, 255, 255 } },
+        { { 255, 255, 0 }, { 255, 255, 255 } },
+        { { 198, 204, 226 }, { 98, 95, 189 } },
+        { { 100, 255, 255 }, { 102, 252, 205 } },
+        { { 165, 206, 255 }, { 165, 69, 235 } },
+        { { 245, 223, 159 }, { 166, 129, 193 } },
+    }
     self.quit = function()
         if IsValid(self.qte_checker) then Del(self.qte_checker) end
         task.New(self, function()
@@ -146,12 +153,21 @@ function lib.player_select:render()
         SetImageState('Muki_AiC_menu_player_select' .. i, '', Color(min(self.alpha, self._alpha[i]), 255, 255, 255))
         Render('Muki_AiC_menu_player_select' .. i, x + screen.width * 0.5 * (i + 1), y, 0, self.scale[i])
     end
-    local x, y = screen.width * 0.7, screen.height * 0.5
-    for i = 1, self.l do
-        if self.text_pos == i then
-            SetImageState('Muki_AiC_menu_player_select_text' .. i, '',
-                Color(min(self.alpha, self.text_alpha), 255, 255, 255))
-            Render('Muki_AiC_menu_player_select_text' .. i, x, y, 0, 0.75)
+    local x, y = screen.width * 0.7, screen.height * 0.72
+    local dx1, dx2, h = -160, -200, 50
+    local text = l10n.ui.player_select[self.text_pos]
+    local alpha = min(self.alpha, self.text_alpha)
+    local co = self.text_co[self.text_pos]
+    local co1, co2 = Color(alpha, co[1][1], co[1][2], co[1][3]), Color(alpha, co[2][1], co[2][2], co[2][3])
+    DrawGradientText('magic', text[1], x, y, 1.5, { co1, co1, co2, co2 }, 15, 12, 4)
+    DrawGradientText('main_font_zh_cn', text[2], x, y - 30, 2, { co1, co1, co2, co2 })
+    DrawGradientText('main_font_zh_cn', text[3], x, y - 60, 1, { co1, co1, co2, co2 })
+    for i = 1, 5 do
+        if text[4][i] then
+            DrawText('main_font_zh_cn', text[4][i], x + dx1, y - 90 - (i - 1) * h, 0.8,
+                Color(alpha, 255, 255, 255))
+            DrawText('main_font_zh_cn', text[5][i], x + dx2, y - 105 - (i - 1) * h, 0.6,
+                Color(alpha, 255, 255, 255))
         end
     end
 

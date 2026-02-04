@@ -168,6 +168,7 @@ function lib.Terminal:init(x, y, print_to_log)
     self.tmpinput_code = ''
     self.tmpinput_for_history = {}
     self.print_to_log = print_to_log
+    self.is_terminal = true
 
     -- 获取新块类型
     function self.getNewBlockType(line)
@@ -249,6 +250,10 @@ function lib.Terminal:frame()
         if self.state == 'normal' then
             if IsValid(player) then
                 player.lock = true
+            end
+            if aic.input.KeyIsPressed(KEY.ESCAPE) then
+                self.wait = self.t
+                Del(self)
             end
             if aic.input.KeyIsPressed(KEY.ENTER) then
                 self.wait = self.t
@@ -486,4 +491,18 @@ function lib.Terminal:render()
         DrawText('consola', table.concat(self.hist2, '\n'), x + self.a, y, 0.5, nil, nil, 'left')
     end
     SetViewMode('world')
+end
+
+function lib.Terminal:del()
+    if IsValid(player) then
+        player.lock = false
+    end
+end
+
+function lib.NewTerminal(x, y, print_to_log)
+    if print_to_log == nil then print_to_log = true end
+    for _, o in ObjList(GROUP_GHOST) do
+        if o.is_terminal then safeDel(o) end
+    end
+    New(lib.Terminal, x, y, print_to_log)
 end

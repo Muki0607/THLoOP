@@ -55,7 +55,7 @@ lib.music_room = {
         ]],
         [[
             原曲：ginkiha - Extra stage
-            出处：くろば·U - 《Star Shooter!》
+            出处：くろば・U - 《Star Shooter!》
 
             　零面道中的主题曲。
 
@@ -64,7 +64,7 @@ lib.music_room = {
         ]],
         [[
             原曲：ginkiha - Star Chaser! 
-            出处：くろば·U - 《Star Chaser!》
+            出处：くろば・U - 《Star Chaser!》
             
             　本田 珠辉的主题曲。
             
@@ -81,7 +81,7 @@ lib.music_room = {
         ]],
         [[
             原曲：ginkiha - 通常Boss
-            出处：くろば·U - 《Star Shooter!》
+            出处：くろば・U - 《Star Shooter!》
             
             　SNS部的少女们的主题曲。
             
@@ -131,17 +131,17 @@ lib.music_room = {
             原曲：ginkiha - 编织者之森(Battle)
             出处：ひなゆあ/橋野みずは - 《AliceInCradle》
             
-            　诺艾儿·柯涅尔的一阶段主题曲。
+            　诺艾儿・柯涅尔的一阶段主题曲。
             
             　节奏十分轻快，因为诺艾儿这时还并未意识到对手有多强大。
             　听着这首曲子，就仿佛能看见笨拙地挥动着法杖的诺艾儿呢。
             　闻起来像散落的魔力。
         ]],
         [[
-            原曲：ginkiha - 伊夏·波利斯塔切尔
+            原曲：ginkiha - 伊夏・波利斯塔切尔
             出处：ひなゆあ/橋野みずは - 《AliceInCradle》
             
-            　伊夏·波利斯塔切尔的主题曲。
+            　伊夏・波利斯塔切尔的主题曲。
             
             　慌慌张张的感觉。
             　伊夏还未从与森主的战斗中恢复，
@@ -149,7 +149,7 @@ lib.music_room = {
         ]],
         [[
             原曲：Feryquitous - Ha-chan
-            出处：くろば·U - 《Star Shooter!》
+            出处：くろば・U - 《Star Shooter!》
             
             　普莉姆拉的主题曲。
             
@@ -159,9 +159,9 @@ lib.music_room = {
         ]],
         [[
             原曲：Feryquitous - Unknown wisdom
-            出处：くろば·U - 《Star Liner!》
+            出处：くろば・U - 《Star Liner!》
             
-            　诺艾儿·柯涅尔的二阶段主题曲。
+            　诺艾儿・柯涅尔的二阶段主题曲。
             
             　诺艾儿开始全力以赴，因为背后有她要守护的人。
             　从这里开始，或许能看到诺艾儿曾见过的攻击。
@@ -182,7 +182,7 @@ lib.music_room = {
             原曲：Battle Nusi - 东方风Remix
             出处：https://www.bilibili.com/video/BV1f8411P7fG/
             
-            　诺艾儿·柯涅尔的最终阶段主题曲。
+            　诺艾儿・柯涅尔的最终阶段主题曲。
             
             　极其具有幻想乡风味的曲子。
             　借助幻想的境界之力与秘匿的背后之力，最后与眼前的敌人一战吧。
@@ -192,7 +192,7 @@ lib.music_room = {
         [[
             原曲：Feryquitous - The Amplifier
 
-            　诺艾儿·柯涅尔的Last Spellcard主题曲。
+            　诺艾儿・柯涅尔的Last Spellcard主题曲。
             
             　对诺艾儿来说，她所生活的世界无疑就是现实；
             　而对于我们来说，她的世界不过是摇篮中的幻想。
@@ -222,7 +222,7 @@ lib.music_room = {
         ]],
         [[
             原曲：ginkiha - Staff
-            出处：くろば·U - 《Star Chaser!》
+            出处：くろば・U - 《Star Chaser!》
             
             　Staff画面的主题曲。
             

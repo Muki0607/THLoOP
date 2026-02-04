@@ -1,17 +1,33 @@
 {
+	"joysticksys": {
+		"menu": 16,
+		"snapshot": 32,
+		"repfast": 64,
+		"retry": 256
+	},
+	"username": "Muki",
+	"locale": "zh_cn",
+	"windowed": true,
 	"timezone": 8,
 	"autofire": false,
-	"autoslow": false,
-	"autododge": false,
+	"vsync": false,
+	"sevolume": 25,
 	"newopening": false,
 	"newbgm": false,
-	"windowed": true,
+	"sfwmode": true,
+	"keys": {
+		"up": 38,
+		"down": 40,
+		"left": 37,
+		"right": 39,
+		"slow": 16,
+		"shoot": 90,
+		"spell": 88,
+		"special": 67
+	},
 	"resx": 1280,
-	"resy": 960,
-	"vsync": false,
-	"sevolume": 20,
-	"bgmvolume": 20,
-	"nosplash": true,
+	"autoslow": false,
+	"autododge": false,
 	"keys2": {
 		"up": 101,
 		"down": 98,
@@ -29,6 +45,11 @@
 		"snapshot": 36,
 		"retry": 82
 	},
+	"joyblindarea": 0.2,
+	"last_mod": "THLoOP",
+	"mod": "THLoOP",
+	"bgmvolume": 25,
+	"resy": 960,
 	"joysticks": {
 		"up": 1,
 		"down": 2,
@@ -38,27 +59,5 @@
 		"shoot": 16384,
 		"spell": 4096,
 		"special": 32768
-	},
-	"joysticksys": {
-		"menu": 16,
-		"snapshot": 32,
-		"repfast": 64,
-		"retry": 256
-	},
-	"joyblindarea": 0.2,
-	"last_mod": "THLoOP",
-	"mod": "THLoOP",
-	"username": "Muki",
-	"sfwmode": true,
-	"locale": "ja_jp",
-	"keys": {
-		"up": 38,
-		"down": 40,
-		"left": 37,
-		"right": 39,
-		"slow": 16,
-		"shoot": 90,
-		"spell": 88,
-		"special": 67
 	}
 }

@@ -272,9 +272,9 @@ function ext.pausemenu:render()
                 Render('pause_Mission Incomplete', pm.mask_x[1] + dx, -30 + dy, 0, 0.7, 0.7)
             elseif EndingBFlag then
                 if self.choose then
-                    SetImageState('pause_EndingB', '', Color(pm.mask_alph[1] + 15, 100, 100, 100))
+                    SetImageState('pause_endingB', '', Color(pm.mask_alph[1] + 15, 100, 100, 100))
                 else
-                    SetImageState('pause_EndingB', '', Color(pm.mask_alph[1] + 15, 255, 255, 255))
+                    SetImageState('pause_endingB', '', Color(pm.mask_alph[1] + 15, 255, 255, 255))
                 end
                 Render('pause_gameover', pm.mask_x[1] + dx, -30 + dy, 0, 0.7, 0.7)
             elseif not ext.sc_pr then
@@ -836,7 +836,8 @@ ext.option = {
                     else
                         PlaySound('aic_setting_scroll', 0.5)
                     end
-                    if self.pos1 == 2 then
+                    if self.pos1 == 1 then
+                    elseif self.pos1 == 2 then
                         self.pos_locale = min(self.pos_locale - 1, self.lang_kt('len'))
                         set.locale = self.lang_kt('get', self.pos_locale)
                         setting.locale = set.locale
@@ -868,7 +869,8 @@ ext.option = {
                     else
                         PlaySound('aic_setting_scroll', 0.5)
                     end
-                    if self.pos1 == 2 then
+                    if self.pos1 == 1 then
+                    elseif self.pos1 == 2 then
                         self.pos_locale = min(self.pos_locale + 1, self.lang_kt('len'))
                         set.locale = self.lang_kt('get', self.pos_locale)
                         setting.locale = set.locale
@@ -1300,8 +1302,8 @@ LoadImage('pause_eff', 'pause', 408, 320, 104, 384)
 ]]
 
 local pause = { 'pausemenu', 'gameover', 'replayover', 'Return to Game', 'Return to Title', 'Give up and Retry',
-    'yes', 'no', 'Quit and Save Replay', 'really', 'savereplay', --以后谁再把replay写成reply我打死他
-    'Replay Again', 'Continue', 'Manual', 'Option', 'Mission Incomplete', 'Return to Waypoint', 'EndingB', 'Watch Ending' }
+    'Yes', 'No', 'Quit and Save Replay', 'really', 'Save Replay', --以后谁再把replay写成reply我打死他
+    'Replay Again', 'Continue', 'Manual', 'Option', 'missionincomplete', 'Return to Waypoint', 'endingB', 'Watch Ending' }
 
 local center = { { 0, 35 }, { 0, 35 }, { 0, 35 }, { 0, 30 }, { 0, 28 }, { 0, 29 }, { 0, 29 },
     { 0, 30 }, { 0, 30 }, { 0, 29 }, { 0, 30 }, { 0, 30 }, { 0, 28 }, { 0, 29 }, { 0, 28 },

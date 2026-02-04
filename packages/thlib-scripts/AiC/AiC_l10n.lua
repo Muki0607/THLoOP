@@ -15,12 +15,14 @@ l10n = {}
 ---localization，简写为l10n（l和n之间有10个字母）。
 ---直译为"本土化"（不建议译为"本地化"，因为本地这个词往往对应的是远程/在线），
 ---是包括但不限于文本翻译（往往还涉及到数字/日期/时间的格式调整、民间计量单位的换算等）的一项重要工作。
----————《厨圣的高级修养——Alice in Cradle的localization语法》
+---————《厨圣的高级修养——Alice in Cradle的localization语法》 by 普莉姆拉老师
 
 ---可用的语言
 lib.lang = {}
 ---可用语言名称列表，用于有序地显示语言
 lib.lang_list = {}
+---各语言字体的参数，分别为charWidth（字宽）, charHeight（字高）, lineSpacing（行间距）
+lib.font_param = {}
 
 ---初始化语言
 ---@param formal_name string @正式名称，需要和文件夹名相同
@@ -29,6 +31,15 @@ lib.lang_list = {}
 function lib.InitLang(formal_name, simplified_name, full_name)
     lib.lang[formal_name] = { simplified_name, full_name }
     table.insert(lib.lang_list, formal_name)
+end
+
+---初始化字体参数
+---@param lang string @语言正式名称
+---@param charWidth number @单个字符宽度
+---@param charHeight number @单个字符高度
+---@param lineSpacing number @行间距
+function lib.InitFontParam(lang, charWidth, charHeight, lineSpacing)
+    lib.font_param[lang] = { charWidth, charHeight, lineSpacing }
 end
 
 ---加载所有语言文件
@@ -62,15 +73,26 @@ function lib.Reload()
 end
 
 ---!注意！这里的初始化顺序将影响设置中语言选项的显示顺序
+---初始化字符参数是可选的，如果未初始化则使用默认值(10, 18, 4)
 ---!Caution! The initialization order here affects the display order of language options in settings
+---Initializing font parameters is optional; if not initialized, default values (10, 18, 4) will be used
 lib.InitLang("zh_cn", "CN", "简体中文(CN)")
+lib.InitFontParam("zh_cn", 10, 18, 4)
+
 lib.InitLang("zh_tc", "TC", "繁體中文(TC)")
+lib.InitFontParam("zh_tc", 10, 18, 4)
+
 lib.InitLang("en_us", "EN", "English(US)")
+lib.InitFontParam("en_us", 10, 18, 4)
+
 lib.InitLang("ja_jp", "JP", "日本語(JP)")
+lib.InitFontParam("ja_jp", 10, 18, 4)
 
 -------------------------------------------
+--请将你的语言添加在下一行！
 --please add your language at next line!
 --lib.InitLang("xx_XX", "XX", "Your Language(XX)")
+--lib.InitFontParam("xx_XX", charWidth, charHeight, lineSpacing)
 -------------------------------------------
 
 lib.LoadAllLang()

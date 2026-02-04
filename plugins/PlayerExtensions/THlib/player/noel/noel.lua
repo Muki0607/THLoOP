@@ -1,6 +1,6 @@
 ---THLoOP Added
 noel_player = Class(player_class)
---特殊型机体（诺艾儿·柯涅尔）LSC简化版
+--特殊型机体（诺艾儿・柯涅尔）LSC简化版
 --和其他几个机体不同，尽量做了在梦摇篮外使用的适配
 -------------------------------------------------------
 ---一些适配
@@ -13,7 +13,7 @@ end
 function noel_player:init(slot)
     LoadTexture('noel_player', 'THlib/player/noel/noel.png')
     -----------------------------------------
-    LoadImageGroup('noel_player', 'noel_player', 0, 0, 200, 200, 3, 1, 0.5, 0.5)
+    LoadImageGroup('noel_player', 'noel_player', 0, 0, 4096 / 8, 1341 / 3, 8, 3, 0.5, 0.5)
     -----------------------------------------
     --射击素材，懒得去解包找所以和作为boss的诺艾儿一样用lstg弹型模拟
     CopyImage('noel_arrow', 'arrow_big4')
@@ -33,14 +33,9 @@ function noel_player:init(slot)
     self.imgs = {}
     self.A = 0.5
     self.B = 0.5
-    self.hscale = 0.6
-    self.vscale = 0.6
-    --纯粹占位用的假行走图
-    if slot and slot == 2 and jstg.players[1].name == self.name then
-        for i = 1, 24 do self.imgs[i] = 'img_void' end
-    else
-        for i = 1, 24 do self.imgs[i] = 'img_void' end
-    end
+    self.hscale = 0.15
+    self.vscale = 0.15
+    for i = 1, 24 do self.imgs[i] = 'noel_player' .. i end
     self.slist =
     {
         { nil,                nil,              nil,            nil },
@@ -62,7 +57,6 @@ function noel_player:init(slot)
     self.dmglist = { 0.3, 0.3, 0.3, 0.3 }
     self.deathtime = 60 --长到令人睡着再醒来的决死时间
     self.default_deathtime = self.deathtime
-    self._img = 'noel_player1' --真正渲染用的行走图
     self.cd = 8 --近战攻击cd
     self.default_cd = self.cd
     self.magic_type = 0 --使用魔法种类
@@ -124,7 +118,6 @@ function noel_player:frame()
     player_class.frame(self)
     local intv = 8
     local i = int((self.timer % (intv * 3)) / intv) + 1
-    self._img = 'noel_player' .. i
     if self.is_boss then
         self.nextshoot = 114514
         self.nextspell = 114514
@@ -216,17 +209,18 @@ function noel_player:render()
             Render('noel_support', self.supportx + self.sp[i][1] * s, self.supporty + self.sp[i][2] * s, self.timer * 3, s * s2)
         end
     end
-    --因为行走图数量不足所以选择手动渲染
-    Render(self._img, self.x, self.y, 0, self.hscale * s, self.vscale * s)
     if not self.is_boss then
         SetImageState('white', '', Color(150, 255, 255, 255))
         RenderRect('white', self.x - 20, self.x + 40, self.y - 30, self.y - 20)
         SetImageState('white', '', Color(255, 112, 127, 155))
         RenderRect('white', self.x - 20, self.x + 40 * lstg.var.power / lstg.var.maxpower, self.y - 30, self.y - 20)
         SetImageState('white', '', Color(255, 127, 153, 156))
-        RenderRect('white', self.x + 40 * lstg.var.power / lstg.var.maxpower * self.chant_point / self.max_cp[self.magic_type],
-            self.x + 40 * lstg.var.power / lstg.var.maxpower, self.y - 30, self.y - 20)
+        if self.magic_type ~= 0 then
+            RenderRect('white', self.x + 40 * lstg.var.power / lstg.var.maxpower * self.chant_point / self.max_cp[self.magic_type],
+                self.x + 40 * lstg.var.power / lstg.var.maxpower, self.y - 30, self.y - 20)
+        end
     end
+    player_class.render(self)
 end
 
 -------------------------------------------------------

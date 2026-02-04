@@ -384,6 +384,7 @@ function stage.group.ReturnToTitle(save_rep, finish)
     end
     
     --累加游玩次数
+    scoredata.player_data[lstg.var.player_name].played_num = scoredata.player_data[lstg.var.player_name].played_num or 0
     scoredata.player_data[lstg.var.player_name].played_num = scoredata.player_data[lstg.var.player_name].played_num + 1
     if finish == 1 and not gamecontinueflag then
         --首次通关增加插件槽数

@@ -75,13 +75,13 @@ lib.music_room_text = {
         ]],
         [[
             Original: ginkiha - Extra stage
-            Origin: Cloba·U - 《Star Shooter!》
+            Origin: Cloba・U - 《Star Shooter!》
 
             [Data Expunged]
         ]],
         [[
             Original: ginkiha - Star Chaser!
-            Origin: Cloba·U - 《Star Chaser!》
+            Origin: Cloba・U - 《Star Chaser!》
 
             [Data Expunged]
         ]],
@@ -92,7 +92,7 @@ lib.music_room_text = {
         ]],
         [[
             Original: ginkiha - Normal Boss
-            Origin: Cloba·U - 《Star Shooter!》
+            Origin: Cloba・U - 《Star Shooter!》
 
             [Data Expunged]
         ]],
@@ -146,7 +146,7 @@ lib.music_room_text = {
         ]],
         [[
             Original: Feryquitous - Ha-chan
-            Origin: Cloba·U - 《Star Shooter!》
+            Origin: Cloba・U - 《Star Shooter!》
 
             Primula's Theme.
 
@@ -156,7 +156,7 @@ lib.music_room_text = {
         ]],
         [[
             Original: Feryquitous - Unknown wisdom
-            Origin: Cloba·U - 《Star Liner!》
+            Origin: Cloba・U - 《Star Liner!》
 
             Noel Cornehl's Phase 2 Theme.
 
@@ -221,7 +221,7 @@ lib.music_room_text = {
         ]],
         [[
             Original: ginkiha - Staff
-            Origin: Cloba·U - 《Star Chaser!》
+            Origin: Cloba・U - 《Star Chaser!》
 
             Staff Roll Theme.
 

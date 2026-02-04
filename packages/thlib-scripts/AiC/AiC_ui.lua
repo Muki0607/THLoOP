@@ -276,9 +276,10 @@ lib.CreateRT('rt:gradient_text')
 ---@param lineSpacing number @行间距
 ---@param nostroke boolean @是否不带描边
 function lib.DrawGradientText(font, text, x, y, s, colors, charWidth, charHeight, lineSpacing, nostroke)
-    charWidth = charWidth or 10
-    charHeight = charHeight or 18
-    lineSpacing = lineSpacing or 4
+    local param = aic.l10n.font_param[setting.locale] or { 10, 18, 4 }
+    charWidth = charWidth or param[1]
+    charHeight = charHeight or param[2]
+    lineSpacing = lineSpacing or param[3]
     
     --计算实际尺寸（考虑缩放）
     local actualCharWidth = charWidth * s
@@ -370,9 +371,10 @@ lib.CreateRT('rt:gradient_stroke')
 ---@param charHeight number @单个字符高度
 ---@param lineSpacing number @行间距
 function lib.DrawGradientStroke(font, text, x, y, s, colors, charWidth, charHeight, lineSpacing)
-    charWidth = charWidth or 10
-    charHeight = charHeight or 18
-    lineSpacing = lineSpacing or 4
+    local param = aic.l10n.font_param[setting.locale] or { 10, 18, 4 }
+    charWidth = charWidth or param[1]
+    charHeight = charHeight or param[2]
+    lineSpacing = lineSpacing or param[3]
     
     --计算实际尺寸（考虑缩放）
     local actualCharWidth = charWidth * s
@@ -479,9 +481,10 @@ lib.CreateRT('rt:shader_stroke2')
 ---@param lineSpacing number @行间距
 ---@param nostroke boolean @是否不带描边
 function lib.DrawTextWithShader(font, text, x, y, s, co, charWidth, charHeight, lineSpacing, nostroke)
-    charWidth = charWidth or 10
-    charHeight = charHeight or 18
-    lineSpacing = lineSpacing or 4
+    local param = aic.l10n.font_param[setting.locale] or { 10, 18, 4 }
+    charWidth = charWidth or param[1]
+    charHeight = charHeight or param[2]
+    lineSpacing = lineSpacing or param[3]
     
     --计算实际尺寸（考虑缩放）
     local actualCharWidth = charWidth * s

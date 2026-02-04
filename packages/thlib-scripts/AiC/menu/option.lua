@@ -33,6 +33,7 @@ function lib.option:init()
     
 
     self.applySetting = function(newsetting)
+        setting.username = setting.username or self.username
         setting.locale = newsetting.locale
         aic.l10n.Reload()
         setting.resx, setting.resy, setting.windowed, setting.vsync = newsetting.resx, newsetting.resy, newsetting.windowed, newsetting.vsync
@@ -253,7 +254,8 @@ function lib.option:frame()
                 else
                     PlaySound('aic_setting_scroll', 0.5)
                 end
-                if self.pos1 == 2 then
+                if self.pos1 == 1 then
+                elseif self.pos1 == 2 then
                     self.pos_locale = max(self.pos_locale - 1, 1)
                     set.locale = self.lang_kt('get', self.pos_locale)
                     setting.locale = set.locale
@@ -263,7 +265,7 @@ function lib.option:frame()
                     if self.pos_res > 1 then
                         self.pos_res = self.pos_res - 1
                     else
-                        self.pos_res = 7
+                        self.pos_res = #self.res
                     end
                 elseif self.pos1 == 6 then
                     set.sevolume = max(0, set.sevolume - 5)
@@ -285,14 +287,15 @@ function lib.option:frame()
                 else
                     PlaySound('aic_setting_scroll', 0.5)
                 end
-                if self.pos1 == 2 then
+                if self.pos1 == 1 then
+                elseif self.pos1 == 2 then
                     self.pos_locale = min(self.pos_locale + 1, self.lang_kt('len'))
                     set.locale = self.lang_kt('get', self.pos_locale)
                     setting.locale = set.locale
                     aic.l10n.Reload()
                     self.reload()
                 elseif self.pos1 == 3 then
-                    if self.pos_res < 7 then
+                    if self.pos_res < #self.res then
                         self.pos_res = self.pos_res + 1
                     else
                         self.pos_res = 1

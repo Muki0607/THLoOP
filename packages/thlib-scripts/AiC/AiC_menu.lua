@@ -514,11 +514,6 @@ for _, m in ipairs({ { 'difficulty_select', 4 }, { 'player_select', 8 }, { 'enha
             'THlib/UI/menu/' .. m[1] .. '/Muki_AiC_menu_' .. m[1] .. i .. '.png')
     end
 end
---自机选择菜单文字
-for i = 1, 8 do
-    LoadImageFromFile('Muki_AiC_menu_player_select_text' .. i,
-        'THlib/UI/menu/player_select/Muki_AiC_menu_player_select_text' .. i .. '.png')
-end
 --插件相关
 LoadImageGroupFromFile('Muki_AiC_menu_enhancer_select_slot',
     'THlib/UI/menu/enhancer_select/Muki_AiC_menu_enhancer_select_slot.png', true, 3, 1)

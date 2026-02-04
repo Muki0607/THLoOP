@@ -43,6 +43,7 @@ lib.character_names = {
     sakuya = "十六夜 咲夜",
     muki = "小林 无记",
     nenyuki = "千幻 念雪",
+    noel = "诺艾儿・柯涅尔"
 }
 
 lib.difficulty = {

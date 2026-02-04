@@ -1,0 +1,1 @@
+If you want to add a new language support for THLoOP, please go to packages\thlib-scripts\AiC\localization for further information.

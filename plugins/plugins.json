@@ -1,20 +1,20 @@
 [
 	{
-		"directory_mode": true,
+		"path": "plugins\/PlayerExtensions\/",
 		"enable": true,
 		"name": "PlayerExtensions",
-		"path": "plugins\/PlayerExtensions\/"
+		"directory_mode": true
 	},
 	{
-		"directory_mode": true,
+		"path": "plugins\/StageBackgroundExtensions\/",
 		"enable": true,
 		"name": "StageBackgroundExtensions",
-		"path": "plugins\/StageBackgroundExtensions\/"
+		"directory_mode": true
 	},
 	{
-		"directory_mode": true,
+		"path": "plugins\/IME\/",
 		"enable": true,
 		"name": "IME",
-		"path": "plugins\/IME\/"
+		"directory_mode": true
 	}
 ]

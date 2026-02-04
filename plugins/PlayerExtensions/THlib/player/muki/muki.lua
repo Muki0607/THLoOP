@@ -152,10 +152,10 @@ function muki_player:frame()
     end
     -----------------------------------------
     --最终符卡
-    --上上下下左右左右BABA
+    --上上下下左右左右BA
     --为了避免触发spell和special而没有使用这两个键
     self.qte_checker = self.qte_checker or
-        New(muki_qte_checker, { 'up', 'up', 'down', 'down', 'left', 'right', 'left', 'right', 'slow', 'shoot', 'slow', 'shoot' }, 1)
+        New(muki_qte_checker, { 'up', 'up', 'down', 'down', 'left', 'right', 'left', 'right', 'slow', 'shoot' }, 1)
     if self.qte_checker.finished then
         self.qte_checker.finished = false
         self.qte_checker.num = 1

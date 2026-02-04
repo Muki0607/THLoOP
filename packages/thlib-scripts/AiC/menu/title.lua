@@ -8,7 +8,7 @@ lib.title = Class(object)
 ---@param pos number @初始选择位置
 ---@param l number @菜单长度
 function lib.title:init(pos, l)
-    Terminal = New(aic.debug.Terminal, nil, nil, true)
+    --aic.debug.NewTerminal()
     --写入当前版本号
     lstg.var.aic_version = aic.version
     --初始化PlayerData
